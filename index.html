@@ -1,57 +1,39 @@
 <!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>The Aura | Gifts & Hampers</title><meta name="description"
-content="The Aura — beautiful gifts, hampers and personalised surprises.">
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Aura | Gifts & Hampers</title><style>
 :root{
-    --primary:#7650a8;
-    --primary-dark:#4c2b70;
-    --primary-soft:#eee4fa;
-    --pink:#f5ddec;
-    --bg:#fcf9ff;
-    --card:#ffffff;
-    --text:#2d2234;
-    --muted:#796d82;
-    --border:#eadff1;
-    --success:#2e8151;
-    --danger:#a93232;
-    --shadow:0 12px 35px rgba(75,43,112,.10);
-    --radius:22px;
+    --purple:#7650a8;
+    --dark:#4b2b6d;
+    --lavender:#eee4fa;
+    --light:#fcf9ff;
+    --pink:#f8e8f4;
+    --text:#302538;
+    --muted:#7c7184;
+    --white:#fff;
+    --border:#e8dcef;
+    --shadow:0 12px 35px rgba(76,43,109,.11);
 }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg);
+    background:var(--light);
     color:var(--text);
 }
 
-button,input,textarea,select{
-    font:inherit;
-}
+button,input,textarea,select{font:inherit}
 
-button{
-    cursor:pointer;
-}
+button{cursor:pointer}
 
-img{
-    max-width:100%;
-}
+a{text-decoration:none}
 
-.hidden{
-    display:none!important;
-}
+.hidden{display:none!important}
+
 
 /* HEADER */
 
@@ -59,26 +41,25 @@ header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(255,255,255,.93);
-    backdrop-filter:blur(18px);
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(16px);
     border-bottom:1px solid var(--border);
 }
 
 .nav{
     max-width:1200px;
     margin:auto;
+    padding:10px 18px;
     min-height:72px;
-    padding:10px 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:15px;
 }
 
 .brand{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:11px;
 }
 
 .logo{
@@ -86,34 +67,33 @@ header{
     height:50px;
     border-radius:16px;
     object-fit:cover;
-    background:var(--primary-soft);
+    background:var(--lavender);
 }
 
 .brand-name{
     font-family:Georgia,serif;
     font-size:24px;
-    color:var(--primary-dark);
+    color:var(--dark);
 }
 
-.brand-tag{
-    font-size:11px;
+.tagline{
+    font-size:10px;
     color:var(--muted);
-    margin-top:2px;
 }
 
-.nav-buttons{
+.nav-actions{
     display:flex;
-    gap:8px;
+    gap:7px;
 }
 
-.circle-btn{
+.icon-btn{
+    position:relative;
+    border:0;
     width:43px;
     height:43px;
-    border:0;
     border-radius:50%;
-    background:var(--primary-soft);
-    color:var(--primary-dark);
-    position:relative;
+    background:var(--lavender);
+    color:var(--dark);
 }
 
 .badge{
@@ -122,43 +102,41 @@ header{
     right:-3px;
     min-width:18px;
     height:18px;
-    padding:0 4px;
+    padding:2px 5px;
     border-radius:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--primary);
+    background:var(--purple);
     color:white;
     font-size:10px;
 }
+
 
 /* HERO */
 
 .hero{
     max-width:1200px;
-    margin:22px auto;
+    margin:20px auto;
     padding:80px 25px;
     border-radius:32px;
     text-align:center;
     background:
-        radial-gradient(circle at 15% 20%,#f5ddec 0,transparent 28%),
-        radial-gradient(circle at 85% 10%,#dfccfa 0,transparent 32%),
-        linear-gradient(135deg,#f4ebff,#fff8fc);
+    radial-gradient(circle at 10% 20%,#f5d8eb 0,transparent 28%),
+    radial-gradient(circle at 90% 10%,#ddc9fa 0,transparent 30%),
+    linear-gradient(135deg,#f3e9ff,#fff7fc);
 }
 
 .hero-label{
-    color:var(--primary);
+    color:var(--purple);
     letter-spacing:3px;
-    font-size:12px;
+    font-size:11px;
     font-weight:bold;
 }
 
 .hero h1{
-    margin:17px 0;
     font-family:Georgia,serif;
-    color:var(--primary-dark);
-    font-size:clamp(42px,8vw,78px);
+    color:var(--dark);
+    font-size:clamp(43px,8vw,76px);
     line-height:1;
+    margin:18px 0;
 }
 
 .hero p{
@@ -169,61 +147,127 @@ header{
 }
 
 .hero-buttons{
-    margin-top:27px;
+    margin-top:28px;
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
     gap:10px;
 }
 
+
 /* BUTTONS */
 
 .btn{
     border:0;
-    padding:12px 18px;
     border-radius:13px;
+    padding:12px 18px;
     font-weight:bold;
     transition:.2s;
 }
 
-.btn:hover{
-    transform:translateY(-2px);
-}
+.btn:hover{transform:translateY(-2px)}
 
-.btn-primary{
-    background:var(--primary);
+.primary{
+    background:var(--purple);
     color:white;
 }
 
-.btn-secondary{
+.secondary{
     background:white;
-    color:var(--primary-dark);
+    color:var(--dark);
     border:1px solid var(--border);
 }
 
-.btn-danger{
-    background:#ffe3e3;
-    color:var(--danger);
+.danger{
+    background:#ffe2e2;
+    color:#a02f2f;
 }
+
+
+/* SHOWCASE */
+
+.showcase{
+    max-width:1200px;
+    margin:45px auto;
+    padding:0 20px;
+}
+
+.heading{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.heading h2{
+    font-family:Georgia,serif;
+    color:var(--dark);
+    font-size:30px;
+}
+
+.heading p{
+    margin-top:6px;
+    color:var(--muted);
+}
+
+.showcase-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    grid-template-rows:210px 210px;
+    gap:14px;
+}
+
+.showcase-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:22px;
+    box-shadow:var(--shadow);
+}
+
+.showcase-card:first-child{
+    grid-row:span 2;
+}
+
+.showcase-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.showcase-card:hover img{
+    transform:scale(1.05);
+}
+
+.showcase-overlay{
+    position:absolute;
+    inset:auto 0 0;
+    padding:25px 18px 18px;
+    color:white;
+    background:linear-gradient(transparent,rgba(40,20,50,.72));
+}
+
+.showcase-overlay h3{
+    font-family:Georgia,serif;
+}
+
 
 /* STORE */
 
-.container{
+.store{
     max-width:1200px;
     margin:auto;
-    padding:20px;
+    padding:25px 20px;
 }
 
-.section-heading{
-    margin:25px 0 17px;
+.heading-left{
+    margin-bottom:18px;
 }
 
-.section-heading h2{
+.heading-left h2{
     font-family:Georgia,serif;
-    color:var(--primary-dark);
+    color:var(--dark);
 }
 
-.section-heading p{
+.heading-left p{
     color:var(--muted);
     margin-top:5px;
 }
@@ -232,23 +276,24 @@ header{
     display:flex;
     gap:9px;
     overflow-x:auto;
-    padding-bottom:10px;
+    padding-bottom:13px;
+    margin-bottom:22px;
 }
 
 .category{
     white-space:nowrap;
     border:1px solid var(--border);
     background:white;
-    color:var(--primary-dark);
+    color:var(--dark);
     padding:10px 16px;
     border-radius:30px;
 }
 
 .category.active{
-    background:var(--primary);
+    background:var(--purple);
     color:white;
-    border-color:var(--primary);
 }
+
 
 /* PRODUCTS */
 
@@ -258,112 +303,142 @@ header{
     gap:20px;
 }
 
-.product-card{
+.card{
     background:white;
-    border-radius:var(--radius);
+    border-radius:22px;
     overflow:hidden;
     box-shadow:var(--shadow);
-    transition:.25s;
 }
 
-.product-card:hover{
-    transform:translateY(-4px);
-}
-
-.product-photo{
+.product-image{
     height:245px;
-    background:var(--primary-soft);
     position:relative;
+    background:var(--lavender);
 }
 
-.product-photo img{
+.product-image img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.wishlist-btn{
+.wish{
     position:absolute;
-    right:12px;
-    top:12px;
-    width:40px;
-    height:40px;
+    top:11px;
+    right:11px;
+    width:39px;
+    height:39px;
     border:0;
     border-radius:50%;
     background:white;
-    box-shadow:0 5px 18px rgba(0,0,0,.12);
+    box-shadow:0 4px 14px rgba(0,0,0,.13);
 }
 
-.product-content{
-    padding:16px;
+.card-body{
+    padding:15px;
 }
 
-.product-category{
+.category-name{
     font-size:10px;
+    color:var(--purple);
     text-transform:uppercase;
     letter-spacing:1px;
     font-weight:bold;
-    color:var(--primary);
 }
 
-.product-name{
+.card h3{
     margin:7px 0 5px;
-    font-size:18px;
 }
 
-.product-description{
+.card p{
     color:var(--muted);
     font-size:13px;
+    min-height:36px;
     line-height:1.5;
-    min-height:38px;
 }
 
-.product-price{
-    color:var(--primary-dark);
+.price{
+    color:var(--dark);
     font-size:19px;
     font-weight:bold;
     margin:12px 0;
 }
 
-.product-buttons{
+.card-actions{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:7px;
 }
 
+
 /* CUSTOM HAMPER */
 
-.custom-hamper{
-    margin:45px 0 20px;
-    padding:35px 20px;
+.custom{
+    max-width:1160px;
+    margin:45px auto;
+    padding:40px 20px;
+    border-radius:26px;
     text-align:center;
-    border-radius:25px;
-    background:linear-gradient(135deg,#f4e8ff,#fff3fb);
+    background:linear-gradient(135deg,#f3e6ff,#fff0f8);
 }
 
-.custom-hamper h2{
+.custom h2{
     font-family:Georgia,serif;
-    color:var(--primary-dark);
+    color:var(--dark);
     margin-bottom:8px;
 }
 
-.custom-hamper p{
+.custom p{
     color:var(--muted);
     margin-bottom:20px;
 }
 
-.custom-hamper a{
+.custom a{
     display:inline-block;
-    text-decoration:none;
 }
+
+
+/* FOOTER */
+
+footer{
+    margin-top:60px;
+    padding:45px 20px;
+    text-align:center;
+    color:white;
+    background:#32203e;
+}
+
+footer h2{
+    font-family:Georgia,serif;
+}
+
+footer p{
+    margin-top:6px;
+    opacity:.75;
+}
+
+.socials{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.socials a{
+    padding:10px 16px;
+    border-radius:20px;
+    background:#58396d;
+    color:white;
+}
+
 
 /* DRAWERS */
 
 .overlay{
     position:fixed;
     inset:0;
-    background:rgba(35,20,45,.48);
     z-index:3000;
+    background:rgba(30,15,40,.5);
     opacity:0;
     pointer-events:none;
     transition:.25s;
@@ -378,10 +453,10 @@ header{
     position:fixed;
     right:0;
     top:0;
-    height:100%;
-    width:min(450px,100%);
-    background:white;
+    bottom:0;
+    width:min(440px,100%);
     z-index:3100;
+    background:white;
     overflow-y:auto;
     padding:22px;
     transform:translateX(100%);
@@ -392,26 +467,26 @@ header{
     transform:translateX(0);
 }
 
-.drawer-header{
+.drawer-title{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     margin-bottom:20px;
 }
 
-.drawer-header h2{
+.drawer-title h2{
     font-family:Georgia,serif;
-    color:var(--primary-dark);
+    color:var(--dark);
 }
 
-.close-btn{
+.close{
     border:0;
-    background:var(--primary-soft);
-    color:var(--primary-dark);
     width:38px;
     height:38px;
     border-radius:50%;
+    background:var(--lavender);
 }
+
 
 /* CART */
 
@@ -423,44 +498,41 @@ header{
 }
 
 .cart-item img{
-    width:72px;
-    height:72px;
-    border-radius:13px;
+    width:70px;
+    height:70px;
     object-fit:cover;
+    border-radius:12px;
 }
 
-.cart-details{
+.cart-info{
     flex:1;
 }
 
-.cart-details h4{
-    margin-bottom:4px;
-}
-
-.quantity{
+.qty{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:7px;
     margin-top:8px;
 }
 
-.quantity button{
+.qty button{
+    width:27px;
+    height:27px;
     border:0;
-    background:var(--primary-soft);
-    width:28px;
-    height:28px;
-    border-radius:8px;
+    border-radius:7px;
+    background:var(--lavender);
 }
 
-.total-row{
+.total{
     display:flex;
     justify-content:space-between;
+    padding:20px 0;
     font-size:20px;
     font-weight:bold;
-    padding:20px 0;
 }
 
-/* FORM */
+
+/* FORMS */
 
 .form{
     display:grid;
@@ -475,7 +547,6 @@ header{
     border:1px solid var(--border);
     border-radius:12px;
     outline:none;
-    background:white;
 }
 
 .form textarea{
@@ -483,19 +554,14 @@ header{
     resize:vertical;
 }
 
-.form input:focus,
-.form textarea:focus,
-.form select:focus{
-    border-color:var(--primary);
-}
 
 /* ADMIN */
 
 .admin{
     position:fixed;
     inset:0;
-    z-index:8000;
-    background:#f7f2fb;
+    z-index:7000;
+    background:#f7f1fb;
     overflow-y:auto;
     display:none;
 }
@@ -508,7 +574,7 @@ header{
     position:sticky;
     top:0;
     z-index:10;
-    background:var(--primary-dark);
+    background:var(--dark);
     color:white;
     padding:15px 20px;
     display:flex;
@@ -516,17 +582,13 @@ header{
     align-items:center;
 }
 
-.admin-header small{
-    opacity:.7;
-}
-
 .admin-main{
     max-width:1100px;
     margin:auto;
-    padding:22px;
+    padding:20px;
 }
 
-.admin-card{
+.admin-box{
     background:white;
     border-radius:20px;
     padding:20px;
@@ -534,14 +596,14 @@ header{
     box-shadow:var(--shadow);
 }
 
-.admin-card h3{
-    color:var(--primary-dark);
-    margin-bottom:15px;
+.admin-box h3{
+    color:var(--dark);
+    margin-bottom:14px;
 }
 
 .admin-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     gap:10px;
 }
 
@@ -558,43 +620,31 @@ header{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:12px;
     border:1px solid var(--border);
-    border-radius:15px;
+    border-radius:14px;
+    padding:10px;
     margin-bottom:9px;
 }
 
 .admin-product img{
     width:65px;
     height:65px;
-    border-radius:12px;
+    border-radius:11px;
     object-fit:cover;
 }
 
-.admin-product-info{
+.admin-info{
     flex:1;
 }
 
-.admin-product-info small{
+.admin-info small{
     color:var(--muted);
-}
-
-.status{
-    padding:5px 9px;
-    border-radius:20px;
-    background:#eee;
-    font-size:10px;
-}
-
-.status.live{
-    color:var(--success);
-    background:#e0f4e7;
 }
 
 .admin-actions{
     display:flex;
-    flex-wrap:wrap;
     gap:5px;
+    flex-wrap:wrap;
 }
 
 .admin-actions button{
@@ -603,105 +653,75 @@ header{
     padding:7px 9px;
 }
 
+
 /* LOGIN */
 
+.login{
+    position:fixed;
+    inset:0;
+    z-index:8000;
+    background:rgba(35,20,45,.65);
+    display:none;
+}
+
+.login.active{
+    display:block;
+}
+
 .login-box{
-    width:min(380px,calc(100% - 30px));
-    background:white;
-    padding:25px;
-    border-radius:23px;
-    box-shadow:var(--shadow);
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
+    width:min(380px,calc(100% - 30px));
+    background:white;
+    border-radius:23px;
+    padding:25px;
+    box-shadow:var(--shadow);
 }
 
-.login-screen{
-    position:fixed;
-    inset:0;
-    background:rgba(35,20,45,.6);
-    z-index:9000;
-    display:none;
-}
-
-.login-screen.active{
-    display:block;
-}
-
-/* FOOTER */
-
-footer{
-    margin-top:60px;
-    background:#32203e;
-    color:white;
-    text-align:center;
-    padding:42px 20px;
-}
-
-footer h2{
+.login-box h2{
     font-family:Georgia,serif;
-    margin-bottom:8px;
+    color:var(--dark);
 }
 
-.socials{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-top:20px;
-}
-
-.socials a{
-    text-decoration:none;
-    color:white;
-    background:#58396c;
-    padding:10px 16px;
-    border-radius:22px;
-}
 
 /* TOAST */
 
 .toast{
     position:fixed;
-    bottom:20px;
     left:50%;
+    bottom:20px;
     z-index:10000;
     transform:translate(-50%,120px);
-    background:#30203a;
+    background:#302039;
     color:white;
     padding:13px 20px;
     border-radius:30px;
     transition:.3s;
 }
 
-.toast.active{
+.toast.show{
     transform:translate(-50%,0);
 }
-
-/* EMPTY */
 
 .empty{
     grid-column:1/-1;
     text-align:center;
-    padding:55px 20px;
+    padding:50px;
     color:var(--muted);
 }
 
+
 /* MOBILE */
 
-@media(max-width:600px){
+@media(max-width:650px){
 
-    .nav{
-        padding:9px 12px;
-    }
+    .brand-name{font-size:20px}
 
     .logo{
         width:44px;
         height:44px;
-    }
-
-    .brand-name{
-        font-size:20px;
     }
 
     .hero{
@@ -709,186 +729,239 @@ footer h2{
         padding:60px 18px;
     }
 
+    .showcase-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:180px 180px;
+    }
+
+    .showcase-card:first-child{
+        grid-column:span 2;
+        grid-row:auto;
+    }
+
     .products{
         grid-template-columns:repeat(2,1fr);
         gap:11px;
     }
 
-    .product-photo{
+    .product-image{
         height:175px;
     }
 
-    .product-content{
+    .card-body{
         padding:11px;
     }
 
-    .product-name{
+    .card h3{
         font-size:15px;
     }
 
-    .product-description{
-        font-size:12px;
-    }
-
-    .product-price{
-        font-size:16px;
-    }
-
-    .product-buttons{
+    .card-actions{
         grid-template-columns:1fr;
     }
 
     .admin-product{
-        align-items:flex-start;
         flex-wrap:wrap;
     }
-
-    .admin-product-info{
-        min-width:calc(100% - 80px);
-    }
 }
-</style></head><body><!-- HEADER --><header><div class="nav"><div class="brand"><img id="logo"
+</style></head><body><!-- ================= HEADER ================= --><header><div class="nav"><div class="brand"><img
+id="logo"
 class="logo"
 alt="The Aura">
 
 <div>
-<div id="brandName" class="brand-name">
+<div
+id="brandName"
+class="brand-name">
 The Aura
-</div><div class="brand-tag">
+</div><div class="tagline">
 Gifts made with love
 </div>
-</div></div><div class="nav-buttons"><button class="circle-btn"
-onclick="openDrawer('wishlistDrawer')">
+</div></div><div class="nav-actions"><button
+class="icon-btn"
+onclick="openDrawer('wishlistDrawer')"
+title="Wishlist">
 ❤️
-<span id="wishlistCount" class="badge">0</span>
+<span
+id="wishlistCount"
+class="badge">0</span>
 </button>
 
-<button class="circle-btn"
-onclick="openDrawer('cartDrawer')">
+<button
+class="icon-btn"
+onclick="openDrawer('cartDrawer')"
+title="Cart">
 🛒
-<span id="cartCount" class="badge">0</span>
+<span
+id="cartCount"
+class="badge">0</span>
 </button>
 
-<button class="circle-btn"
-onclick="openLogin()">
+<button
+class="icon-btn"
+onclick="openAdminLogin()"
+title="Admin">
 ⚙️
 </button>
 
-</div></div></header><!-- HERO --><section class="hero"><div class="hero-label">
+</div></div></header><!-- ================= HERO ================= --><section class="hero"><div class="hero-label">
 WELCOME TO THE AURA
 </div><h1>
 Little things.<br>
 Big feelings.
 </h1><p id="announcement">
-Beautiful gifts and thoughtful surprises, made specially for your special people.
-</p><div class="hero-buttons"><button class="btn btn-primary"
-onclick="scrollToStore()">
+Beautiful gifts and thoughtful surprises,
+made specially for your special people.
+</p><div class="hero-buttons"><button
+class="btn primary"
+onclick="goToCollection()">
 Explore Collection ✨
 </button>
 
-<a class="btn btn-secondary"
+<a
 id="heroInstagram"
+class="btn secondary"
 href="https://instagram.com/_the.aura.in"
 target="_blank">
 Instagram
 </a>
 
-</div></section><!-- STORE --><main id="store"
-      class="container"><div class="section-heading"><h2>Shop The Aura</h2><p>
+</div></section><!-- ================= SHOWCASE ================= --><section class="showcase"><div class="heading"><h2>A Little Something For Everyone 💜</h2><p>
+Explore the world of The Aura
+</p></div><div class="showcase-grid"><div class="showcase-card"><img
+src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=1000&q=85"
+alt="Gift collection">
+
+<div class="showcase-overlay"><h3>Thoughtful Hampers</h3><p>Made to make someone smile.</p></div></div><div class="showcase-card"><img
+src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=700&q=85"
+alt="Flowers">
+
+<div class="showcase-overlay"><h3>Beautiful Blooms</h3></div></div><div class="showcase-card"><img
+src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=700&q=85"
+alt="Gift box">
+
+<div class="showcase-overlay"><h3>Gift Boxes</h3></div></div><div class="showcase-card"><img
+src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=700&q=85"
+alt="Pink gifts">
+
+<div class="showcase-overlay"><h3>For Her</h3></div></div><div class="showcase-card"><img
+src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&w=700&q=85"
+alt="Present">
+
+<div class="showcase-overlay"><h3>For Him</h3></div></div></div></section><!-- ================= STORE ================= --><main
+id="collection"
+class="store"><div class="heading-left"><h2>Shop The Aura 🛍️</h2><p>
 Find something special for someone special.
-</p></div><div id="categories"
-     class="categories">
-</div><div id="products"
-     class="products">
-</div><!-- CUSTOM HAMPER --><section class="custom-hamper"><h2>
+</p></div><div
+id="categories"
+class="categories">
+</div><div
+id="products"
+class="products">
+</div><!-- CUSTOM HAMPER --><section class="custom"><h2>
 Not satisfied? 💜
 </h2><p>
 Customise your own hamper exactly the way you want!
 </p><a
+class="btn primary"
 href="https://wa.me/917208718323?text=Hi%20The%20Aura!%20💜%20I%20want%20to%20customise%20my%20own%20hamper."
-target="_blank"
-class="btn btn-primary">
+target="_blank">
 
 Customise Your Hamper 💬
 
-</a></section></main><!-- FOOTER --><footer><h2 id="footerName">
+</a></section></main><!-- ================= FOOTER ================= --><footer><h2 id="footerName">
 The Aura
 </h2><p>
 Thoughtful gifts. Beautiful memories.
-</p><div class="socials"><a id="instagramLink"
+</p><div class="socials"><a
 href="https://instagram.com/_the.aura.in"
 target="_blank">
 Instagram
 </a>
 
-<a href="#"
-onclick="openDrawer('cartDrawer');return false;">
-Cart
+<a
+href="https://wa.me/917208718323"
+target="_blank">
+WhatsApp
 </a>
 
-</div><p style="margin-top:20px;font-size:12px;opacity:.6;">
+</div><p style="font-size:11px;margin-top:22px">
 © <span id="year"></span> The Aura
-</p></footer><!-- OVERLAY --><div id="overlay"
-     class="overlay"
-     onclick="closeDrawers()">
-</div><!-- CART --><div id="cartDrawer"
-     class="drawer"><div class="drawer-header"><h2>Your Cart 🛒</h2><button class="close-btn"
-onclick="closeDrawers()">
+</p></footer><!-- ================= OVERLAY ================= --><div
+id="overlay"
+class="overlay"
+onclick="closeAllDrawers()">
+</div><!-- ================= CART ================= --><div
+id="cartDrawer"
+class="drawer"><div class="drawer-title"><h2>Your Cart 🛒</h2><button
+class="close"
+onclick="closeAllDrawers()">
 ✕
 </button>
 
-</div><div id="cartItems">
-</div><div class="total-row"><span>Total</span>
+</div><div id="cartItems"></div><div class="total"><span>Total</span>
 
 <span id="cartTotal">
 ₹0
-</span></div><button class="btn btn-primary"
-style="width:100%;"
+</span></div><button
+class="btn primary"
+style="width:100%"
 onclick="openCheckout()">
+
 Continue to Order
-</button>
 
-</div><!-- WISHLIST --><div id="wishlistDrawer"
-     class="drawer"><div class="drawer-header"><h2>Your Wishlist ❤️</h2><button class="close-btn"
-onclick="closeDrawers()">
+</button></div><!-- ================= WISHLIST ================= --><div
+id="wishlistDrawer"
+class="drawer"><div class="drawer-title"><h2>Wishlist ❤️</h2><button
+class="close"
+onclick="closeAllDrawers()">
 ✕
 </button>
 
-</div><div id="wishlistItems">
-</div></div><!-- CHECKOUT --><div id="checkoutDrawer"
-     class="drawer"><div class="drawer-header"><h2>Order Details</h2><button class="close-btn"
-onclick="closeDrawers()">
+</div><div id="wishlistItems"></div></div><!-- ================= CHECKOUT ================= --><div
+id="checkoutDrawer"
+class="drawer"><div class="drawer-title"><h2>Order Details</h2><button
+class="close"
+onclick="closeAllDrawers()">
 ✕
 </button>
 
-</div><form class="form"
-      onsubmit="placeOrder(event)"><input id="customerName"
+</div><form
+class="form"
+onsubmit="placeOrder(event)"><input
+id="customerName"
 placeholder="Full Name"
 required>
 
-<input id="customerPhone"
+<input
+id="customerPhone"
 type="tel"
 pattern="[0-9]{10}"
 placeholder="10-digit Phone Number"
 required>
 
-<input id="customerEmail"
+<input
+id="customerEmail"
 type="email"
 placeholder="Email Address"
 required>
 
-<textarea id="customerAddress"
-          placeholder="Full Delivery Address"
-          required></textarea><input id="customerCity"
+<textarea
+id="customerAddress"
+placeholder="Full Delivery Address"
+required></textarea><input
+id="customerCity"
 placeholder="City"
 required>
 
-<input id="customerPincode"
+<input
+id="customerPincode"
 pattern="[0-9]{6}"
 placeholder="6-digit Pincode"
 required>
 
-<select id="paymentMethod"
+<select
+id="paymentMethod"
 required>
 
 <option value="">
@@ -897,139 +970,171 @@ Select Payment Method
 UPI / Google Pay
 </option><option value="Cash on Delivery">
 Cash on Delivery
-</option></select><button class="btn btn-primary">
+</option></select><button
+class="btn primary">
 Place Order 💜
-</button></form></div><!-- LOGIN --><div id="loginScreen"
-     class="login-screen"><div class="login-box"><h2 style="font-family:Georgia,serif;color:var(--primary-dark);">
-Admin Login 🔐
-</h2><p style="color:var(--muted);margin:8px 0 18px;">
-The Aura Store Control
-</p><form class="form"
-      onsubmit="adminLogin(event)"><input id="adminPassword"
+</button>
+
+</form></div><!-- ================= ADMIN LOGIN ================= --><div
+id="login"
+class="login"><div class="login-box"><h2>
+Admin Control 🔐
+</h2><p style="color:var(--muted);margin:8px 0 18px">
+The Aura Store
+</p><form
+class="form"
+onsubmit="loginAdmin(event)"><input
+id="adminPassword"
 type="password"
 placeholder="Admin Password"
 required>
 
-<button class="btn btn-primary">
+<button
+class="btn primary">
 Open Admin
-</button><button type="button"
-class="btn btn-secondary"
+</button>
+
+<button
+type="button"
+class="btn secondary"
 onclick="closeLogin()">
 Cancel
 </button>
 
-</form></div></div><!-- ADMIN --><div id="adminPanel"
-     class="admin"><div class="admin-header"><div><strong>THE AURA — ADMIN</strong>
-
-<br><small>
-Store Control Centre
-</small></div><button class="btn btn-secondary"
+</form></div></div><!-- ================= ADMIN PANEL ================= --><div
+id="admin"
+class="admin"><div class="admin-header"><div>
+<strong>THE AURA — ADMIN</strong>
+<br>
+<small>Store Control Centre</small>
+</div><button
+class="btn secondary"
 onclick="closeAdmin()">
 Exit
 </button>
 
-</div><div class="admin-main"><!-- SETTINGS --><div class="admin-card"><h3>⚙️ Store Settings</h3><div class="admin-grid"><input id="adminBusiness"
+</div><div class="admin-main"><!-- SETTINGS --><div class="admin-box"><h3>
+⚙️ Store Settings
+</h3><div class="admin-grid"><input
+id="businessName"
 placeholder="Business Name">
 
-<input id="adminInstagram"
-placeholder="Instagram username">
+<input
+id="announcement"
+placeholder="Homepage Announcement">
 
-<input id="adminWhatsapp"
-placeholder="WhatsApp number">
-
-<input id="adminAnnouncement"
-placeholder="Announcement">
-
-<input id="adminLogo"
+<input
+id="logoFile"
 type="file"
 accept="image/*">
 
-</div><br><button class="btn btn-primary"
+</div><br><button
+class="btn primary"
 onclick="saveSettings()">
 Save Settings
 </button>
 
-</div><!-- CATEGORIES --><div class="admin-card"><h3>📂 Manage Categories</h3><div class="admin-grid"><input id="newCategory"
-placeholder="Category name">
+</div><!-- CATEGORIES --><div class="admin-box"><h3>
+📂 Manage Collections
+</h3><div class="admin-grid"><input
+id="newCategory"
+placeholder="New collection name">
 
-<button class="btn btn-primary"
+<button
+class="btn primary"
 onclick="addCategory()">
-Add Category
+Add Collection
 </button>
 
-</div><div id="adminCategories"
-     style="margin-top:15px;">
-</div></div><!-- PRODUCT FORM --><div class="admin-card"><h3 id="productFormTitle">
+</div><div
+id="adminCategories"
+style="margin-top:15px">
+</div></div><!-- PRODUCT --><div class="admin-box"><h3 id="productTitle">
 ➕ Add Product
-</h3><form class="form"
-      onsubmit="saveProduct(event)"><input type="hidden"
-id="editingProductId">
+</h3><form
+class="form"
+onsubmit="saveProduct(event)"><input
+type="hidden"
+id="editingId">
 
-<input id="adminProductName"
+<input
+id="productName"
 placeholder="Product Name"
 required>
 
-<select id="adminProductCategory"
+<select
+id="productCategory"
 required>
 </select>
 
-<input id="adminProductPrice"
+<input
+id="productPrice"
 type="number"
 min="0"
 placeholder="Price ₹"
 required>
 
-<textarea id="adminProductDescription"
-          placeholder="Product Description">
-</textarea><input id="adminProductImage"
+<textarea
+id="productDescription"
+placeholder="Description">
+</textarea><input
+id="productImage"
 type="file"
 accept="image/*">
 
 <label>
-<input id="adminFeatured"
-       type="checkbox">
-Featured Product
+<input
+id="featured"
+type="checkbox">
+Featured product
 </label><label>
-<input id="adminPublished"
-       type="checkbox">
-Publish Product
-</label><div style="display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-primary">
+<input
+id="published"
+type="checkbox">
+Publish product
+</label><div style="display:flex;gap:8px"><button
+class="btn primary">
 Save Product
-</button><button type="button"
-class="btn btn-secondary"
-onclick="resetProductForm()">
+</button>
+
+<button
+type="button"
+class="btn secondary"
+onclick="clearProductForm()">
 Clear
 </button>
 
-</div></form></div><!-- CATALOG --><div class="admin-card"><h3>🛍️ Catalog</h3><p style="color:var(--muted);font-size:13px;margin-bottom:15px;">
-Only products marked LIVE are visible to customers.
-</p><div id="adminProducts">
-</div></div><!-- ORDERS --><div class="admin-card"><h3>📦 Orders</h3><div id="adminOrders">
-</div></div></div></div><!-- TOAST --><div id="toast"
-     class="toast">
+</div></form></div><!-- CATALOG --><div class="admin-box"><h3>
+🛍️ Your Catalogue
+</h3><p style="font-size:13px;color:var(--muted);margin-bottom:15px">
+Upload everything first, check it, then publish.
+</p><div id="adminProducts"></div></div><!-- ORDERS --><div class="admin-box"><h3>
+📦 Orders
+</h3><div id="adminOrders"></div></div></div></div><!-- TOAST --><div
+id="toast"
+class="toast">
 </div><script>
 
-/* =========================================================
-   THE AURA — FINAL STORE ENGINE
-========================================================= */
+/* =====================================================
+   THE AURA — STORE SETTINGS
+===================================================== */
+
+/* CHANGE ONLY THIS PASSWORD */
+const ADMIN_PASSWORD = "DORAHHH!23";
+
+/* YOUR PAYMENT ID */
+const UPI_ID = "Sadhatkd23@okcici";
+
+/* YOUR BUSINESS CONTACT */
+const WHATSAPP = "7208718323";
+
+/* YOUR INSTAGRAM */
+const INSTAGRAM = "_the.aura.in";
 
 
-/* ================= STORE CONFIG ================= */
-
-const ADMIN_PASSWORD =
-"CHANGE_THIS_TO_YOUR_PASSWORD";
-
-const UPI_ID =
-"Sadhatkd23@okcici";
-
-const BUSINESS_PHONE =
-"7208718323";
-
-const INSTAGRAM_USERNAME =
-"_the.aura.in";
-
-
-/* ================= DATA ================= */
+/* =====================================================
+   DEFAULT COLLECTIONS
+===================================================== */
 
 const DEFAULT_CATEGORIES = [
     "Bouquets",
@@ -1042,79 +1147,6 @@ const DEFAULT_CATEGORIES = [
 ];
 
 
-let store =
-JSON.parse(localStorage.getItem("theAuraStore")) || {
-
-    businessName:"The Aura",
-
-    instagram:INSTAGRAM_USERNAME,
-
-    whatsapp:BUSINESS_PHONE,
-
-    logo:"",
-
-    announcement:
-    "Beautiful gifts and thoughtful surprises, made specially for your special people.",
-
-    categories:DEFAULT_CATEGORIES,
-
-    products:[]
-
-};
-
-
-/*
-   Always make sure the final seven categories exist.
-   This also fixes older localStorage data from the
-   previous version.
-*/
-
-DEFAULT_CATEGORIES.forEach(category=>{
-
-    if(!store.categories.includes(category)){
-
-        store.categories.push(category);
-
-    }
-
-});
-
-
-let cart =
-JSON.parse(localStorage.getItem("theAuraCart")) || [];
-
-let wishlist =
-JSON.parse(localStorage.getItem("theAuraWishlist")) || [];
-
-let orders =
-JSON.parse(localStorage.getItem("theAuraOrders")) || [];
-
-
-let selectedCategory="All";
-
-
-/* ================= SAVE ================= */
-
-function saveStore(){
-
-    localStorage.setItem(
-        "theAuraStore",
-        JSON.stringify(store)
-    );
-
-}
-
-function saveCart(){
-
-    localStorage.setItem(
-        "theAuraCart",
-        JSON.stringify(cart)
-    );
-
-}
-
-function saveWishlist(){
-
-    localStorage.setItem(
-        "theAuraWishlist",
-        JSON.stringify(wishlist)
+/* =====================================================
+   DATABASE
+===============
