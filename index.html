@@ -1,116 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Aura | Handmade Personalized Gifts</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Poppins',sans-serif;
-  background:#f8f2fb;
-  color:#4b3b52;
-}
-header{
-  background:#d8b7e8;
-  padding:18px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{
-  font-family:'Playfair Display',serif;
-  font-size:30px;
-  font-weight:700;
-}
-nav a{
-  text-decoration:none;
-  color:#4b3b52;
-  margin-left:22px;
-  font-weight:500;
-}
-.hero{
-  padding:80px 8%;
-  text-align:center;
-  background:linear-gradient(180deg,#f4e8f7,#f8f2fb);
-}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:52px;
-  margin-bottom:16px;
-}
-.hero p{
-  font-size:18px;
-  color:#6a5b72;
-  margin-bottom:28px;
-}
-.btn{
-  display:inline-block;
-  background:#b57edc;
-  color:#fff;
-  padding:14px 30px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:600;
-}
-.section{
-  padding:60px 8%;
-}
-.section h2{
-  text-align:center;
-  font-family:'Playfair Display',serif;
-  font-size:34px;
-  margin-bottom:30px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-.card{
-  background:#fff;
-  border-radius:22px;
-  padding:28px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(181,126,220,.12);
-}
-.card h3{
-  color:#7b4f96;
-  margin-bottom:10px;
-}
-.card p{
-  color:#6f6176;
-  font-size:14px;
-}
-.social{
-  text-align:center;
-  margin-top:20px;
-}
-.social a{
-  display:inline-block;
-  margin:0 10px;
-  padding:12px 18px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:600;
-}
-.instagram{
-  background:#f3d6f0;
-  color:#7b4f96;
-}
-.whatsapp{
-  background:#dff7e5;
-  color:#1b8f4d;
-}
-footer{
-  background:#ead8f2;
-  text-align:center;
-  padding:30px;
-  color:#5b4b63;
-  margin-top:30px;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Aura | Handmade Personalized Gifts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Poppins,sans-serif;background:#f8f2fb;color:#4b3b52}
+    header{background:#d8b7e8;padding:18px 8%;display:flex;justify-content:space-between;align-items:center}
+    .logo{font-family:'Playfair Display',serif;font-size:32px;font-weight:700}
+    nav a{text-decoration:none;color:#4b3b52;margin-left:20px;font-weight:500}
+    .hero{padding:90px 8%;text-align:center;background:linear-gradient(180deg,#f4e8f7,#f8f2fb)}
+    .hero h1{font-family:'Playfair Display',serif;font-size:54px;margin-bottom:16px}
+    .hero p{font-size:18px;color:#6a5b72;margin-bottom:30px}
+    .btn{display:inline-block;background:#b57edc;color:#fff;padding:14px 30px;border-radius:999px;text-decoration:none;font-weight:600}
+    .section{padding:60px 8%}
+    .section h2{text-align:center;font-family:'Playfair Display',serif;font-size:34px;margin-bottom:30px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+    .card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(181,126,220,.12);transition:.3s}
+    .card:hover{transform:translateY(-6px)}
+    .card img{width:100%;height:180px;object-fit:cover}
+    .card h3{padding:18px 18px 8px;color:#7b4f96}
+    .card p{padding:0 18px 18px;color:#6f6176;font-size:14px}
+    .social{text-align:center;margin-top:10px}
+    .social a{display:inline-block;margin:10px;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:600}
+    .instagram{background:#f3d6f0;color:#7b4f96}
+    .whatsapp{background:#dff7e5;color:#1b8f4d}
+    footer{background:#ead8f2;text-align:center;padding:30px;color:#5b4b63;margin-top:30px}
+  </style>
 </head>
 <body>
 
@@ -118,37 +36,78 @@ footer{
   <div class="logo">The Aura</div>
   <nav>
     <a href="#">Home</a>
-    <a href="#categories">Categories</a>
+    <a href="#categories">Shop</a>
     <a href="#">Track Order</a>
-    <a href="#">Contact</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <section class="hero">
   <h1>Handmade Personalized Gifts</h1>
-  <p>Custom hampers, bouquets, gift boxes, greeting cards and photo frames made with love.</p>
+  <p>Beautiful bouquets, gift boxes, custom hampers, greeting cards, and photo frames crafted with love.</p>
   <a href="#categories" class="btn">Shop Now</a>
 </section>
 
 <section class="section" id="categories">
   <h2>Shop by Category</h2>
   <div class="grid">
-    <div class="card"><h3>Bouquets</h3><p>Elegant handmade bouquets for every occasion.</p></div>
-    <div class="card"><h3>Gift Boxes</h3><p>Beautifully packed personalized gift boxes.</p></div>
-    <div class="card"><h3>Hampers for Him</h3><p>Thoughtful gift hampers curated for men.</p></div>
-    <div class="card"><h3>Hampers for Her</h3><p>Luxury personalized hampers for women.</p></div>
-    <div class="card"><h3>Chocolate Hampers</h3><p>Sweet and aesthetic chocolate arrangements.</p></div>
-    <div class="card"><h3>Greeting Cards</h3><p>Handmade greeting cards with custom messages.</p></div>
-    <div class="card"><h3>Photo Frames</h3><p>Personalized memory frames for your special moments.</p></div>
-    <div class="card"><h3>Others</h3><p>More unique handmade personalized gifts.</p></div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&q=80" alt="Bouquets">
+      <h3>Bouquets</h3>
+      <p>Elegant handmade bouquets for birthdays, anniversaries, and special occasions.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=600&q=80" alt="Gift Boxes">
+      <h3>Gift Boxes</h3>
+      <p>Beautifully packed personalized gift boxes with a premium aesthetic.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=600&q=80" alt="Hampers for Him">
+      <h3>Hampers for Him</h3>
+      <p>Curated hampers with chocolates, perfumes, accessories, and custom touches.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=600&q=80" alt="Hampers for Her">
+      <h3>Hampers for Her</h3>
+      <p>Luxury personalized hampers designed with pastel elegance and love.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=600&q=80" alt="Chocolate Hampers">
+      <h3>Chocolate Hampers</h3>
+      <p>Ferrero, KitKat, Dairy Milk, and premium chocolate gift arrangements.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80" alt="Greeting Cards">
+      <h3>Greeting Cards</h3>
+      <p>Handmade greeting cards with personalized messages and designs.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80" alt="Photo Frames">
+      <h3>Photo Frames</h3>
+      <p>Custom memory frames with names, dates, and beautiful personalization.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80" alt="Others">
+      <h3>Others</h3>
+      <p>Explore more unique handmade gifts and personalized keepsakes.</p>
+    </div>
+
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="contact">
   <h2>Connect with The Aura</h2>
   <div class="social">
-    <a class="instagram" href="https://instagram.com" target="_blank">Instagram</a>
-    <a class="whatsapp" href="https://wa.me/919999999999" target="_blank">WhatsApp</a>
+    <a class="instagram" href="https://instagram.com/_the.aura.in" target="_blank">Instagram</a>
+    <a class="whatsapp" href="https://wa.me/917208718323" target="_blank">WhatsApp</a>
   </div>
 </section>
 
