@@ -1,1241 +1,571 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Aura.in | Handmade Gifts</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
-
-/* =========================
-   BASIC
-========================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+body{
+  background:#fff7fb;
+  color:#3d2935;
 }
 
-body {
-    background: #fcf8fa;
-    color: #493840;
-    font-family: "Poppins", sans-serif;
+header{
+  background:#ead5e3;
+  padding:25px 15px;
+  text-align:center;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-
-    min-height: 72vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 40px 20px;
-
-    background:
-        linear-gradient(
-            rgba(65,38,51,.48),
-            rgba(65,38,51,.48)
-        ),
-        url("https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=1800&q=85");
-
-    background-size: cover;
-    background-position: center;
-
-    color: white;
+header h1{
+  font-size:32px;
+  color:#6d405d;
 }
 
-.hero {
-
-    max-width: 750px;
-
+header p{
+  margin-top:8px;
+  color:#76576a;
 }
 
-.hero-small {
-
-    font-size: 11px;
-
-    letter-spacing: 4px;
-
-    text-transform: uppercase;
-
+nav{
+  background:white;
+  padding:12px;
+  text-align:center;
+  box-shadow:0 2px 8px #00000015;
 }
 
-.hero h1 {
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: clamp(65px, 13vw, 115px);
-
-    line-height: .82;
-
-    margin: 25px 0;
-
+nav a{
+  margin:0 10px;
+  text-decoration:none;
+  color:#6d405d;
+  font-weight:bold;
 }
 
-.hero p {
-
-    font-size: 14px;
-
-    font-weight: 300;
-
-    line-height: 1.8;
-
-    margin-bottom: 28px;
-
+.hero{
+  text-align:center;
+  padding:45px 20px;
 }
 
-.hero-buttons {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
-
+.hero h2{
+  font-size:30px;
+  color:#6d405d;
+  margin-bottom:10px;
 }
 
-.hero-buttons a {
-
-    text-decoration: none;
-
-    color: white;
-
-    border: 1px solid rgba(255,255,255,.7);
-
-    padding: 12px 25px;
-
-    border-radius: 30px;
-
-    font-size: 13px;
-
-    transition: .3s;
-
+.hero p{
+  color:#76576a;
 }
 
-.hero-buttons a:hover {
-
-    background: white;
-
-    color: #624755;
-
+.section{
+  padding:25px 15px;
+  max-width:1100px;
+  margin:auto;
 }
 
-
-/* =========================
-   COLLECTION SECTION
-========================= */
-
-.collection {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 65px 20px;
-
+.section h2{
+  text-align:center;
+  margin-bottom:25px;
+  color:#6d405d;
 }
 
-.heading {
+/* CATEGORIES */
 
-    text-align: center;
-
-    margin-bottom: 35px;
-
+.categories{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
-.heading span {
-
-    color: #a77d8e;
-
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    text-transform: uppercase;
-
+.category{
+  background:#ead5e3;
+  padding:25px 10px;
+  border-radius:18px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.heading h2 {
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 50px;
-
-    font-weight: 600;
-
-    margin-top: 5px;
-
+.category:hover{
+  transform:translateY(-4px);
 }
 
-
-/* =========================
-   CATEGORY BUTTONS
-========================= */
-
-.categories {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    margin-bottom: 40px;
-
+.category .emoji{
+  font-size:38px;
+  display:block;
+  margin-bottom:10px;
 }
 
-.category-btn {
-
-    background: transparent;
-
-    border: 1px solid #d9c5ce;
-
-    color: #674b58;
-
-    padding: 10px 18px;
-
-    border-radius: 30px;
-
-    cursor: pointer;
-
-    font-family: "Poppins";
-
-    font-size: 12px;
-
-    transition: .3s;
-
+.category h3{
+  color:#5d3650;
 }
 
-.category-btn:hover,
+/* PRODUCTS */
 
-.category-btn.active {
-
-    background: #684b59;
-
-    color: white;
-
-    border-color: #684b59;
-
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
-
-/* =========================
-   PRODUCTS
-========================= */
-
-.products {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fill, minmax(230px, 1fr));
-
-    gap: 25px;
-
+.product{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 3px 12px #00000012;
 }
 
-.product {
-
-    background: white;
-
-    overflow: hidden;
-
-    border-radius: 8px;
-
-    box-shadow:
-        0 8px 30px rgba(75,40,55,.07);
-
-    transition: .35s;
-
+.product img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
 }
 
-.product:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 15px 35px rgba(75,40,55,.12);
-
+.product-info{
+  padding:15px;
 }
 
-.product-image {
-
-    height: 290px;
-
-    position: relative;
-
-    overflow: hidden;
-
+.product h3{
+  margin-bottom:7px;
 }
 
-.product-image img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    transition: .5s;
-
+.price{
+  color:#9b527b;
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:12px;
 }
 
-.product:hover .product-image img {
-
-    transform: scale(1.05);
-
+.buy{
+  width:100%;
+  padding:11px;
+  border:0;
+  border-radius:10px;
+  background:#7d4d69;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.category-tag {
+/* CUSTOM */
 
-    position: absolute;
-
-    top: 12px;
-
-    left: 12px;
-
-    background: rgba(255,255,255,.92);
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-
+.custom{
+  margin:30px 15px;
+  background:#ead5e3;
+  border-radius:22px;
+  padding:35px 20px;
+  text-align:center;
 }
 
-.product-details {
-
-    padding: 18px;
-
+.custom h2{
+  color:#6d405d;
+  margin-bottom:10px;
 }
 
-.product-details h3 {
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 26px;
-
-    margin-bottom: 5px;
-
+.whatsapp{
+  display:inline-block;
+  margin-top:18px;
+  padding:13px 22px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:bold;
 }
 
-.product-details p {
+/* ADMIN */
 
-    color: #907c84;
-
-    font-size: 11px;
-
-    line-height: 1.7;
-
-    margin-bottom: 10px;
-
+.admin{
+  display:none;
+  background:white;
+  margin:25px auto;
+  padding:20px;
+  max-width:600px;
+  border-radius:18px;
+  box-shadow:0 3px 12px #00000015;
 }
 
-.price {
-
-    font-weight: 600;
-
-    font-size: 17px;
-
-    color: #684b59;
-
-    margin-bottom: 13px;
-
+.admin input,
+.admin select{
+  width:100%;
+  padding:10px;
+  margin:7px 0 12px;
+  border:1px solid #ddd;
+  border-radius:8px;
 }
 
-.order-btn {
-
-    width: 100%;
-
-    padding: 11px;
-
-    border: none;
-
-    border-radius: 5px;
-
-    background: #684b59;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-family: "Poppins";
-
-    font-size: 12px;
-
-    transition: .3s;
-
+.admin button{
+  padding:10px 15px;
+  border:0;
+  border-radius:8px;
+  background:#7d4d69;
+  color:white;
+  cursor:pointer;
 }
 
-.order-btn:hover {
-
-    background: #49343e;
-
+footer{
+  text-align:center;
+  padding:25px;
+  margin-top:30px;
+  background:#ead5e3;
 }
 
+/* MOBILE */
 
-/* =========================
-   CUSTOM HAMPEr
-========================= */
+@media(max-width:700px){
+  .categories{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.custom-section {
-
-    margin: 20px;
-
-    padding: 45px 20px;
-
-    text-align: center;
-
-    background: #f3e8ed;
-
-    border-radius: 12px;
-
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
-.custom-section .small {
+@media(max-width:450px){
+  .products{
+    grid-template-columns:1fr;
+  }
 
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    color: #a07788;
-
+  header h1{
+    font-size:27px;
+  }
 }
-
-.custom-section h2 {
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 42px;
-
-    margin: 8px 0;
-
-}
-
-.custom-section p {
-
-    max-width: 550px;
-
-    margin: auto;
-
-    font-size: 12px;
-
-    color: #806b74;
-
-    line-height: 1.8;
-
-}
-
-.custom-btn {
-
-    display: inline-block;
-
-    margin-top: 22px;
-
-    padding: 12px 25px;
-
-    background: #684b59;
-
-    color: white;
-
-    text-decoration: none;
-
-    border-radius: 30px;
-
-    font-size: 12px;
-
-}
-
-
-/* =========================
-   SOCIAL
-========================= */
-
-.social {
-
-    text-align: center;
-
-    padding: 70px 20px;
-
-}
-
-.social h2 {
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 45px;
-
-}
-
-.social p {
-
-    font-size: 12px;
-
-    color: #88747d;
-
-    margin: 8px 0 25px;
-
-}
-
-.social-buttons {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 12px;
-
-}
-
-.social-buttons a {
-
-    text-decoration: none;
-
-    background: #684b59;
-
-    color: white;
-
-    padding: 11px 23px;
-
-    border-radius: 30px;
-
-    font-size: 12px;
-
-}
-
-
-/* =========================
-   WHATSAPP FLOAT
-========================= */
-
-.whatsapp {
-
-    position: fixed;
-
-    right: 18px;
-
-    bottom: 18px;
-
-    width: 56px;
-
-    height: 56px;
-
-    border-radius: 50%;
-
-    background: #25D366;
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-decoration: none;
-
-    font-size: 25px;
-
-    box-shadow: 0 5px 20px rgba(0,0,0,.2);
-
-    z-index: 100;
-
-}
-
-
-/* =========================
-   ADMIN BUTTON
-========================= */
-
-.admin-open {
-
-    position: fixed;
-
-    left: 15px;
-
-    bottom: 15px;
-
-    background: #3d3035;
-
-    color: white;
-
-    border: none;
-
-    padding: 9px 15px;
-
-    border-radius: 20px;
-
-    font-size: 10px;
-
-    cursor: pointer;
-
-    z-index: 100;
-
-}
-
-
-/* =========================
-   ADMIN PANEL
-========================= */
-
-.admin-panel {
-
-    display: none;
-
-    max-width: 750px;
-
-    margin: 40px auto;
-
-    padding: 30px;
-
-    background: white;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.1);
-
-}
-
-.admin-panel h2 {
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 40px;
-
-    margin-bottom: 20px;
-
-}
-
-.admin-panel h3 {
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 28px;
-
-    margin: 25px 0 12px;
-
-}
-
-.admin-panel input,
-
-.admin-panel textarea,
-
-.admin-panel select {
-
-    width: 100%;
-
-    padding: 12px;
-
-    margin-bottom: 12px;
-
-    border: 1px solid #dfd1d7;
-
-    border-radius: 6px;
-
-    font-family: "Poppins";
-
-}
-
-.admin-panel textarea {
-
-    min-height: 80px;
-
-}
-
-.admin-save {
-
-    background: #684b59;
-
-    color: white;
-
-    border: none;
-
-    padding: 11px 20px;
-
-    border-radius: 5px;
-
-    cursor: pointer;
-
-}
-
-.admin-cancel {
-
-    background: #eee;
-
-    border: none;
-
-    padding: 11px 20px;
-
-    border-radius: 5px;
-
-    cursor: pointer;
-
-    margin-left: 5px;
-
-}
-
-.admin-product-list {
-
-    margin-top: 25px;
-
-}
-
-.admin-product {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 10px;
-
-    padding: 12px;
-
-    border-bottom: 1px solid #eee;
-
-}
-
-.admin-product span {
-
-    font-size: 12px;
-
-}
-
-.admin-product button {
-
-    border: none;
-
-    padding: 7px 10px;
-
-    border-radius: 4px;
-
-    cursor: pointer;
-
-}
-
-.edit {
-
-    background: #eee;
-
-}
-
-.delete {
-
-    background: #d46f6f;
-
-    color: white;
-
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-
-    text-align: center;
-
-    padding: 30px;
-
-    font-size: 10px;
-
-    color: #9a858d;
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:600px) {
-
-    header {
-
-        min-height: 68vh;
-
-    }
-
-    .hero h1 {
-
-        font-size: 70px;
-
-    }
-
-    .heading h2 {
-
-        font-size: 42px;
-
-    }
-
-    .products {
-
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 12px;
-
-    }
-
-    .product-image {
-
-        height: 220px;
-
-    }
-
-    .product-details {
-
-        padding: 12px;
-
-    }
-
-    .product-details h3 {
-
-        font-size: 21px;
-
-    }
-
-    .product-details p {
-
-        font-size: 10px;
-
-    }
-
-    .price {
-
-        font-size: 15px;
-
-    }
-
-    .custom-section h2 {
-
-        font-size: 34px;
-
-    }
-
-    .admin-product {
-
-        align-items: flex-start;
-
-        flex-direction: column;
-
-    }
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     HERO
-========================= -->
-
 <header>
-
-<div class="hero">
-
-<div class="hero-small">
-
-THE AURA.IN
-
-</div>
-
-<h1>
-
-Thoughtful<br>
-Gifts
-
-</h1>
-
-<p>
-
-Handmade • Personalised • Made with Love ♡
-
-</p>
-
-<div class="hero-buttons">
-
-<a
-href="https://instagram.com/_the.aura.in"
-target="_blank">
-
-Instagram
-
-</a>
-
-<a
-href="https://wa.me/917208718323"
-target="_blank">
-
-WhatsApp
-
-</a>
-
-</div>
-
-</div>
-
+  <h1>✨ The Aura.in ✨</h1>
+  <p>Handmade Gifts • Made With Love</p>
 </header>
 
+<nav>
+  <a href="#categories">Categories</a>
+  <a href="#custom">Customize</a>
+</nav>
 
-<!-- =========================
-     COLLECTION
-========================= -->
-
-<section class="collection">
-
-<div class="heading">
-
-<span>
-
-Shop
-
-</span>
-
-<h2>
-
-Our Collection
-
-</h2>
-
-</div>
-
-
-<div
-class="categories"
-id="categories">
-
-</div>
-
-
-<div
-class="products"
-id="products">
-
-</div>
-
+<section class="hero">
+  <h2>Make Every Moment Special 💕</h2>
+  <p>Beautiful handmade gifts for every occasion.</p>
 </section>
 
+<!-- CATEGORY SECTION -->
 
-<!-- =========================
-     CUSTOM HAMPer
-========================= -->
+<section class="section" id="categories">
+  <h2>Shop By Category</h2>
 
-<section class="custom-section">
+  <div class="categories">
 
-<div class="small">
+    <div class="category" onclick="showCategory('Bouquets')">
+      <span class="emoji">💐</span>
+      <h3>Bouquets</h3>
+    </div>
 
-Made Just For You
+    <div class="category" onclick="showCategory('Hampers for Him')">
+      <span class="emoji">🎁</span>
+      <h3>Hampers for Him</h3>
+    </div>
 
-</div>
+    <div class="category" onclick="showCategory('Hampers for Her')">
+      <span class="emoji">🎀</span>
+      <h3>Hampers for Her</h3>
+    </div>
 
-<h2>
+    <div class="category" onclick="showCategory('Greeting Cards')">
+      <span class="emoji">💌</span>
+      <h3>Greeting Cards</h3>
+    </div>
 
-Customise Your Own Hamper ♡
+    <div class="category" onclick="showCategory('Gift Boxes')">
+      <span class="emoji">🎁</span>
+      <h3>Gift Boxes</h3>
+    </div>
 
-</h2>
+    <div class="category" onclick="showCategory('Under ₹300')">
+      <span class="emoji">💰</span>
+      <h3>Under ₹300</h3>
+    </div>
 
-<p>
-
-Have something special in mind?
-Choose your favourite goodies and
-create a hamper made specially for
-your loved one.
-
-</p>
-
-<a
-class="custom-btn"
-href="https://wa.me/917208718323?text=Hello%20The%20Aura.in!%20%F0%9F%8E%81%20I%20would%20like%20to%20customise%20my%20own%20hamper."
-target="_blank">
-
-Customise on WhatsApp
-
-</a>
-
+  </div>
 </section>
 
+<!-- PRODUCT CATALOG -->
 
-<!-- =========================
-     SOCIAL
-========================= -->
+<section class="section">
+  <h2 id="catalogTitle">Our Collection</h2>
 
-<section class="social">
-
-<h2>
-
-Let's Connect
-
-</h2>
-
-<p>
-
-New creations, gift ideas & updates ♡
-
-</p>
-
-<div class="social-buttons">
-
-<a
-href="https://instagram.com/_the.aura.in"
-target="_blank">
-
-♡ Instagram
-
-</a>
-
-<a
-href="https://wa.me/917208718323"
-target="_blank">
-
-♡ WhatsApp
-
-</a>
-
-</div>
-
+  <div class="products" id="products"></div>
 </section>
 
+<!-- CUSTOM HAMper -->
+
+<section class="custom" id="custom">
+  <h2>✨ Customise Your Own Hamper ✨</h2>
+  <p>Choose your own items and create a special hamper!</p>
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/917208718323?text=Hi%20The%20Aura.in!%20I%20want%20to%20customise%20my%20own%20hamper."
+    target="_blank">
+    💬 Customize on WhatsApp
+  </a>
+</section>
+
+<!-- ADMIN PANEL -->
+
+<section class="admin" id="admin">
+
+  <h2>Admin Panel</h2>
+
+  <label>Product Name</label>
+  <input id="productName" placeholder="Example: Chocolate Bouquet">
+
+  <label>Price</label>
+  <input id="productPrice" placeholder="Example: ₹299">
+
+  <label>Image URL</label>
+  <input id="productImage" placeholder="Paste image URL">
+
+  <label>Category</label>
+  <select id="productCategory">
+    <option>Bouquets</option>
+    <option>Hampers for Him</option>
+    <option>Hampers for Her</option>
+    <option>Greeting Cards</option>
+    <option>Gift Boxes</option>
+    <option>Under ₹300</option>
+  </select>
+
+  <button onclick="addProduct()">Add Product</button>
+
+  <br><br>
+
+  <button onclick="clearProducts()">Clear All Products</button>
+
+</section>
 
 <footer>
-
-© 2026 The Aura.in
-
-<br>
-
-Handmade with love ♡
-
+  <p>© 2026 The Aura.in 💕</p>
+  <p>Handmade with love</p>
 </footer>
-
-
-<!-- FLOATING WHATSAPP -->
-
-<a
-class="whatsapp"
-href="https://wa.me/917208718323"
-target="_blank">
-
-✆
-
-</a>
-
-
-<!-- ADMIN -->
-
-<button
-class="admin-open"
-onclick="adminLogin()">
-
-Admin
-
-</button>
-
-
-<!-- =========================
-     ADMIN PANEL
-========================= -->
-
-<div
-class="admin-panel"
-id="adminPanel">
-
-<h2>
-
-Admin Dashboard
-
-</h2>
-
-
-<h3>
-
-Add / Edit Product
-
-</h3>
-
-
-<input
-id="productName"
-placeholder="Product name">
-
-
-<textarea
-id="productDescription"
-placeholder="Product description">
-</textarea>
-
-
-<select id="productCategory">
-
-<option value="Bouquets">
-Bouquets
-</option>
-
-<option value="Hampers for Him">
-Hampers for Him
-</option>
-
-<option value="Hampers for Her">
-Hampers for Her
-</option>
-
-<option value="Greeting Cards">
-Greeting Cards
-</option>
-
-<option value="Gift Box">
-Gift Box
-</option>
-
-<option value="Under ₹300">
-Under ₹300
-</option>
-
-</select>
-
-
-<input
-id="productPrice"
-type="number"
-placeholder="Price in ₹">
-
-
-<input
-id="productImage"
-placeholder="Product image URL">
-
-
-<button
-class="admin-save"
-onclick="saveProduct()">
-
-Save Product
-
-</button>
-
-<button
-class="admin-cancel"
-onclick="clearForm()">
-
-Clear
-
-</button>
-
-
-<h3>
-
-Current Catalogue
-
-</h3>
-
-
-<div
-class="admin-product-list"
-id="adminProductList">
-
-</div>
-
-</div>
-
 
 <script>
 
-/* =========================
-   BUSINESS DETAILS
-========================= */
+/* WHATSAPP NUMBER */
 
 const whatsappNumber = "917208718323";
 
 
-/* =========================
-   FIXED CATEGORIES
-========================= */
+/* PRODUCTS */
 
-const categories = [
+let products = JSON.parse(localStorage.getItem("auraProducts")) || [
 
-    "All",
+  {
+    name:"Sample Bouquet",
+    price:"₹299",
+    image:"https://images.unsplash.com/photo-1523438885200-e635ba2c371e",
+    category:"Bouquets"
+  },
 
-    "Bouquets",
+  {
+    name:"Sample Hamper",
+    price:"₹499",
+    image:"https://images.unsplash.com/photo-1549465220-1a8b9238cd48",
+    category:"Hampers for Her"
+  },
 
-    "Hampers for Him",
-
-    "Hampers for Her",
-
-    "Greeting Cards",
-
-    "Gift Box",
-
-    "Under ₹300"
+  {
+    name:"Greeting Card",
+    price:"₹149",
+    image:"https://images.unsplash.com/photo-1513883049090-d0b7439799bf",
+    category:"Greeting Cards"
+  }
 
 ];
 
 
-let selectedCategory = "All";
+/* SHOW PRODUCTS */
 
-let editingId = null;
+function showCategory(category){
 
-let adminMode = false;
+  const container = document.getElementById("products");
+
+  const title = document.getElementById("catalogTitle");
+
+  title.innerText = category;
+
+  container.innerHTML = "";
+
+  const filtered = products.filter(
+    product => product.category === category
+  );
+
+  if(filtered.length === 0){
+
+    container.innerHTML =
+      "<p style='text-align:center;grid-column:1/-1;'>Products coming soon 💕</p>";
+
+    return;
+  }
+
+  filtered.forEach((product,index)=>{
+
+    container.innerHTML += `
+
+      <div class="product">
+
+        <img src="${product.image}" alt="${product.name}">
+
+        <div class="product-info">
+
+          <h3>${product.name}</h3>
+
+          <div class="price">${product.price}</div>
+
+          <button class="buy"
+            onclick="buyProduct('${product.name}','${product.price}')">
+            Buy Now
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
 
 
-/* =========================
-   PRODUCTS
-========================= */
+/* BUY NOW → WHATSAPP */
 
-let products =
-JSON.parse(
-localStorage.getItem("auraProducts")
-) || [
+function buyProduct(name,price){
 
-{
+  const orderId =
+    "AURA" + Math.floor(10000 + Math.random()*90000);
 
-id: 1,
+  const message =
+    `Hi The Aura.in!%0A%0A` +
+    `I want to order:%0A` +
+    `Product: ${name}%0A` +
+    `Price: ${price}%0A` +
+    `Order ID: ${orderId}%0A%0A` +
+    `Please send me the payment details.`;
 
-name: "Sample Bouquet",
+  window.open(
+    `https://wa.me/${whatsappNumber}?text=${message}`,
+    "_blank"
+  );
 
-description:
-"Add your bouquet details from Admin.",
+}
 
-category: "Bouquets",
 
-price: 0,
+/* ADMIN ADD PRODUCT */
 
-image:
-"https://images.unsplash.com/photo-1523438885200-e635ba2c
+function addProduct(){
+
+  const name =
+    document.getElementById("productName").value;
+
+  const price =
+    document.getElementById("productPrice").value;
+
+  const image =
+    document.getElementById("productImage").value;
+
+  const category =
+    document.getElementById("productCategory").value;
+
+
+  if(!name || !price || !image){
+
+    alert("Please fill all product details.");
+
+    return;
+
+  }
+
+
+  products.push({
+
+    name:name,
+    price:price,
+    image:image,
+    category:category
+
+  });
+
+
+  localStorage.setItem(
+    "auraProducts",
+    JSON.stringify(products)
+  );
+
+
+  alert("Product added successfully 💕");
+
+
+  document.getElementById("productName").value="";
+  document.getElementById("productPrice").value="";
+  document.getElementById("productImage").value="";
+
+
+  showCategory(category);
+
+}
+
+
+/* CLEAR PRODUCTS */
+
+function clearProducts(){
+
+  if(confirm("Delete all products?")){
+
+    products=[];
+
+    localStorage.setItem(
+      "auraProducts",
+      JSON.stringify(products)
+    );
+
+    document.getElementById("products").innerHTML="";
+
+  }
+
+}
+
+
+/* SECRET ADMIN ACCESS */
+
+/*
+   To open admin:
+   Add #admin to the end of your website URL.
+
+   Example:
+   yourwebsite.com/#admin
+*/
+
+if(window.location.hash === "#admin"){
+
+  document.getElementById("admin").style.display="block";
+
+}
+
+
+/* DEFAULT */
+
+showCategory("Bouquets");
+
+</script>
+
+</body>
+</html>
