@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,22 +15,34 @@
 
 <style>
 
+/* =========================
+   BASIC
+========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background: #fcf8f9;
-    color: #3e3036;
+    background: #fcf8fa;
+    color: #493840;
     font-family: "Poppins", sans-serif;
 }
 
-/* HERO */
+
+/* =========================
+   HEADER
+========================= */
 
 header {
-    min-height: 70vh;
+
+    min-height: 72vh;
 
     display: flex;
     align-items: center;
@@ -40,10 +54,10 @@ header {
 
     background:
         linear-gradient(
-            rgba(60,35,45,.45),
-            rgba(60,35,45,.45)
+            rgba(65,38,51,.48),
+            rgba(65,38,51,.48)
         ),
-        url("https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1600&q=80");
+        url("https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=1800&q=85");
 
     background-size: cover;
     background-position: center;
@@ -51,34 +65,48 @@ header {
     color: white;
 }
 
-.hero-content {
-    max-width: 700px;
+.hero {
+
+    max-width: 750px;
+
 }
 
 .hero-small {
+
+    font-size: 11px;
+
     letter-spacing: 4px;
-    font-size: 12px;
+
     text-transform: uppercase;
+
 }
 
-.hero-title {
+.hero h1 {
+
     font-family: "Cormorant Garamond", serif;
 
-    font-size: clamp(55px, 12vw, 100px);
+    font-size: clamp(65px, 13vw, 115px);
 
-    line-height: .9;
+    line-height: .82;
 
-    margin: 20px 0;
+    margin: 25px 0;
+
 }
 
-.hero-text {
+.hero p {
+
     font-size: 14px;
+
     font-weight: 300;
 
-    margin-bottom: 25px;
+    line-height: 1.8;
+
+    margin-bottom: 28px;
+
 }
 
 .hero-buttons {
+
     display: flex;
 
     justify-content: center;
@@ -86,66 +114,89 @@ header {
     gap: 12px;
 
     flex-wrap: wrap;
+
 }
 
 .hero-buttons a {
+
     text-decoration: none;
 
     color: white;
 
     border: 1px solid rgba(255,255,255,.7);
 
-    padding: 12px 24px;
+    padding: 12px 25px;
 
     border-radius: 30px;
 
+    font-size: 13px;
+
     transition: .3s;
+
 }
 
 .hero-buttons a:hover {
+
     background: white;
-    color: #5f4050;
+
+    color: #624755;
+
 }
 
 
-/* COLLECTION */
+/* =========================
+   COLLECTION SECTION
+========================= */
 
-.section {
+.collection {
+
     max-width: 1200px;
 
     margin: auto;
 
-    padding: 60px 20px;
+    padding: 65px 20px;
+
 }
 
-.section-heading {
+.heading {
+
     text-align: center;
 
     margin-bottom: 35px;
+
 }
 
-.section-heading span {
-    font-size: 11px;
+.heading span {
+
+    color: #a77d8e;
+
+    font-size: 10px;
 
     letter-spacing: 4px;
 
     text-transform: uppercase;
 
-    color: #a47a8b;
 }
 
-.section-heading h2 {
+.heading h2 {
+
     font-family: "Cormorant Garamond", serif;
 
-    font-size: 48px;
+    font-size: 50px;
 
     font-weight: 600;
+
+    margin-top: 5px;
+
 }
 
 
-/* CATEGORIES */
+/* =========================
+   CATEGORY BUTTONS
+========================= */
 
 .categories {
+
     display: flex;
 
     justify-content: center;
@@ -154,17 +205,19 @@ header {
 
     flex-wrap: wrap;
 
-    margin-bottom: 35px;
+    margin-bottom: 40px;
+
 }
 
-.categories button {
-    border: 1px solid #dbc8d0;
+.category-btn {
 
     background: transparent;
 
-    color: #694b59;
+    border: 1px solid #d9c5ce;
 
-    padding: 9px 19px;
+    color: #674b58;
+
+    padding: 10px 18px;
 
     border-radius: 30px;
 
@@ -172,59 +225,76 @@ header {
 
     font-family: "Poppins";
 
+    font-size: 12px;
+
     transition: .3s;
+
 }
 
-.categories button:hover,
-.categories button.active {
-    background: #694b59;
+.category-btn:hover,
+
+.category-btn.active {
+
+    background: #684b59;
 
     color: white;
+
+    border-color: #684b59;
+
 }
 
 
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+========================= */
 
 .products {
+
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fill, minmax(220px, 1fr));
+        repeat(auto-fill, minmax(230px, 1fr));
 
     gap: 25px;
+
 }
 
 .product {
-    background: white;
 
-    border-radius: 4px;
+    background: white;
 
     overflow: hidden;
 
-    position: relative;
+    border-radius: 8px;
 
     box-shadow:
         0 8px 30px rgba(75,40,55,.07);
 
     transition: .35s;
+
 }
 
 .product:hover {
-    transform: translateY(-6px);
+
+    transform: translateY(-5px);
 
     box-shadow:
         0 15px 35px rgba(75,40,55,.12);
+
 }
 
 .product-image {
-    position: relative;
 
     height: 290px;
 
+    position: relative;
+
     overflow: hidden;
+
 }
 
 .product-image img {
+
     width: 100%;
 
     height: 100%;
@@ -232,248 +302,255 @@ header {
     object-fit: cover;
 
     transition: .5s;
+
 }
 
-.product:hover img {
+.product:hover .product-image img {
+
     transform: scale(1.05);
+
 }
 
-.category-label {
+.category-tag {
+
     position: absolute;
 
     top: 12px;
+
     left: 12px;
 
-    background: rgba(255,255,255,.9);
+    background: rgba(255,255,255,.92);
 
     padding: 5px 10px;
 
     border-radius: 20px;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 1px;
 
     text-transform: uppercase;
+
 }
 
-.product-info {
+.product-details {
+
     padding: 18px;
+
 }
 
-.product-info h3 {
+.product-details h3 {
+
     font-family: "Cormorant Garamond", serif;
 
-    font-size: 25px;
+    font-size: 26px;
 
     margin-bottom: 5px;
+
 }
 
-.product-info p {
-    font-size: 12px;
+.product-details p {
 
-    color: #89737c;
+    color: #907c84;
+
+    font-size: 11px;
 
     line-height: 1.7;
 
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+
 }
 
-.buy-btn {
+.price {
+
+    font-weight: 600;
+
+    font-size: 17px;
+
+    color: #684b59;
+
+    margin-bottom: 13px;
+
+}
+
+.order-btn {
+
     width: 100%;
 
     padding: 11px;
 
-    background: #694b59;
-
-    color: white;
-
     border: none;
-
-    cursor: pointer;
-
-    border-radius: 3px;
-
-    font-family: "Poppins";
-
-    transition: .3s;
-}
-
-.buy-btn:hover {
-    background: #4b3440;
-}
-
-
-/* ADMIN */
-
-.admin-panel {
-    display: none;
-
-    max-width: 700px;
-
-    margin: 30px auto;
-
-    background: white;
-
-    padding: 30px;
-
-    border-radius: 8px;
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.08);
-}
-
-.admin-panel h2 {
-    font-family: "Cormorant Garamond";
-
-    font-size: 35px;
-
-    margin-bottom: 20px;
-}
-
-.admin-panel input,
-.admin-panel textarea,
-.admin-panel select {
-    width: 100%;
-
-    padding: 12px;
-
-    margin-bottom: 12px;
-
-    border: 1px solid #e2d5db;
 
     border-radius: 5px;
 
+    background: #684b59;
+
+    color: white;
+
+    cursor: pointer;
+
     font-family: "Poppins";
+
+    font-size: 12px;
+
+    transition: .3s;
+
 }
 
-.admin-panel textarea {
-    min-height: 90px;
+.order-btn:hover {
 
-    resize: vertical;
+    background: #49343e;
+
 }
 
-.save-btn,
-.cancel-btn {
-    padding: 11px 20px;
 
-    border: none;
+/* =========================
+   CUSTOM HAMPEr
+========================= */
 
-    border-radius: 4px;
+.custom-section {
 
-    cursor: pointer;
+    margin: 20px;
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: #f3e8ed;
+
+    border-radius: 12px;
+
 }
 
-.save-btn {
-    background: #694b59;
+.custom-section .small {
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: #a07788;
+
+}
+
+.custom-section h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 42px;
+
+    margin: 8px 0;
+
+}
+
+.custom-section p {
+
+    max-width: 550px;
+
+    margin: auto;
+
+    font-size: 12px;
+
+    color: #806b74;
+
+    line-height: 1.8;
+
+}
+
+.custom-btn {
+
+    display: inline-block;
+
+    margin-top: 22px;
+
+    padding: 12px 25px;
+
+    background: #684b59;
 
     color: white;
-}
 
-.cancel-btn {
-    background: #eee;
+    text-decoration: none;
 
-    margin-left: 5px;
-}
+    border-radius: 30px;
 
-.admin-buttons {
-    display: none;
+    font-size: 12px;
 
-    gap: 6px;
-
-    margin-top: 8px;
-}
-
-.admin-buttons button {
-    flex: 1;
-
-    padding: 7px;
-
-    border: none;
-
-    cursor: pointer;
-
-    border-radius: 4px;
-}
-
-.edit-btn {
-    background: #eee;
-}
-
-.delete-btn {
-    background: #c86b6b;
-
-    color: white;
 }
 
 
-/* SOCIAL */
+/* =========================
+   SOCIAL
+========================= */
 
-.social-section {
-    background: #f2e9ed;
+.social {
 
     text-align: center;
 
     padding: 70px 20px;
+
 }
 
-.social-section h2 {
-    font-family: "Cormorant Garamond";
+.social h2 {
+
+    font-family: "Cormorant Garamond", serif;
 
     font-size: 45px;
+
 }
 
-.social-section p {
-    margin: 10px auto 25px;
+.social p {
 
-    color: #765e68;
+    font-size: 12px;
 
-    font-size: 13px;
+    color: #88747d;
+
+    margin: 8px 0 25px;
+
 }
 
 .social-buttons {
+
     display: flex;
 
     justify-content: center;
 
     gap: 12px;
 
-    flex-wrap: wrap;
 }
 
 .social-buttons a {
+
     text-decoration: none;
 
-    padding: 12px 25px;
-
-    border-radius: 30px;
-
-    background: #694b59;
+    background: #684b59;
 
     color: white;
 
-    font-size: 13px;
+    padding: 11px 23px;
 
-    transition: .3s;
+    border-radius: 30px;
+
+    font-size: 12px;
+
 }
 
-.social-buttons a:hover {
-    transform: translateY(-3px);
-}
 
-
-/* FLOATING WHATSAPP */
+/* =========================
+   WHATSAPP FLOAT
+========================= */
 
 .whatsapp {
+
     position: fixed;
 
     right: 18px;
 
     bottom: 18px;
 
-    width: 55px;
+    width: 56px;
 
-    height: 55px;
+    height: 56px;
 
     border-radius: 50%;
 
@@ -491,117 +568,328 @@ header {
 
     font-size: 25px;
 
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.2);
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
 
-    z-index: 99;
+    z-index: 100;
+
 }
 
 
-/* ADMIN BUTTON */
+/* =========================
+   ADMIN BUTTON
+========================= */
 
-.admin-toggle {
+.admin-open {
+
     position: fixed;
 
     left: 15px;
 
     bottom: 15px;
 
-    border: none;
-
     background: #3d3035;
 
     color: white;
 
-    padding: 9px 14px;
+    border: none;
+
+    padding: 9px 15px;
 
     border-radius: 20px;
 
-    font-size: 11px;
+    font-size: 10px;
 
     cursor: pointer;
 
-    z-index: 99;
+    z-index: 100;
+
 }
 
 
-/* FOOTER */
+/* =========================
+   ADMIN PANEL
+========================= */
+
+.admin-panel {
+
+    display: none;
+
+    max-width: 750px;
+
+    margin: 40px auto;
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.1);
+
+}
+
+.admin-panel h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 40px;
+
+    margin-bottom: 20px;
+
+}
+
+.admin-panel h3 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 28px;
+
+    margin: 25px 0 12px;
+
+}
+
+.admin-panel input,
+
+.admin-panel textarea,
+
+.admin-panel select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #dfd1d7;
+
+    border-radius: 6px;
+
+    font-family: "Poppins";
+
+}
+
+.admin-panel textarea {
+
+    min-height: 80px;
+
+}
+
+.admin-save {
+
+    background: #684b59;
+
+    color: white;
+
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+.admin-cancel {
+
+    background: #eee;
+
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    margin-left: 5px;
+
+}
+
+.admin-product-list {
+
+    margin-top: 25px;
+
+}
+
+.admin-product {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+.admin-product span {
+
+    font-size: 12px;
+
+}
+
+.admin-product button {
+
+    border: none;
+
+    padding: 7px 10px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+}
+
+.edit {
+
+    background: #eee;
+
+}
+
+.delete {
+
+    background: #d46f6f;
+
+    color: white;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
+
     text-align: center;
 
     padding: 30px;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    color: #927c85;
+    color: #9a858d;
+
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px) {
 
     header {
-        min-height: 65vh;
+
+        min-height: 68vh;
+
     }
 
-    .hero-title {
-        font-size: 65px;
+    .hero h1 {
+
+        font-size: 70px;
+
     }
 
-    .section-heading h2 {
-        font-size: 40px;
+    .heading h2 {
+
+        font-size: 42px;
+
     }
 
     .products {
+
         grid-template-columns: repeat(2, 1fr);
 
         gap: 12px;
+
     }
 
     .product-image {
+
         height: 220px;
+
     }
 
-    .product-info {
+    .product-details {
+
         padding: 12px;
+
     }
 
-    .product-info h3 {
+    .product-details h3 {
+
         font-size: 21px;
+
     }
 
-    .product-info p {
+    .product-details p {
+
         font-size: 10px;
+
+    }
+
+    .price {
+
+        font-size: 15px;
+
+    }
+
+    .custom-section h2 {
+
+        font-size: 34px;
+
+    }
+
+    .admin-product {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <header>
 
-<div class="hero-content">
+<div class="hero">
 
 <div class="hero-small">
-Handmade • Personalised • Thoughtful
+
+THE AURA.IN
+
 </div>
 
-<h1 class="hero-title">
-The<br>Aura.in
+<h1>
+
+Thoughtful<br>
+Gifts
+
 </h1>
 
-<p class="hero-text">
-Thoughtful gifts & beautiful little things,
-made specially for your loved ones.
+<p>
+
+Handmade • Personalised • Made with Love ♡
+
 </p>
 
 <div class="hero-buttons">
@@ -629,134 +917,101 @@ WhatsApp
 </header>
 
 
+<!-- =========================
+     COLLECTION
+========================= -->
 
-<!-- COLLECTION -->
+<section class="collection">
 
-<section class="section">
+<div class="heading">
 
-<div class="section-heading">
+<span>
 
-<span>Discover</span>
+Shop
 
-<h2>Our Collection</h2>
+</span>
+
+<h2>
+
+Our Collection
+
+</h2>
 
 </div>
 
 
 <div
 class="categories"
-id="categoryButtons">
+id="categories">
+
 </div>
 
 
 <div
 class="products"
 id="products">
+
 </div>
 
 </section>
 
 
+<!-- =========================
+     CUSTOM HAMPer
+========================= -->
 
-<!-- ADMIN PANEL -->
+<section class="custom-section">
 
-<div
-class="admin-panel"
-id="adminPanel">
+<div class="small">
 
-<h2 id="adminTitle">
-Admin Panel
-</h2>
-
-
-<input
-type="text"
-id="productName"
-placeholder="Product name">
-
-
-<textarea
-id="productDescription"
-placeholder="Product description">
-</textarea>
-
-
-<select id="productCategory">
-
-<option value="Jewellery">
-Jewellery
-</option>
-
-<option value="Hampers">
-Hampers
-</option>
-
-<option value="Gifts">
-Gifts
-</option>
-
-<option value="Accessories">
-Accessories
-</option>
-
-<option value="Photo Frames">
-Photo Frames
-</option>
-
-<option value="Bouquets">
-Bouquets
-</option>
-
-<option value="Scrapbooks">
-Scrapbooks
-</option>
-
-<option value="Other">
-Other
-</option>
-
-</select>
-
-
-<input
-type="text"
-id="productImage"
-placeholder="Paste product image URL">
-
-
-<button
-class="save-btn"
-onclick="saveProduct()">
-
-Save Product
-
-</button>
-
-
-<button
-class="cancel-btn"
-onclick="cancelEdit()">
-
-Cancel
-
-</button>
+Made Just For You
 
 </div>
 
-
-
-<!-- SOCIAL -->
-
-<section class="social-section">
-
 <h2>
-Let's Connect
+
+Customise Your Own Hamper ♡
+
 </h2>
 
 <p>
-Follow us for new arrivals, custom orders & updates.
+
+Have something special in mind?
+Choose your favourite goodies and
+create a hamper made specially for
+your loved one.
+
 </p>
 
+<a
+class="custom-btn"
+href="https://wa.me/917208718323?text=Hello%20The%20Aura.in!%20%F0%9F%8E%81%20I%20would%20like%20to%20customise%20my%20own%20hamper."
+target="_blank">
+
+Customise on WhatsApp
+
+</a>
+
+</section>
+
+
+<!-- =========================
+     SOCIAL
+========================= -->
+
+<section class="social">
+
+<h2>
+
+Let's Connect
+
+</h2>
+
+<p>
+
+New creations, gift ideas & updates ♡
+
+</p>
 
 <div class="social-buttons">
 
@@ -767,7 +1022,6 @@ target="_blank">
 ♡ Instagram
 
 </a>
-
 
 <a
 href="https://wa.me/917208718323"
@@ -782,15 +1036,15 @@ target="_blank">
 </section>
 
 
-
 <footer>
 
 © 2026 The Aura.in
+
 <br>
+
 Handmade with love ♡
 
 </footer>
-
 
 
 <!-- FLOATING WHATSAPP -->
@@ -798,19 +1052,17 @@ Handmade with love ♡
 <a
 class="whatsapp"
 href="https://wa.me/917208718323"
-target="_blank"
-aria-label="Chat on WhatsApp">
+target="_blank">
 
 ✆
 
 </a>
 
 
-
-<!-- ADMIN BUTTON -->
+<!-- ADMIN -->
 
 <button
-class="admin-toggle"
+class="admin-open"
 onclick="adminLogin()">
 
 Admin
@@ -818,68 +1070,140 @@ Admin
 </button>
 
 
+<!-- =========================
+     ADMIN PANEL
+========================= -->
+
+<div
+class="admin-panel"
+id="adminPanel">
+
+<h2>
+
+Admin Dashboard
+
+</h2>
+
+
+<h3>
+
+Add / Edit Product
+
+</h3>
+
+
+<input
+id="productName"
+placeholder="Product name">
+
+
+<textarea
+id="productDescription"
+placeholder="Product description">
+</textarea>
+
+
+<select id="productCategory">
+
+<option value="Bouquets">
+Bouquets
+</option>
+
+<option value="Hampers for Him">
+Hampers for Him
+</option>
+
+<option value="Hampers for Her">
+Hampers for Her
+</option>
+
+<option value="Greeting Cards">
+Greeting Cards
+</option>
+
+<option value="Gift Box">
+Gift Box
+</option>
+
+<option value="Under ₹300">
+Under ₹300
+</option>
+
+</select>
+
+
+<input
+id="productPrice"
+type="number"
+placeholder="Price in ₹">
+
+
+<input
+id="productImage"
+placeholder="Product image URL">
+
+
+<button
+class="admin-save"
+onclick="saveProduct()">
+
+Save Product
+
+</button>
+
+<button
+class="admin-cancel"
+onclick="clearForm()">
+
+Clear
+
+</button>
+
+
+<h3>
+
+Current Catalogue
+
+</h3>
+
+
+<div
+class="admin-product-list"
+id="adminProductList">
+
+</div>
+
+</div>
+
 
 <script>
 
-
 /* =========================
-   YOUR BUSINESS DETAILS
-   ========================= */
+   BUSINESS DETAILS
+========================= */
 
-const whatsappNumber =
-"917208718323";
+const whatsappNumber = "917208718323";
 
 
 /* =========================
-   PRODUCTS
-   ========================= */
+   FIXED CATEGORIES
+========================= */
 
-let products =
-JSON.parse(
-localStorage.getItem("myProducts")
-) || [
+const categories = [
 
-{
-id: 1,
+    "All",
 
-name: "Elegant Necklace",
+    "Bouquets",
 
-description:
-"Beautiful jewellery for every occasion.",
+    "Hampers for Him",
 
-category: "Jewellery",
+    "Hampers for Her",
 
-image:
-"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80"
-},
+    "Greeting Cards",
 
-{
-id: 2,
+    "Gift Box",
 
-name: "Birthday Hamper",
-
-description:
-"A thoughtful surprise for someone special.",
-
-category: "Hampers",
-
-image:
-"https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80"
-},
-
-{
-id: 3,
-
-name: "Gift Collection",
-
-description:
-"Beautiful gifts for every celebration.",
-
-category: "Gifts",
-
-image:
-"https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=800&q=80"
-}
+    "Under ₹300"
 
 ];
 
@@ -892,560 +1216,26 @@ let adminMode = false;
 
 
 /* =========================
-   SAVE PRODUCTS
-   ========================= */
-
-function saveProducts() {
-
-localStorage.setItem(
-"myProducts",
-JSON.stringify(products)
-);
-
-}
-
-
-/* =========================
-   CATEGORIES
-   ========================= */
-
-function renderCategories() {
-
-const container =
-document.getElementById(
-"categoryButtons"
-);
-
-const categories = [
-
-"All",
-
-...new Set(
-products.map(
-product => product.category
-)
-)
-
-];
-
-
-container.innerHTML = "";
-
-
-categories.forEach(category => {
-
-const button =
-document.createElement("button");
-
-button.innerText = category;
-
-
-if(category === selectedCategory) {
-
-button.classList.add("active");
-
-}
-
-
-button.onclick = () => {
-
-selectedCategory = category;
-
-renderCategories();
-
-renderProducts();
-
-};
-
-
-container.appendChild(button);
-
-});
-
-}
-
-
-/* =========================
    PRODUCTS
-   ========================= */
+========================= */
 
-function renderProducts() {
+let products =
+JSON.parse(
+localStorage.getItem("auraProducts")
+) || [
 
-const container =
-document.getElementById("products");
+{
 
-container.innerHTML = "";
+id: 1,
 
-
-let filteredProducts = products;
-
-
-if(selectedCategory !== "All") {
-
-filteredProducts =
-products.filter(
-product =>
-product.category ===
-selectedCategory
-);
-
-}
-
-
-filteredProducts.forEach(product => {
-
-const card =
-document.createElement("article");
-
-card.className = "product";
-
-
-card.innerHTML = `
-
-<div class="product-image">
-
-<img
-src="${product.image}"
-alt="${product.name}">
-
-<div class="category-label">
-
-${product.category}
-
-</div>
-
-</div>
-
-
-<div class="product-info">
-
-<h3>
-${product.name}
-</h3>
-
-
-<p>
-${product.description}
-</p>
-
-
-<button
-class="buy-btn"
-onclick="buyProduct(${product.id})">
-
-♡ Order on WhatsApp
-
-</button>
-
-
-<div
-class="admin-buttons"
-id="admin-${product.id}">
-
-<button
-class="edit-btn"
-onclick="editProduct(${product.id})">
-
-Edit
-
-</button>
-
-
-<button
-class="delete-btn"
-onclick="deleteProduct(${product.id})">
-
-Delete
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-
-container.appendChild(card);
-
-});
-
-
-updateAdminButtons();
-
-}
-
-
-/* =========================
-   BUY PRODUCT
-   ========================= */
-
-function buyProduct(id) {
-
-const product =
-products.find(
-p => p.id === id
-);
-
-
-const orderId =
-"ORD" +
-Math.floor(
-100000 +
-Math.random() * 900000
-);
-
-
-const message =
-
-`Hello The Aura.in! ♡%0A%0A` +
-
-`I would like to order:%0A%0A` +
-
-`Order ID: ${orderId}%0A` +
-
-`Product: ${product.name}%0A` +
-
-`Category: ${product.category}%0A%0A` +
-
-`Please share the payment details.`;
-
-
-window.open(
-
-`https://wa.me/${whatsappNumber}?text=${message}`,
-
-"_blank"
-
-);
-
-}
-
-
-/* =========================
-   ADMIN LOGIN
-   ========================= */
-
-function adminLogin() {
-
-if(adminMode) {
-
-adminMode = false;
-
-
-document.getElementById(
-"adminPanel"
-).style.display = "none";
-
-
-updateAdminButtons();
-
-return;
-
-}
-
-
-const password =
-prompt("Enter Admin Password:");
-
-
-/*
-CHANGE THIS PASSWORD
-*/
-
-if(password === "123456") {
-
-adminMode = true;
-
-
-document.getElementById(
-"adminPanel"
-).style.display =
-"block";
-
-
-updateAdminButtons();
-
-
-alert(
-"Admin mode enabled ♡"
-);
-
-} else {
-
-alert(
-"Incorrect password."
-);
-
-}
-
-}
-
-
-/* =========================
-   ADMIN BUTTONS
-   ========================= */
-
-function updateAdminButtons() {
-
-document
-.querySelectorAll(
-".admin-buttons"
-)
-.forEach(element => {
-
-element.style.display =
-adminMode
-? "flex"
-: "none";
-
-});
-
-}
-
-
-/* =========================
-   SAVE / ADD PRODUCT
-   ========================= */
-
-function saveProduct() {
-
-const name =
-document.getElementById(
-"productName"
-).value.trim();
-
-
-const description =
-document.getElementById(
-"productDescription"
-).value.trim();
-
-
-const category =
-document.getElementById(
-"productCategory"
-).value;
-
-
-const image =
-document.getElementById(
-"productImage"
-).value.trim();
-
-
-if(!name || !image) {
-
-alert(
-"Please enter product name and image."
-);
-
-return;
-
-}
-
-
-if(editingId !== null) {
-
-const product =
-products.find(
-p => p.id === editingId
-);
-
-
-product.name = name;
-
-product.description =
-description;
-
-product.category =
-category;
-
-product.image =
-image;
-
-
-editingId = null;
-
-}
-
-else {
-
-products.push({
-
-id: Date.now(),
-
-name: name,
+name: "Sample Bouquet",
 
 description:
-description,
+"Add your bouquet details from Admin.",
 
-category:
-category,
+category: "Bouquets",
+
+price: 0,
 
 image:
-image
-
-});
-
-}
-
-
-saveProducts();
-
-clearForm();
-
-renderCategories();
-
-renderProducts();
-
-
-alert(
-"Product saved successfully ♡"
-);
-
-}
-
-
-/* =========================
-   EDIT PRODUCT
-   ========================= */
-
-function editProduct(id) {
-
-const product =
-products.find(
-p => p.id === id
-);
-
-
-if(!product) return;
-
-
-editingId = id;
-
-
-document.getElementById(
-"productName"
-).value =
-product.name;
-
-
-document.getElementById(
-"productDescription"
-).value =
-product.description;
-
-
-document.getElementById(
-"productCategory"
-).value =
-product.category;
-
-
-document.getElementById(
-"productImage"
-).value =
-product.image;
-
-
-document.getElementById(
-"adminTitle"
-).innerText =
-"Edit Product";
-
-
-document.getElementById(
-"adminPanel"
-).scrollIntoView({
-behavior: "smooth"
-});
-
-}
-
-
-/* =========================
-   DELETE PRODUCT
-   ========================= */
-
-function deleteProduct(id) {
-
-if(!confirm(
-"Are you sure you want to delete this product?"
-)) {
-
-return;
-
-}
-
-
-products =
-products.filter(
-product =>
-product.id !== id
-);
-
-
-saveProducts();
-
-renderCategories();
-
-renderProducts();
-
-}
-
-
-/* =========================
-   CANCEL EDIT
-   ========================= */
-
-function cancelEdit() {
-
-editingId = null;
-
-clearForm();
-
-}
-
-
-/* =========================
-   CLEAR FORM
-   ========================= */
-
-function clearForm() {
-
-document.getElementById(
-"productName"
-).value = "";
-
-
-document.getElementById(
-"productDescription"
-).value = "";
-
-
-document.getElementById(
-"productImage"
-).value = "";
-
-
-document.getElementById(
-"adminTitle"
-).innerText =
-"Admin Panel";
-
-}
-
-
-/* =========================
-   START WEBSITE
-   ========================= */
-
-renderCategories();
-
-renderProducts();
-
-</script>
-
-</body>
-</html>
+"https://images.unsplash.com/photo-1523438885200-e635ba2c
