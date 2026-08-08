@@ -1,120 +1,817 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Aura | Handmade Personalized Gifts</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Poppins,sans-serif;background:#f8f2fb;color:#4b3b52}
-    header{background:#d8b7e8;padding:18px 8%;display:flex;justify-content:space-between;align-items:center}
-    .logo{font-family:'Playfair Display',serif;font-size:32px;font-weight:700}
-    nav a{text-decoration:none;color:#4b3b52;margin-left:20px;font-weight:500}
-    .hero{padding:90px 8%;text-align:center;background:linear-gradient(180deg,#f4e8f7,#f8f2fb)}
-    .hero h1{font-family:'Playfair Display',serif;font-size:54px;margin-bottom:16px}
-    .hero p{font-size:18px;color:#6a5b72;margin-bottom:30px}
-    .btn{display:inline-block;background:#b57edc;color:#fff;padding:14px 30px;border-radius:999px;text-decoration:none;font-weight:600}
-    .section{padding:60px 8%}
-    .section h2{text-align:center;font-family:'Playfair Display',serif;font-size:34px;margin-bottom:30px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
-    .card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 10px 30px rgba(181,126,220,.12);transition:.3s}
-    .card:hover{transform:translateY(-6px)}
-    .card img{width:100%;height:180px;object-fit:cover}
-    .card h3{padding:18px 18px 8px;color:#7b4f96}
-    .card p{padding:0 18px 18px;color:#6f6176;font-size:14px}
-    .social{text-align:center;margin-top:10px}
-    .social a{display:inline-block;margin:10px;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:600}
-    .instagram{background:#f3d6f0;color:#7b4f96}
-    .whatsapp{background:#dff7e5;color:#1b8f4d}
-    footer{background:#ead8f2;text-align:center;padding:30px;color:#5b4b63;margin-top:30px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Aura | Handmade Gifts</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:Arial,sans-serif;
+background:#faf5ff;
+color:#382044;
+}
+
+header{
+background:linear-gradient(135deg,#54206f,#8e44ad,#d8b4e8);
+color:white;
+text-align:center;
+padding:55px 20px;
+}
+
+header h1{
+font-size:44px;
+letter-spacing:3px;
+}
+
+header p{
+margin-top:10px;
+}
+
+nav{
+position:sticky;
+top:0;
+z-index:50;
+background:white;
+display:flex;
+justify-content:center;
+gap:20px;
+padding:15px;
+box-shadow:0 2px 12px #ddd;
+}
+
+nav a{
+text-decoration:none;
+color:#64247e;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:55px 20px;
+}
+
+.hero h2{
+font-size:32px;
+}
+
+.hero p{
+margin:12px 0 25px;
+color:#765f80;
+}
+
+.btn{
+border:0;
+background:#7029a0;
+color:white;
+padding:12px 20px;
+border-radius:25px;
+cursor:pointer;
+font-weight:bold;
+text-decoration:none;
+display:inline-block;
+}
+
+.section{
+max-width:1150px;
+margin:auto;
+padding:40px 20px;
+}
+
+.section>h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+.categories,.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
+
+.category{
+background:white;
+padding:28px 15px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 4px 15px #eadcf2;
+cursor:pointer;
+font-weight:bold;
+}
+
+.category:hover{
+transform:translateY(-3px);
+}
+
+#search{
+width:100%;
+padding:15px;
+border:1px solid #d8c3df;
+border-radius:15px;
+margin-bottom:25px;
+font-size:16px;
+}
+
+.product{
+background:white;
+padding:15px;
+border-radius:20px;
+box-shadow:0 4px 15px #eadcf2;
+position:relative;
+}
+
+.product img{
+width:100%;
+height:230px;
+object-fit:cover;
+border-radius:15px;
+background:#eee;
+}
+
+.product h3{
+margin:13px 0 7px;
+}
+
+.price{
+font-weight:bold;
+color:#7029a0;
+font-size:18px;
+margin-bottom:12px;
+}
+
+.wish{
+position:absolute;
+right:25px;
+top:245px;
+border:0;
+background:white;
+font-size:24px;
+cursor:pointer;
+}
+
+.actions{
+display:flex;
+gap:8px;
+}
+
+.actions button{
+width:100%;
+}
+
+#cartButton{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:100;
+border:0;
+background:#7029a0;
+color:white;
+padding:16px 22px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 4px 15px #aaa;
+}
+
+.cart{
+position:fixed;
+right:-430px;
+top:0;
+height:100%;
+width:400px;
+max-width:95%;
+background:white;
+z-index:200;
+padding:25px;
+box-shadow:-5px 0 20px #aaa;
+overflow-y:auto;
+transition:.3s;
+}
+
+.cart.open{
+right:0;
+}
+
+.close{
+float:right;
+border:0;
+background:none;
+font-size:28px;
+cursor:pointer;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:15px 0;
+border-bottom:1px solid #ddd;
+}
+
+.qty button{
+border:0;
+padding:5px 9px;
+cursor:pointer;
+}
+
+.total{
+font-size:21px;
+font-weight:bold;
+margin:25px 0;
+}
+
+.empty{
+text-align:center;
+color:#777;
+padding:30px;
+}
+
+.about{
+text-align:center;
+background:#f1e2f8;
+padding:45px 20px;
+}
+
+footer{
+background:#382044;
+color:white;
+text-align:center;
+padding:35px 20px;
+}
+
+footer a{
+color:#e4bfff;
+text-decoration:none;
+}
+
+@media(max-width:600px){
+
+header h1{
+font-size:34px;
+}
+
+nav{
+gap:10px;
+font-size:13px;
+}
+
+.cart{
+width:100%;
+}
+
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <div class="logo">The Aura</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#categories">Shop</a>
-    <a href="#">Track Order</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<h1>THE AURA</h1>
+<p>Handmade • Customized • Made With Love 💜</p>
 </header>
 
-<section class="hero">
-  <h1>Handmade Personalized Gifts</h1>
-  <p>Beautiful bouquets, gift boxes, custom hampers, greeting cards, and photo frames crafted with love.</p>
-  <a href="#categories" class="btn">Shop Now</a>
+<nav>
+<a href="#home">Home</a>
+<a href="#categories">Categories</a>
+<a href="#products">Shop</a>
+<a href="#about">About</a>
+</nav>
+
+<section class="hero" id="home">
+
+<h2>Gifts Made Just For You ✨</h2>
+
+<p>
+Beautiful handmade gifts, hampers & customized creations.
+</p>
+
+<a class="btn" href="#products">
+Shop Now 🛍️
+</a>
+
 </section>
 
 <section class="section" id="categories">
-  <h2>Shop by Category</h2>
-  <div class="grid">
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&q=80" alt="Bouquets">
-      <h3>Bouquets</h3>
-      <p>Elegant handmade bouquets for birthdays, anniversaries, and special occasions.</p>
-    </div>
+<h2>Shop By Category 💜</h2>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=600&q=80" alt="Gift Boxes">
-      <h3>Gift Boxes</h3>
-      <p>Beautifully packed personalized gift boxes with a premium aesthetic.</p>
-    </div>
+<div class="categories">
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=600&q=80" alt="Hampers for Him">
-      <h3>Hampers for Him</h3>
-      <p>Curated hampers with chocolates, perfumes, accessories, and custom touches.</p>
-    </div>
+<div class="category" onclick="filterProducts('All')">
+✨<br><br>All Products
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=600&q=80" alt="Hampers for Her">
-      <h3>Hampers for Her</h3>
-      <p>Luxury personalized hampers designed with pastel elegance and love.</p>
-    </div>
+<div class="category" onclick="filterProducts('Hampers')">
+🎁<br><br>Gift Hampers
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=600&q=80" alt="Chocolate Hampers">
-      <h3>Chocolate Hampers</h3>
-      <p>Ferrero, KitKat, Dairy Milk, and premium chocolate gift arrangements.</p>
-    </div>
+<div class="category" onclick="filterProducts('Bouquets')">
+💐<br><br>Bouquets
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80" alt="Greeting Cards">
-      <h3>Greeting Cards</h3>
-      <p>Handmade greeting cards with personalized messages and designs.</p>
-    </div>
+<div class="category" onclick="filterProducts('Frames')">
+📸<br><br>Photo Frames
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80" alt="Photo Frames">
-      <h3>Photo Frames</h3>
-      <p>Custom memory frames with names, dates, and beautiful personalization.</p>
-    </div>
+<div class="category" onclick="filterProducts('Scrapbooks')">
+📖<br><br>Scrapbooks
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80" alt="Others">
-      <h3>Others</h3>
-      <p>Explore more unique handmade gifts and personalized keepsakes.</p>
-    </div>
+<div class="category" onclick="filterProducts('Customized')">
+💜<br><br>Customized Gifts
+</div>
 
-  </div>
+</div>
+
 </section>
 
-<section class="section" id="contact">
-  <h2>Connect with The Aura</h2>
-  <div class="social">
-    <a class="instagram" href="https://instagram.com/_the.aura.in" target="_blank">Instagram</a>
-    <a class="whatsapp" href="https://wa.me/917208718323" target="_blank">WhatsApp</a>
-  </div>
+<section class="section" id="products">
+
+<h2>Our Collection 🛍️</h2>
+
+<input
+id="search"
+type="text"
+placeholder="🔎 Search products..."
+oninput="displayProducts()"
+>
+
+<div class="products" id="productList"></div>
+
+</section>
+
+<button id="cartButton" onclick="openCart()">
+🛒 Cart (<span id="cartCount">0</span>)
+</button>
+
+<div class="cart" id="cart">
+
+<button class="close" onclick="closeCart()">×</button>
+
+<h2>Your Cart 🛒</h2>
+
+<br>
+
+<div id="cartItems"></div>
+
+<div class="total">
+Total: ₹<span id="cartTotal">0</span>
+</div>
+
+<button class="btn" onclick="checkoutCart()">
+Buy Cart 💜
+</button>
+
+</div>
+
+<section class="about" id="about">
+
+<h2>About The Aura 💜</h2>
+
+<br>
+
+<p>
+The Aura creates beautiful handmade and customized gifts
+made especially for your special moments.
+</p>
+
+<br>
+
+<p>
+🎁 Hampers • 💐 Bouquets • 📸 Frames • 📖 Scrapbooks
+</p>
+
 </section>
 
 <footer>
-  <strong>The Aura</strong><br>
-  Handmade Personalized Gifts • Delivery across India
+
+<h2>The Aura 💜</h2>
+
+<br>
+
+<p>Handmade • Customized • Made With Love</p>
+
+<br>
+
+<p>
+WhatsApp:
+<a href="https://wa.me/917208718323">
+7208718323
+</a>
+</p>
+
+<p>
+Instagram:
+<a href="https://instagram.com/_the.aura.in">
+@_the.aura.in
+</a>
+</p>
+
 </footer>
+
+<script>
+
+const products=[
+
+{
+id:1,
+name:"Custom Gift Hamper",
+price:999,
+category:"Hampers",
+image:"https://via.placeholder.com/500x500?text=Gift+Hamper"
+},
+
+{
+id:2,
+name:"Jewellery Bouquet",
+price:799,
+category:"Bouquets",
+image:"https://via.placeholder.com/500x500?text=Jewellery+Bouquet"
+},
+
+{
+id:3,
+name:"Chocolate Hamper",
+price:599,
+category:"Hampers",
+image:"https://via.placeholder.com/500x500?text=Chocolate+Hamper"
+},
+
+{
+id:4,
+name:"Photo Frame",
+price:499,
+category:"Frames",
+image:"https://via.placeholder.com/500x500?text=Photo+Frame"
+},
+
+{
+id:5,
+name:"Customized Scrapbook",
+price:899,
+category:"Scrapbooks",
+image:"https://via.placeholder.com/500x500?text=Scrapbook"
+},
+
+{
+id:6,
+name:"Polaroid Bouquet",
+price:699,
+category:"Bouquets",
+image:"https://via.placeholder.com/500x500?text=Polaroid+Bouquet"
+},
+
+{
+id:7,
+name:"Customized Gift",
+price:699,
+category:"Customized",
+image:"https://via.placeholder.com/500x500?text=Customized+Gift"
+}
+
+];
+
+let cart=[];
+let wishlist=[];
+let selectedCategory="All";
+
+function displayProducts(){
+
+const search=
+document.getElementById("search").value.toLowerCase();
+
+const list=
+document.getElementById("productList");
+
+const filtered=products.filter(product=>{
+
+const categoryMatch=
+selectedCategory==="All" ||
+product.category===selectedCategory;
+
+const searchMatch=
+product.name.toLowerCase().includes(search);
+
+return categoryMatch && searchMatch;
+
+});
+
+list.innerHTML=filtered.map(product=>`
+
+<div class="product">
+
+<img
+src="${product.image}"
+alt="${product.name}"
+>
+
+<button
+class="wish"
+onclick="toggleWishlist(${product.id})"
+>
+${wishlist.includes(product.id)?"❤️":"♡"}
+</button>
+
+<h3>${product.name}</h3>
+
+<p class="price">
+₹${product.price}
+</p>
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="buyNow(${product.id})"
+>
+Buy Now 💜
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+function filterProducts(category){
+
+selectedCategory=category;
+
+displayProducts();
+
+document
+.getElementById("products")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+function toggleWishlist(id){
+
+if(wishlist.includes(id)){
+
+wishlist=
+wishlist.filter(item=>item!==id);
+
+}else{
+
+wishlist.push(id);
+
+}
+
+displayProducts();
+
+}
+
+function addToCart(id){
+
+const existing=
+cart.find(item=>item.id===id);
+
+if(existing){
+
+existing.qty++;
+
+}else{
+
+cart.push({
+id:id,
+qty:1
+});
+
+}
+
+updateCart();
+
+}
+
+function updateCart(){
+
+const items=
+document.getElementById("cartItems");
+
+let total=0;
+let count=0;
+
+if(cart.length===0){
+
+items.innerHTML=
+`<div class="empty">
+Your cart is empty 💜
+</div>`;
+
+}else{
+
+items.innerHTML=
+cart.map(item=>{
+
+const product=
+products.find(p=>p.id===item.id);
+
+const subtotal=
+product.price*item.qty;
+
+total+=subtotal;
+count+=item.qty;
+
+return`
+
+<div class="cart-item">
+
+<div>
+<strong>${product.name}</strong>
+<br>
+₹${product.price}
+</div>
+
+<div class="qty">
+
+<button
+onclick="changeQty(${product.id},-1)"
+>
+−
+</button>
+
+${item.qty}
+
+<button
+onclick="changeQty(${product.id},1)"
+>
++
+</button>
+
+<br><br>
+
+<button
+onclick="removeFromCart(${product.id})"
+>
+Remove
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+document.getElementById("cartTotal").textContent=total;
+
+document.getElementById("cartCount").textContent=count;
+
+}
+
+function changeQty(id,change){
+
+const item=
+cart.find(item=>item.id===id);
+
+if(!item)return;
+
+item.qty+=change;
+
+if(item.qty<=0){
+
+removeFromCart(id);
+
+}else{
+
+updateCart();
+
+}
+
+}
+
+function removeFromCart(id){
+
+cart=
+cart.filter(item=>item.id!==id);
+
+updateCart();
+
+}
+
+function openCart(){
+
+document
+.getElementById("cart")
+.classList.add("open");
+
+updateCart();
+
+}
+
+function closeCart(){
+
+document
+.getElementById("cart")
+.classList.remove("open");
+
+}
+
+function createWhatsAppMessage(orderId,items,total){
+
+let message=
+`Hello The Aura 💜%0A%0A`+
+`I want to place an order.%0A%0A`+
+`Order ID: ${orderId}%0A%0A`+
+`Order Details:%0A`;
+
+items.forEach(item=>{
+
+const product=
+products.find(p=>p.id===item.id);
+
+message+=
+`${product.name} x ${item.qty} = ₹${product.price*item.qty}%0A`;
+
+});
+
+message+=
+`%0ATotal: ₹${total}%0A%0A`+
+`I understand that payment must be completed to confirm my order.%0A`+
+`Please send me the payment details.`;
+
+return message;
+
+}
+
+function buyNow(id){
+
+const product=
+products.find(p=>p.id===id);
+
+const orderId=
+"AURA-"+Date.now().toString().slice(-6);
+
+const items=[
+{
+id:id,
+qty:1
+}
+];
+
+const message=
+createWhatsAppMessage(
+orderId,
+items,
+product.price
+);
+
+window.location.href=
+"https://wa.me/917208718323?text="+message;
+
+}
+
+function checkoutCart(){
+
+if(cart.length===0){
+
+alert("Your cart is empty 💜");
+
+return;
+
+}
+
+let total=0;
+
+cart.forEach(item=>{
+
+const product=
+products.find(p=>p.id===item.id);
+
+total+=product.price*item.qty;
+
+});
+
+const orderId=
+"AURA-"+Date.now().toString().slice(-6);
+
+const message=
+createWhatsAppMessage(
+orderId,
+cart,
+total
+);
+
+window.location.href=
+"https://wa.me/917208718323?text="+message;
+
+}
+
+displayProducts();
+
+updateCart();
+
+</script>
 
 </body>
 </html>
