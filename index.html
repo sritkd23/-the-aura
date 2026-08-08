@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>The Aura | Gifts & Hampers</title>
-
-<meta name="description"
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>The Aura | Gifts & Hampers</title><meta name="description"
 content="The Aura — beautiful gifts, hampers and personalised surprises.">
 
 <style>
@@ -58,7 +53,7 @@ img{
     display:none!important;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header{
     position:sticky;
@@ -137,7 +132,7 @@ header{
     font-size:10px;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
     max-width:1200px;
@@ -181,7 +176,7 @@ header{
     gap:10px;
 }
 
-/* ================= BUTTONS ================= */
+/* BUTTONS */
 
 .btn{
     border:0;
@@ -211,7 +206,7 @@ header{
     color:var(--danger);
 }
 
-/* ================= STORE ================= */
+/* STORE */
 
 .container{
     max-width:1200px;
@@ -255,7 +250,7 @@ header{
     border-color:var(--primary);
 }
 
-/* ================= PRODUCTS ================= */
+/* PRODUCTS */
 
 .products{
     display:grid;
@@ -336,7 +331,33 @@ header{
     gap:7px;
 }
 
-/* ================= DRAWERS ================= */
+/* CUSTOM HAMPER */
+
+.custom-hamper{
+    margin:45px 0 20px;
+    padding:35px 20px;
+    text-align:center;
+    border-radius:25px;
+    background:linear-gradient(135deg,#f4e8ff,#fff3fb);
+}
+
+.custom-hamper h2{
+    font-family:Georgia,serif;
+    color:var(--primary-dark);
+    margin-bottom:8px;
+}
+
+.custom-hamper p{
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+.custom-hamper a{
+    display:inline-block;
+    text-decoration:none;
+}
+
+/* DRAWERS */
 
 .overlay{
     position:fixed;
@@ -392,7 +413,7 @@ header{
     border-radius:50%;
 }
 
-/* ================= CART ================= */
+/* CART */
 
 .cart-item{
     display:flex;
@@ -439,7 +460,7 @@ header{
     padding:20px 0;
 }
 
-/* ================= FORM ================= */
+/* FORM */
 
 .form{
     display:grid;
@@ -468,7 +489,7 @@ header{
     border-color:var(--primary);
 }
 
-/* ================= ADMIN ================= */
+/* ADMIN */
 
 .admin{
     position:fixed;
@@ -582,7 +603,7 @@ header{
     padding:7px 9px;
 }
 
-/* ================= LOGIN ================= */
+/* LOGIN */
 
 .login-box{
     width:min(380px,calc(100% - 30px));
@@ -608,7 +629,7 @@ header{
     display:block;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
     margin-top:60px;
@@ -638,7 +659,7 @@ footer h2{
     border-radius:22px;
 }
 
-/* ================= TOAST ================= */
+/* TOAST */
 
 .toast{
     position:fixed;
@@ -657,7 +678,7 @@ footer h2{
     transform:translate(-50%,0);
 }
 
-/* ================= EMPTY ================= */
+/* EMPTY */
 
 .empty{
     grid-column:1/-1;
@@ -666,7 +687,7 @@ footer h2{
     color:var(--muted);
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:600px){
 
@@ -726,539 +747,270 @@ footer h2{
         min-width:calc(100% - 80px);
     }
 }
-</style>
-</head>
-
-<body>
-
-<!-- ================= HEADER ================= -->
-
-<header>
-
-<div class="nav">
-
-<div class="brand">
-
-<img id="logo"
-     class="logo"
-     alt="The Aura">
+</style></head><body><!-- HEADER --><header><div class="nav"><div class="brand"><img id="logo"
+class="logo"
+alt="The Aura">
 
 <div>
 <div id="brandName" class="brand-name">
 The Aura
-</div>
-
-<div class="brand-tag">
+</div><div class="brand-tag">
 Gifts made with love
 </div>
-</div>
-
-</div>
-
-<div class="nav-buttons">
-
-<button class="circle-btn"
-        onclick="openDrawer('wishlistDrawer')">
+</div></div><div class="nav-buttons"><button class="circle-btn"
+onclick="openDrawer('wishlistDrawer')">
 ❤️
 <span id="wishlistCount" class="badge">0</span>
 </button>
 
 <button class="circle-btn"
-        onclick="openDrawer('cartDrawer')">
+onclick="openDrawer('cartDrawer')">
 🛒
 <span id="cartCount" class="badge">0</span>
 </button>
 
 <button class="circle-btn"
-        onclick="openLogin()">
+onclick="openLogin()">
 ⚙️
 </button>
 
-</div>
-
-</div>
-
-</header>
-
-
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-<div class="hero-label">
+</div></div></header><!-- HERO --><section class="hero"><div class="hero-label">
 WELCOME TO THE AURA
-</div>
-
-<h1>
+</div><h1>
 Little things.<br>
 Big feelings.
-</h1>
-
-<p id="announcement">
+</h1><p id="announcement">
 Beautiful gifts and thoughtful surprises, made specially for your special people.
-</p>
-
-<div class="hero-buttons">
-
-<button class="btn btn-primary"
-        onclick="scrollToStore()">
+</p><div class="hero-buttons"><button class="btn btn-primary"
+onclick="scrollToStore()">
 Explore Collection ✨
 </button>
 
 <a class="btn btn-secondary"
-   id="heroInstagram"
-   target="_blank">
+id="heroInstagram"
+href="https://instagram.com/_the.aura.in"
+target="_blank">
 Instagram
 </a>
 
-</div>
-
-</section>
-
-
-<!-- ================= STORE ================= -->
-
-<main id="store"
-      class="container">
-
-<div class="section-heading">
-
-<h2>Shop The Aura</h2>
-
-<p>
+</div></section><!-- STORE --><main id="store"
+      class="container"><div class="section-heading"><h2>Shop The Aura</h2><p>
 Find something special for someone special.
-</p>
-
-</div>
-
-<div id="categories"
+</p></div><div id="categories"
      class="categories">
-</div>
-
-<div id="products"
+</div><div id="products"
      class="products">
-</div>
+</div><!-- CUSTOM HAMPER --><section class="custom-hamper"><h2>
+Not satisfied? 💜
+</h2><p>
+Customise your own hamper exactly the way you want!
+</p><a
+href="https://wa.me/917208718323?text=Hi%20The%20Aura!%20💜%20I%20want%20to%20customise%20my%20own%20hamper."
+target="_blank"
+class="btn btn-primary">
 
-</main>
+Customise Your Hamper 💬
 
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-<h2 id="footerName">
+</a></section></main><!-- FOOTER --><footer><h2 id="footerName">
 The Aura
-</h2>
-
-<p>
+</h2><p>
 Thoughtful gifts. Beautiful memories.
-</p>
-
-<div class="socials">
-
-<a id="instagramLink"
-   target="_blank">
+</p><div class="socials"><a id="instagramLink"
+href="https://instagram.com/_the.aura.in"
+target="_blank">
 Instagram
 </a>
 
 <a href="#"
-   onclick="openDrawer('cartDrawer');return false;">
+onclick="openDrawer('cartDrawer');return false;">
 Cart
 </a>
 
-</div>
-
-<p style="margin-top:20px;font-size:12px;opacity:.6;">
+</div><p style="margin-top:20px;font-size:12px;opacity:.6;">
 © <span id="year"></span> The Aura
-</p>
-
-</footer>
-
-
-<!-- ================= OVERLAY ================= -->
-
-<div id="overlay"
+</p></footer><!-- OVERLAY --><div id="overlay"
      class="overlay"
      onclick="closeDrawers()">
-</div>
-
-
-<!-- ================= CART ================= -->
-
-<div id="cartDrawer"
-     class="drawer">
-
-<div class="drawer-header">
-
-<h2>Your Cart 🛒</h2>
-
-<button class="close-btn"
-        onclick="closeDrawers()">
+</div><!-- CART --><div id="cartDrawer"
+     class="drawer"><div class="drawer-header"><h2>Your Cart 🛒</h2><button class="close-btn"
+onclick="closeDrawers()">
 ✕
 </button>
 
-</div>
-
-<div id="cartItems">
-</div>
-
-<div class="total-row">
-
-<span>Total</span>
+</div><div id="cartItems">
+</div><div class="total-row"><span>Total</span>
 
 <span id="cartTotal">
 ₹0
-</span>
-
-</div>
-
-<button class="btn btn-primary"
-        style="width:100%;"
-        onclick="openCheckout()">
+</span></div><button class="btn btn-primary"
+style="width:100%;"
+onclick="openCheckout()">
 Continue to Order
 </button>
 
-</div>
-
-
-<!-- ================= WISHLIST ================= -->
-
-<div id="wishlistDrawer"
-     class="drawer">
-
-<div class="drawer-header">
-
-<h2>Your Wishlist ❤️</h2>
-
-<button class="close-btn"
-        onclick="closeDrawers()">
+</div><!-- WISHLIST --><div id="wishlistDrawer"
+     class="drawer"><div class="drawer-header"><h2>Your Wishlist ❤️</h2><button class="close-btn"
+onclick="closeDrawers()">
 ✕
 </button>
 
-</div>
-
-<div id="wishlistItems">
-</div>
-
-</div>
-
-
-<!-- ================= CHECKOUT ================= -->
-
-<div id="checkoutDrawer"
-     class="drawer">
-
-<div class="drawer-header">
-
-<h2>Order Details</h2>
-
-<button class="close-btn"
-        onclick="closeDrawers()">
+</div><div id="wishlistItems">
+</div></div><!-- CHECKOUT --><div id="checkoutDrawer"
+     class="drawer"><div class="drawer-header"><h2>Order Details</h2><button class="close-btn"
+onclick="closeDrawers()">
 ✕
 </button>
 
-</div>
-
-<form class="form"
-      onsubmit="placeOrder(event)">
-
-<input id="customerName"
-       placeholder="Full Name"
-       required>
+</div><form class="form"
+      onsubmit="placeOrder(event)"><input id="customerName"
+placeholder="Full Name"
+required>
 
 <input id="customerPhone"
-       type="tel"
-       pattern="[0-9]{10}"
-       placeholder="10-digit Phone Number"
-       required>
+type="tel"
+pattern="[0-9]{10}"
+placeholder="10-digit Phone Number"
+required>
 
 <input id="customerEmail"
-       type="email"
-       placeholder="Email Address"
-       required>
+type="email"
+placeholder="Email Address"
+required>
 
 <textarea id="customerAddress"
           placeholder="Full Delivery Address"
-          required></textarea>
-
-<input id="customerCity"
-       placeholder="City"
-       required>
+          required></textarea><input id="customerCity"
+placeholder="City"
+required>
 
 <input id="customerPincode"
-       pattern="[0-9]{6}"
-       placeholder="6-digit Pincode"
-       required>
+pattern="[0-9]{6}"
+placeholder="6-digit Pincode"
+required>
 
 <select id="paymentMethod"
-        required>
+required>
 
 <option value="">
 Select Payment Method
-</option>
-
-<option>
+</option><option value="UPI / Google Pay">
 UPI / Google Pay
-</option>
-
-<option>
+</option><option value="Cash on Delivery">
 Cash on Delivery
-</option>
-
-</select>
-
-<button class="btn btn-primary">
+</option></select><button class="btn btn-primary">
 Place Order 💜
-</button>
-
-</form>
-
-</div>
-
-
-<!-- ================= LOGIN ================= -->
-
-<div id="loginScreen"
-     class="login-screen">
-
-<div class="login-box">
-
-<h2 style="font-family:Georgia,serif;color:var(--primary-dark);">
+</button></form></div><!-- LOGIN --><div id="loginScreen"
+     class="login-screen"><div class="login-box"><h2 style="font-family:Georgia,serif;color:var(--primary-dark);">
 Admin Login 🔐
-</h2>
-
-<p style="color:var(--muted);margin:8px 0 18px;">
+</h2><p style="color:var(--muted);margin:8px 0 18px;">
 The Aura Store Control
-</p>
-
-<form class="form"
-      onsubmit="adminLogin(event)">
-
-<input id="adminPassword"
-       type="password"
-       placeholder="Admin Password"
-       required>
+</p><form class="form"
+      onsubmit="adminLogin(event)"><input id="adminPassword"
+type="password"
+placeholder="Admin Password"
+required>
 
 <button class="btn btn-primary">
 Open Admin
-</button>
-
-<button type="button"
-        class="btn btn-secondary"
-        onclick="closeLogin()">
+</button><button type="button"
+class="btn btn-secondary"
+onclick="closeLogin()">
 Cancel
 </button>
 
-</form>
+</form></div></div><!-- ADMIN --><div id="adminPanel"
+     class="admin"><div class="admin-header"><div><strong>THE AURA — ADMIN</strong>
 
-</div>
-
-</div>
-
-
-<!-- ================= ADMIN ================= -->
-
-<div id="adminPanel"
-     class="admin">
-
-<div class="admin-header">
-
-<div>
-
-<strong>THE AURA — ADMIN</strong>
-
-<br>
-
-<small>
+<br><small>
 Store Control Centre
-</small>
-
-</div>
-
-<button class="btn btn-secondary"
-        onclick="closeAdmin()">
+</small></div><button class="btn btn-secondary"
+onclick="closeAdmin()">
 Exit
 </button>
 
-</div>
-
-
-<div class="admin-main">
-
-
-<!-- SETTINGS -->
-
-<div class="admin-card">
-
-<h3>⚙️ Store Settings</h3>
-
-<div class="admin-grid">
-
-<input id="adminBusiness"
-       placeholder="Business Name">
+</div><div class="admin-main"><!-- SETTINGS --><div class="admin-card"><h3>⚙️ Store Settings</h3><div class="admin-grid"><input id="adminBusiness"
+placeholder="Business Name">
 
 <input id="adminInstagram"
-       placeholder="Instagram username">
+placeholder="Instagram username">
 
 <input id="adminWhatsapp"
-       placeholder="WhatsApp number">
+placeholder="WhatsApp number">
 
 <input id="adminAnnouncement"
-       placeholder="Announcement">
+placeholder="Announcement">
 
 <input id="adminLogo"
-       type="file"
-       accept="image/*">
+type="file"
+accept="image/*">
 
-</div>
-
-<br>
-
-<button class="btn btn-primary"
-        onclick="saveSettings()">
+</div><br><button class="btn btn-primary"
+onclick="saveSettings()">
 Save Settings
 </button>
 
-</div>
-
-
-<!-- CATEGORIES -->
-
-<div class="admin-card">
-
-<h3>📂 Manage Categories</h3>
-
-<div class="admin-grid">
-
-<input id="newCategory"
-       placeholder="Category name">
+</div><!-- CATEGORIES --><div class="admin-card"><h3>📂 Manage Categories</h3><div class="admin-grid"><input id="newCategory"
+placeholder="Category name">
 
 <button class="btn btn-primary"
-        onclick="addCategory()">
+onclick="addCategory()">
 Add Category
 </button>
 
-</div>
-
-<div id="adminCategories"
+</div><div id="adminCategories"
      style="margin-top:15px;">
-</div>
-
-</div>
-
-
-<!-- PRODUCT FORM -->
-
-<div class="admin-card">
-
-<h3 id="productFormTitle">
+</div></div><!-- PRODUCT FORM --><div class="admin-card"><h3 id="productFormTitle">
 ➕ Add Product
-</h3>
-
-<form class="form"
-      onsubmit="saveProduct(event)">
-
-<input type="hidden"
-       id="editingProductId">
+</h3><form class="form"
+      onsubmit="saveProduct(event)"><input type="hidden"
+id="editingProductId">
 
 <input id="adminProductName"
-       placeholder="Product Name"
-       required>
+placeholder="Product Name"
+required>
 
 <select id="adminProductCategory"
-        required>
+required>
 </select>
 
 <input id="adminProductPrice"
-       type="number"
-       min="0"
-       placeholder="Price ₹"
-       required>
+type="number"
+min="0"
+placeholder="Price ₹"
+required>
 
 <textarea id="adminProductDescription"
           placeholder="Product Description">
-</textarea>
-
-<input id="adminProductImage"
-       type="file"
-       accept="image/*">
+</textarea><input id="adminProductImage"
+type="file"
+accept="image/*">
 
 <label>
 <input id="adminFeatured"
        type="checkbox">
 Featured Product
-</label>
-
-<label>
+</label><label>
 <input id="adminPublished"
        type="checkbox">
 Publish Product
-</label>
-
-<div style="display:flex;gap:8px;flex-wrap:wrap;">
-
-<button class="btn btn-primary">
+</label><div style="display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-primary">
 Save Product
-</button>
-
-<button type="button"
-        class="btn btn-secondary"
-        onclick="resetProductForm()">
+</button><button type="button"
+class="btn btn-secondary"
+onclick="resetProductForm()">
 Clear
 </button>
 
-</div>
-
-</form>
-
-</div>
-
-
-<!-- CATALOG -->
-
-<div class="admin-card">
-
-<h3>🛍️ Catalog</h3>
-
-<p style="color:var(--muted);font-size:13px;margin-bottom:15px;">
+</div></form></div><!-- CATALOG --><div class="admin-card"><h3>🛍️ Catalog</h3><p style="color:var(--muted);font-size:13px;margin-bottom:15px;">
 Only products marked LIVE are visible to customers.
-</p>
-
-<div id="adminProducts">
-</div>
-
-</div>
-
-
-<!-- ORDERS -->
-
-<div class="admin-card">
-
-<h3>📦 Orders</h3>
-
-<div id="adminOrders">
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- ================= TOAST ================= -->
-
-<div id="toast"
+</p><div id="adminProducts">
+</div></div><!-- ORDERS --><div class="admin-card"><h3>📦 Orders</h3><div id="adminOrders">
+</div></div></div></div><!-- TOAST --><div id="toast"
      class="toast">
-</div>
-
-
-<script>
+</div><script>
 
 /* =========================================================
-   THE AURA
-   STORE ENGINE
+   THE AURA — FINAL STORE ENGINE
 ========================================================= */
 
 
@@ -1273,15 +1025,29 @@ const UPI_ID =
 const BUSINESS_PHONE =
 "7208718323";
 
+const INSTAGRAM_USERNAME =
+"_the.aura.in";
+
 
 /* ================= DATA ================= */
+
+const DEFAULT_CATEGORIES = [
+    "Bouquets",
+    "Hampers",
+    "For Him",
+    "For Her",
+    "Under ₹300/-",
+    "Greeting Cards",
+    "Gift Boxes"
+];
+
 
 let store =
 JSON.parse(localStorage.getItem("theAuraStore")) || {
 
     businessName:"The Aura",
 
-    instagram:"_the.aura.in",
+    instagram:INSTAGRAM_USERNAME,
 
     whatsapp:BUSINESS_PHONE,
 
@@ -1290,19 +1056,28 @@ JSON.parse(localStorage.getItem("theAuraStore")) || {
     announcement:
     "Beautiful gifts and thoughtful surprises, made specially for your special people.",
 
-    categories:[
-        "Hampers",
-        "Flowers",
-        "Frames",
-        "Personalised Gifts",
-        "Accessories",
-        "Beauty & Self Care",
-        "Chocolate Gifts"
-    ],
+    categories:DEFAULT_CATEGORIES,
 
     products:[]
 
 };
+
+
+/*
+   Always make sure the final seven categories exist.
+   This also fixes older localStorage data from the
+   previous version.
+*/
+
+DEFAULT_CATEGORIES.forEach(category=>{
+
+    if(!store.categories.includes(category)){
+
+        store.categories.push(category);
+
+    }
+
+});
 
 
 let cart =
@@ -1318,4 +1093,28 @@ JSON.parse(localStorage.getItem("theAuraOrders")) || [];
 let selectedCategory="All";
 
 
-/* ================= SAVE =================
+/* ================= SAVE ================= */
+
+function saveStore(){
+
+    localStorage.setItem(
+        "theAuraStore",
+        JSON.stringify(store)
+    );
+
+}
+
+function saveCart(){
+
+    localStorage.setItem(
+        "theAuraCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+function saveWishlist(){
+
+    localStorage.setItem(
+        "theAuraWishlist",
+        JSON.stringify(wishlist)
