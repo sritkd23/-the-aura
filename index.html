@@ -170,23 +170,36 @@
       background: var(--purple-primary);
       color: white;
       border: none;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 30px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(60, 22, 97, 0.2);
     }
     .btn-primary:hover { background: var(--purple-hover); }
 
+    .btn-buy-now {
+      background: #10B981;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    }
+    .btn-buy-now:hover { background: #059669; }
+
     .btn-outline {
       background: transparent;
       color: var(--purple-primary);
       border: 1.5px solid var(--purple-primary);
-      padding: 12px 20px;
+      padding: 10px 18px;
       border-radius: 30px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
@@ -246,6 +259,7 @@
     .product-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
     .product-price { font-size: 1.1rem; font-weight: 700; color: var(--purple-primary); margin-bottom: 8px; }
     .product-desc { font-size: 0.85rem; color: #6C547B; margin-bottom: 14px; }
+    .product-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
     .wishlist-btn {
       position: absolute;
@@ -294,6 +308,17 @@
     .drawer-content { flex: 1; overflow-y: auto; }
     .drawer-footer { border-top: 1px solid var(--border-color); padding-top: 16px; margin-top: 10px; }
 
+    /* Centered Modal Styles */
+    .modal {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9);
+      width: 90%; max-width: 500px; background: white; z-index: 202;
+      border-radius: var(--radius-lg); padding: 24px; display: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.2s ease;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal.active { display: block; transform: translate(-50%, -50%) scale(1); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
     .item-row { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
     .item-row img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
     .item-details { flex: 1; }
@@ -311,22 +336,12 @@
     .feature-box { background: #FDF9FE; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; gap: 14px; }
     .feature-icon { width: 44px; height: 44px; background: var(--purple-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--purple-primary); }
 
-    /* Floating Navigation Elements */
-    .side-nav {
-      position: fixed; right: 0; top: 50%; transform: translateY(-50%);
-      background: var(--purple-primary); border-radius: 16px 0 0 16px; padding: 12px 8px;
-      display: flex; flex-direction: column; gap: 16px; z-index: 100;
-    }
-    .side-nav-item { color: white; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; gap: 4px; position: relative; cursor: pointer; }
-    .side-badge { position: absolute; top: -4px; right: 2px; background: white; color: var(--purple-primary); font-size: 0.65rem; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-
     .whatsapp-btn {
       position: fixed; bottom: 24px; right: 24px; background: var(--whatsapp-green); color: white;
       width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); text-decoration: none; z-index: 99;
     }
 
-    /* Empty Placeholder */
     .empty-msg { text-align: center; padding: 40px; color: #888; font-style: italic; }
 
     /* Responsiveness */
@@ -342,7 +357,7 @@
 
   <!-- Admin Active Banner -->
   <div class="admin-indicator">
-    <i class="fa-solid fa-user-shield"></i> ADMIN MODE ACTIVE â€” Click "The Aura" logo 5 times to exit.
+    <i class="fa-solid fa-user-shield"></i> ADMIN MODE ACTIVE — Click "The Aura" logo 5 times to exit.
   </div>
 
   <!-- Announcement Bar -->
@@ -365,7 +380,7 @@
   <header class="navbar container">
     <div class="brand-logo" onclick="registerLogoClick()">
       <h1>The Aura</h1>
-      <span>ATELIER â€¢ GIFTS MADE WITH LOVE</span>
+      <span>ATELIER • GIFTS MADE WITH LOVE</span>
     </div>
 
     <ul class="nav-menu">
@@ -403,11 +418,11 @@
     <div id="page-home" class="page-section active">
       <section class="hero-banner">
         <div class="hero-content">
-          <div class="hero-subtitle">WELCOME TO THE AURA ATELIER âœ¦</div>
-          <h2 class="hero-title">Little things. Big feelings. â™¡</h2>
+          <div class="hero-subtitle">WELCOME TO THE AURA ATELIER ✦</div>
+          <h2 class="hero-title">Little things. Big feelings. ♡</h2>
           <p class="hero-desc">Beautiful gifts and thoughtful surprises, made specially for your special people.</p>
           <div class="hero-buttons">
-            <button class="btn-primary" onclick="showPage('collections')">Explore Collection âœ¨</button>
+            <button class="btn-primary" onclick="showPage('collections')">Explore Collection ✨</button>
             <a href="https://instagram.com/_the.aura.in" target="_blank" class="btn-outline">Instagram (@_the.aura.in)</a>
           </div>
         </div>
@@ -474,6 +489,4 @@
       <div style="background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); max-width: 600px; margin: 20px auto;">
         <h2 class="section-title" style="margin-bottom: 20px;">Get in Touch</h2>
         <div style="display: flex; flex-direction: column; gap: 16px; font-size: 1rem;">
-          <div><i class="fa-solid fa-phone" style="color: var(--purple-primary); width: 25px;"></i> <b>Phone:</b> 7208718323</div>
-          <div><i class="fa-solid fa-envelope" style="color: var(--purple-primary); width: 25px;"></i> <b>Email:</b> sadhatkd23@gmail.com</div>
-          <div><i class="fa-brands fa-instagram" style="co
+          <div><i class="fa-solid fa-phone" style="color:
