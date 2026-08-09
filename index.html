@@ -1,399 +1,772 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Aura | Gifts Made With Love</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #FAF6FA;
-            --primary-purple: #3B2068;
-            --accent-purple: #6B4C82;
-            --light-lavender: #EFE7F7;
-            --card-bg: #FFFFFF;
-            --text-dark: #2A1A3A;
-            --text-muted: #7A698A;
-            --border-color: #EADCF0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Aura Atelier | Gifts Made With Love</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-color); color: var(--text-dark); font-family: 'Plus Jakarta Sans', sans-serif; padding-bottom: 40px; }
-        
-        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+  <style>
+    :root {
+      --bg-cream: #FFFDF9;
+      --bg-soft-purple: #F3EAF8;
+      --hero-purple: #EADAFA;
+      --text-dark: #2B1638;
+      --purple-primary: #3C1661;
+      --purple-hover: #290D45;
+      --purple-light: #F8EDFF;
+      --border-color: #EADAF2;
+      --accent-pink: #D070B8;
+      --whatsapp-green: #25D366;
+      --shadow-sm: 0 4px 15px rgba(60, 22, 97, 0.05);
+      --shadow-md: 0 8px 25px rgba(60, 22, 97, 0.08);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
 
-        /* Top Announcement Bar */
-        .top-bar {
-            background-color: #F3EBF8;
-            padding: 8px 5%;
-            font-size: 12px;
-            color: var(--accent-purple);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            font-weight: 500;
-        }
-        .top-bar-info span { margin-right: 20px; display: inline-flex; align-items: center; gap: 6px; }
-        .top-bar-socials a { color: var(--accent-purple); text-decoration: none; margin-left: 10px; font-weight: bold; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* Navigation Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 5%;
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .logo-box { cursor: pointer; user-select: none; }
-        .logo-title { font-size: 26px; font-weight: 700; color: var(--primary-purple); line-height: 1; }
-        .logo-sub { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; font-weight: 600; }
-        
-        .nav-menu { display: flex; gap: 24px; list-style: none; align-items: center; }
-        .nav-menu a { text-decoration: none; color: var(--text-dark); font-size: 14px; font-weight: 500; transition: color 0.2s; }
-        .nav-menu a:hover, .nav-menu a.active { color: var(--accent-purple); font-weight: 600; }
-        
-        .header-actions { display: flex; gap: 10px; align-items: center; }
-        .pill-btn {
-            background: #F4EEF8;
-            border: 1px solid #E2D4EA;
-            color: var(--primary-purple);
-            padding: 8px 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
-        }
-        .pill-btn:hover { background: var(--primary-purple); color: #fff; }
-        .badge { background: var(--primary-purple); color: #fff; border-radius: 50%; padding: 2px 7px; font-size: 11px; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.5;
+      padding-bottom: 40px;
+    }
 
-        /* Main Container */
-        .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+    /* Top Announcement Bar */
+    .announcement-bar {
+      background-color: #FAF4FD;
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 5%;
+      font-size: 0.82rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--purple-primary);
+    }
 
-        /* Hero Banner */
-        .hero-card {
-            background: linear-gradient(135deg, #EFE4F7 0%, #DFCEF2 100%);
-            border-radius: 28px;
-            margin: 24px 0;
-            padding: 50px;
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            align-items: center;
-            gap: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-purple); font-weight: 700; margin-bottom: 12px; }
-        .hero-title { font-size: 48px; color: var(--primary-purple); margin-bottom: 14px; font-style: italic; line-height: 1.1; }
-        .hero-desc { color: var(--text-muted); font-size: 15px; margin-bottom: 28px; max-width: 420px; line-height: 1.5; }
-        .hero-btns { display: flex; gap: 14px; }
-        .btn-dark { background: var(--primary-purple); color: #fff; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-size: 14px; font-weight: 600; border: none; cursor: pointer; text-align: center; }
-        .btn-outline { background: transparent; border: 1px solid var(--primary-purple); color: var(--primary-purple); padding: 12px 24px; border-radius: 30px; text-decoration: none; font-size: 14px; font-weight: 600; }
-        .hero-img-box img { width: 100%; border-radius: 20px; box-shadow: 0 15px 35px rgba(59,32,104,0.12); object-fit: cover; max-height: 380px; }
+    .announcement-left, .announcement-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-        /* Category Filter Pills */
-        .categories-bar { display: flex; gap: 12px; overflow-x: auto; padding: 10px 0 24px 0; justify-content: center; }
-        .cat-pill {
-            background: #fff;
-            border: 1px solid var(--border-color);
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-dark);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-        .cat-pill:hover, .cat-pill.active { background: var(--primary-purple); color: #fff; border-color: var(--primary-purple); }
+    .announcement-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-        /* Section Titles */
-        .section-header { display: flex; justify-content: space-between; align-items: center; margin: 30px 0 20px 0; }
-        .section-title { font-size: 26px; color: var(--primary-purple); font-weight: 700; }
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
 
-        /* Products Grid Styling */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px; }
-        
-        .product-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 16px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-        .product-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 16px; margin-bottom: 12px; }
-        .product-info h4 { font-size: 18px; color: var(--primary-purple); margin-bottom: 4px; }
-        .product-info .price { font-size: 16px; font-weight: 700; color: var(--accent-purple); margin-bottom: 8px; }
-        .product-info p { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
-        .card-actions { display: flex; gap: 8px; margin-top: 10px; }
-        .icon-btn { background: var(--light-lavender); color: var(--primary-purple); border: none; padding: 10px; border-radius: 50%; cursor: pointer; font-size: 14px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; }
+    .social-links a {
+      color: var(--purple-primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
 
-        /* Feature Highlights */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 40px 0; }
-        .feature-box { background: #fff; border: 1px solid var(--border-color); padding: 18px 20px; border-radius: 16px; display: flex; align-items: center; gap: 14px; }
-        .feature-icon { background: var(--light-lavender); color: var(--primary-purple); width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-        .feature-title { font-size: 14px; font-weight: 700; color: var(--primary-purple); }
-        .feature-sub { font-size: 12px; color: var(--text-muted); }
+    .social-links a:hover {
+      opacity: 0.7;
+    }
 
-        /* Floating Right Action Dock */
-        .sticky-dock {
-            position: fixed;
-            right: 0;
-            top: 40%;
-            transform: translateY(-50%);
-            background: var(--primary-purple);
-            color: #fff;
-            border-radius: 16px 0 0 16px;
-            padding: 14px 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            z-index: 99;
-            box-shadow: -4px 10px 25px rgba(0,0,0,0.15);
-        }
-        .dock-item { color: #fff; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 10px; cursor: pointer; border: none; background: none; }
-        .dock-item span.icon { font-size: 18px; margin-bottom: 2px; position: relative; }
-        .dock-badge { position: absolute; top: -6px; right: -10px; background: #FF4D6D; color: #fff; font-size: 10px; border-radius: 10px; padding: 1px 5px; font-weight: bold; }
+    /* Header Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 5%;
+      background: var(--bg-cream);
+    }
 
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #25D366;
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 8px 20px rgba(37,211,102,0.3);
-            cursor: pointer;
-            z-index: 99;
-            text-decoration: none;
-        }
+    .brand-logo {
+      text-decoration: none;
+      color: var(--purple-primary);
+    }
 
-        /* Modals & Drawers */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(3px); }
-        .modal-content { background: white; padding: 28px; border-radius: 24px; width: 90%; max-width: 450px; position: relative; max-height: 85vh; overflow-y: auto; }
-        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 22px; cursor: pointer; border: none; background: none; color: #888; }
-        .modal-content input, .modal-content textarea, .modal-content select { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid var(--border-color); border-radius: 12px; font-family: inherit; font-size: 14px; }
+    .brand-logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
 
-        .drawer-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
-        .drawer-item img { width: 50px; height: 50px; border-radius: 10px; object-fit: cover; }
-        .drawer-info { flex: 1; margin-left: 12px; }
-        .drawer-info h5 { font-size: 14px; color: var(--primary-purple); }
-        .drawer-info p { font-size: 13px; color: var(--accent-purple); font-weight: bold; }
-        
-        #admin-panel { display: none; background: #fff; padding: 20px; border-radius: 16px; margin: 20px 0; border: 2px dashed var(--accent-purple); }
-    </style>
+    .brand-logo span {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 4px;
+      color: #6C547B;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s;
+    }
+
+    .nav-link.active, .nav-link:hover {
+      color: var(--purple-primary);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-pill {
+      background: var(--purple-light);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--purple-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-pill:hover {
+      background: #EFDBFA;
+    }
+
+    .badge {
+      background: var(--purple-primary);
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    /* Container layout */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, #F5EBFA 0%, #E8D4F5 100%);
+      border-radius: var(--radius-lg);
+      padding: 40px 60px;
+      margin: 10px 0 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+    }
+
+    .hero-content {
+      z-index: 2;
+    }
+
+    .hero-subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--purple-primary);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-style: italic;
+      color: var(--purple-primary);
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .hero-desc {
+      color: #553E63;
+      font-size: 0.98rem;
+      max-width: 380px;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      background: var(--purple-primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(60, 22, 97, 0.2);
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--purple-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--purple-primary);
+      border: 1.5px solid var(--purple-primary);
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(60, 22, 97, 0.05);
+    }
+
+    .hero-image-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-img-box {
+      width: 100%;
+      max-width: 480px;
+      height: 320px;
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Carousel dots */
+    .carousel-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(60, 22, 97, 0.2);
+      cursor: pointer;
+    }
+
+    .dot.active {
+      width: 24px;
+      border-radius: 10px;
+      background: var(--purple-primary);
+    }
+
+    /* Categories Horizontal Grid */
+    .categories-bar {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .category-card {
+      background: #FAFAF8;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .category-card:hover {
+      border-color: var(--purple-primary);
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .category-card i {
+      font-size: 1.1rem;
+      color: var(--purple-primary);
+    }
+
+    /* Section Header */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      color: var(--purple-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title span {
+      font-size: 1rem;
+      color: var(--accent-pink);
+    }
+
+    .btn-link {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--purple-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-link:hover {
+      background: var(--purple-light);
+    }
+
+    /* Product Cards Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background: #FAF8FC;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      position: relative;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-img-container {
+      width: 100%;
+      height: 180px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .product-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--purple-primary);
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      color: #6C547B;
+      margin-bottom: 18px;
+    }
+
+    .wishlist-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--border-color);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #888;
+      transition: all 0.2s;
+    }
+
+    .wishlist-btn.active, .wishlist-btn:hover {
+      color: #E63946;
+      background: white;
+    }
+
+    /* Features Strip */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .feature-box {
+      background: #FDF9FE;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--purple-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--purple-primary);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .feature-text h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--purple-primary);
+    }
+
+    .feature-text p {
+      font-size: 0.78rem;
+      color: #7A628A;
+    }
+
+    /* Fixed Side Navigation Bar */
+    .side-nav {
+      position: fixed;
+      right: 0;
+      top: 60%;
+      transform: translateY(-50%);
+      background: var(--purple-primary);
+      border-radius: 16px 0 0 16px;
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 100;
+      box-shadow: -4px 0 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .side-nav-item {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.7rem;
+      gap: 4px;
+      position: relative;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .side-nav-item i {
+      font-size: 1.2rem;
+    }
+
+    .side-badge {
+      position: absolute;
+      top: -4px;
+      right: 2px;
+      background: white;
+      color: var(--purple-primary);
+      font-size: 0.65rem;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--whatsapp-green);
+      color: white;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      text-decoration: none;
+      z-index: 99;
+      transition: transform 0.2s;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero-banner {
+        grid-template-columns: 1fr;
+        padding: 30px;
+        text-align: center;
+      }
+      .hero-content {
+        margin-bottom: 24px;
+      }
+      .hero-desc {
+        margin: 0 auto 24px;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .categories-bar {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .announcement-bar {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .categories-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .product-card {
+        grid-template-columns: 1fr;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Announcement Bar -->
-    <div class="top-bar">
-        <div class="top-bar-info">
-            <span>🌸 Handmade with love</span>
-            <span>🎁 Premium Quality</span>
-            <span>🚚 Delivery Across India</span>
-        </div>
-        <div class="top-bar-socials">
-            Follow us: <a href="https://instagram.com/_the.aura.in" target="_blank">Instagram</a>
-        </div>
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="announcement-left">
+      <span class="announcement-item"><i class="fa-regular fa-heart"></i> Handmade with love</span>
+      <span class="announcement-item"><i class="fa-solid fa-gift"></i> Premium Quality</span>
+      <span class="announcement-item"><i class="fa-solid fa-truck"></i> Delivery Across India</span>
     </div>
-
-    <!-- Main Navigation -->
-    <header>
-        <!-- Logo click listener for 5-click secret admin unlock -->
-        <div class="logo-box" onclick="handleLogoClick()">
-            <div class="logo-title serif">The Aura</div>
-            <div class="logo-sub">GIFTS MADE WITH LOVE</div>
-        </div>
-
-        <ul class="nav-menu">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#collections">Collections</a></li>
-            <li><a href="#collections">Hampers</a></li>
-            <li><a href="#">About Us</a></li>
-        </ul>
-
-        <div class="header-actions">
-            <button class="pill-btn" onclick="openModal('wishlistModal')">
-                ❤️ Wishlist <span class="badge" id="wishlist-count-top">0</span>
-            </button>
-            <button class="pill-btn" onclick="openModal('cartModal')">
-                🛒 Cart <span class="badge" id="cart-count-top">0</span>
-            </button>
-            <button class="pill-btn" onclick="openCustomerModal()" id="user-btn">
-                👤 <span id="user-btn-label">Login</span>
-            </button>
-        </div>
-    </header>
-
-    <div class="container">
-        
-        <!-- Secret Admin Management Panel -->
-        <div id="admin-panel">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <h3 class="serif" style="color: var(--primary-purple);">👑 Admin Mode Unlocked</h3>
-                <button onclick="hideAdminPanel()" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold;">Close Admin</button>
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <input type="text" id="admin-title" placeholder="Product Title" style="flex:1;">
-                <input type="number" id="admin-price" placeholder="Price (₹)" style="flex:1;">
-                <input type="text" id="admin-desc" placeholder="Short Description" style="flex:1;">
-                <input type="text" id="admin-img" placeholder="Image URL" style="flex:1;">
-                <button class="btn-dark" onclick="adminAddProduct()">Add Product</button>
-            </div>
-        </div>
-
-        <!-- Hero Section -->
-        <section class="hero-card">
-            <div>
-                <p class="hero-tag">WELCOME TO THE AURA</p>
-                <h1 class="hero-title serif">Little things. Big feelings.</h1>
-                <p class="hero-desc">Beautiful gifts and thoughtful surprises, made specially for your special people.</p>
-                <div class="hero-btns">
-                    <a href="#collections" class="btn-dark">Explore Collection ✨</a>
-                    <a href="https://instagram.com/_the.aura.in" target="_blank" class="btn-outline">Instagram (@_the.aura.in)</a>
-                </div>
-            </div>
-            <div class="hero-img-box">
-                <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=800" alt="The Aura Gifts Bouquet & Hampers">
-            </div>
-        </section>
-
-        <!-- Category Filters -->
-        <div class="categories-bar">
-            <button class="cat-pill active" onclick="renderStore('All')">💐 All Gifts</button>
-            <button class="cat-pill" onclick="renderStore('Bouquets')">🌸 Bouquets</button>
-            <button class="cat-pill" onclick="renderStore('Hampers')">🎀 Hampers</button>
-            <button class="cat-pill" onclick="renderStore('Chocolates')">🍫 Chocolates</button>
-            <button class="cat-pill" onclick="renderStore('Cards')">💌 Cards</button>
-        </div>
-
-        <!-- Collections Section -->
-        <div class="section-header" id="collections">
-            <h2 class="section-title serif">Customised Hampers & Gifts</h2>
-        </div>
-
-        <!-- Products Grid Layout -->
-        <div class="products-grid" id="products-container"></div>
-
-        <!-- Feature Highlights -->
-        <div class="features-grid">
-            <div class="feature-box">
-                <div class="feature-icon">🤍</div>
-                <div>
-                    <div class="feature-title">Handmade with Love</div>
-                    <div class="feature-sub">Crafted with passion</div>
-                </div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🏵️</div>
-                <div>
-                    <div class="feature-title">Premium Quality</div>
-                    <div class="feature-sub">Only the best for you</div>
-                </div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">📦</div>
-                <div>
-                    <div class="feature-title">Secure Packaging</div>
-                    <div class="feature-sub">Safe and beautiful</div>
-                </div>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🚚</div>
-                <div>
-                    <div class="feature-title">On-time Delivery</div>
-                    <div class="feature-sub">Right on your special day</div>
-                </div>
-            </div>
-        </div>
-
+    <div class="announcement-right">
+      <span>Follow us</span>
+      <div class="social-links">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+      </div>
     </div>
+  </div>
 
-    <!-- Sticky Floating Right Dock -->
-    <div class="sticky-dock">
-        <button class="dock-item" onclick="openCustomerModal()">
-            <span class="icon">👤</span> Profile
-        </button>
-        <button class="dock-item" onclick="openModal('cartModal')">
-            <span class="icon">🛒 <span class="dock-badge" id="cart-badge-dock">0</span></span> Cart
-        </button>
-        <button class="dock-item" onclick="openModal('wishlistModal')">
-            <span class="icon">❤️ <span class="dock-badge" id="wishlist-badge-dock">0</span></span> Wishlist
-        </button>
-        <!-- Secret Admin Dock Button (Hidden by default) -->
-        <button class="dock-item" id="admin-dock-btn" style="display: none;" onclick="toggleAdminPanel()">
-            <span class="icon">👑</span> Admin
-        </button>
+  <!-- Header Navigation -->
+  <header class="navbar container">
+    <a href="#" class="brand-logo">
+      <h1>The Aura</h1>
+      <span>ATELIER • GIFTS MADE WITH LOVE</span>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="#" class="nav-link active">Home</a></li>
+      <li><a href="#" class="nav-link">Collections <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a></li>
+      <li><a href="#" class="nav-link">Hampers</a></li>
+      <li><a href="#" class="nav-link">Occasions <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a></li>
+      <li><a href="#" class="nav-link">About Us</a></li>
+      <li><a href="#" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="#" class="btn-pill">
+        <i class="fa-regular fa-heart"></i> Wishlist <span class="badge" id="wishlist-count">1</span>
+      </a>
+      <a href="#" class="btn-pill">
+        <i class="fa-solid fa-basket-shopping"></i> Cart <span class="badge" id="cart-count">2</span>
+      </a>
+      <a href="#" class="btn-pill">
+        <i class="fa-regular fa-user"></i> sadhasi <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i>
+      </a>
     </div>
+  </header>
 
-    <!-- WhatsApp Floating Action -->
-    <a href="https://wa.me/?text=Hi%20The%20Aura!%20I%20want%20to%20inquire%20about%20a%20custom%20gift." target="_blank" class="whatsapp-float">💬</a>
+  <!-- Main Content Container -->
+  <main class="container">
 
-    <!-- CUSTOMER DETAILS MODAL -->
-    <div class="modal-overlay" id="customerModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('customerModal')">×</button>
-            <h3 class="serif" style="color: var(--primary-purple); margin-bottom: 4px;">Customer Profile</h3>
-            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">Save your details for instant WhatsApp ordering.</p>
-            
-            <input type="text" id="cust-name" placeholder="Full Name">
-            <input type="email" id="cust-email" placeholder="Email Address">
-            <input type="tel" id="cust-phone" placeholder="WhatsApp / Contact Number">
-            <textarea id="cust-address" rows="3" placeholder="Full Delivery Address"></textarea>
-
-            <button class="btn-dark" style="width: 100%;" onclick="saveCustomerDetails()">Save Details</button>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <div class="hero-subtitle">WELCOME TO THE AURA ATELIER ✦</div>
+        <h2 class="hero-title">Little things. Big feelings. <span>♡</span></h2>
+        <p class="hero-desc">Beautiful gifts and thoughtful surprises, made specially for your special people.</p>
+        <div class="hero-buttons">
+          <button class="btn-primary">Explore Collection ✨</button>
+          <button class="btn-outline">Instagram (@_the.aura.in)</button>
         </div>
-    </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <div class="hero-img-box" style="background-image: url('https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=800');"></div>
+      </div>
+      <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
 
-    <!-- CART MODAL -->
-    <div class="modal-overlay" id="cartModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('cartModal')">×</button>
-            <h3 class="serif" style="color: var(--primary-purple); margin-bottom: 10px;">Your Cart 🛒</h3>
-            <div id="cart-items-container"></div>
-            <div style="display: flex; justify-content: space-between; margin: 20px 0; font-weight: bold; font-size: 18px; color: var(--primary-purple);">
-                <span>Total:</span>
-                <span id="cart-total-price">₹0</span>
-            </div>
-            <button class="btn-dark" style="width: 100%; background: #25D366;" onclick="checkoutWhatsApp()">Checkout via WhatsApp 💬</button>
+    <!-- Categories Strip -->
+    <section class="categories-bar">
+      <div class="category-card"><i class="fa-solid fa-spa"></i> Bouquets</div>
+      <div class="category-card"><i class="fa-solid fa-user-tie"></i> For Him</div>
+      <div class="category-card"><i class="fa-solid fa-person-dress"></i> For Her</div>
+      <div class="category-card"><i class="fa-solid fa-cookie"></i> Chocolate Gifts</div>
+      <div class="category-card"><i class="fa-regular fa-envelope"></i> Greeting Cards</div>
+      <div class="category-card"><i class="fa-solid fa-gift"></i> Other Gifts</div>
+    </section>
+
+    <!-- Customised Hampers Section -->
+    <section>
+      <div class="section-header">
+        <h3 class="section-title"><span>✦</span> Customised Hampers <span>✦</span></h3>
+        <button class="btn-link">View All Hampers <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
+          <div class="product-img-container">
+            <img class="product-img" src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600" alt="Mini Polaroid Gift Box">
+          </div>
+          <div class="product-info">
+            <h4 class="product-title">Mini Polaroid Gift Box</h4>
+            <div class="product-price">₹499</div>
+            <p class="product-desc">Memories boxed with love.</p>
+            <button class="btn-primary" style="width: fit-content;" onclick="addToCart()">Add to Cart</button>
+          </div>
         </div>
-    </div>
 
-    <!-- WISHLIST MODAL -->
-    <div class="modal-overlay" id="wishlistModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('wishlistModal')">×</button>
-            <h3 class="serif" style="color: var(--primary-purple); margin-bottom: 10px;">Your Wishlist ❤️</h3>
-            <div id="wishlist-items-container"></div>
+        <!-- Product 2 -->
+        <div class="product-card">
+          <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="fa-regular fa-heart"></i></button>
+          <div class="product-img-container">
+            <img class="product-img" src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=600" alt="Birthday Surprise Box">
+          </div>
+          <div class="product-info">
+            <h4 class="product-title">Birthday Surprise Box</h4>
+            <div class="product-price">₹899</div>
+            <p class="product-desc">The perfect surprise for their special day.</p>
+            <button class="btn-primary" style="width: fit-content;" onclick="addToCart()">Add to Cart</button>
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <!-- JavaScript Logic -->
-    <script>
-        // App State
-        let cart = JSON.parse(localStorage.getItem('aura_cart')) || [];
-        let wishlist = JSON.parse(localStorage.getItem('aura_wishlist')) || [];
-        let customer = JSON.parse(localStorage.getItem('aura_customer')) || null;
+    <!-- Value Props / Features -->
+    <section class="features-grid">
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fa-regular fa-heart"></i></div>
+        <div class="feature-text">
+          <h4>Handmade with Love</h4>
+          <p>Crafted with passion</p>
+        </div>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="feature-text">
+          <h4>Premium Quality</h4>
+          <p>Only the best for you</p>
+        </div>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon"><i class="fa-solid fa-box-open"></i></div>
+        <div cla
