@@ -99,13 +99,11 @@
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       box-shadow: var(--shadow-md);
-      min-width: 220px;
+      min-width: 200px;
       display: none;
       flex-direction: column;
       z-index: 120;
       padding: 8px 0;
-      max-height: 300px;
-      overflow-y: auto;
     }
     .nav-item:hover .dropdown { display: flex; }
     .dropdown-item {
@@ -218,7 +216,7 @@
     }
 
     /* Categories Horizontal Grid */
-    .categories-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+    .categories-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 40px; }
     .category-card {
       background: #FAFAF8;
       border: 1px solid var(--border-color);
@@ -327,34 +325,10 @@
     .remove-btn { color: #ff4d4d; cursor: pointer; font-size: 0.85rem; border: none; background: none; }
 
     /* Form Styles */
-    .form-group { margin-bottom: 14px; }
+    .form-group { margin-bottom: 12px; }
     .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
     .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.88rem;
-    }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--purple-primary); outline: none; }
-
-    /* Auth Modal Specific Styles */
-    .auth-toggle-bar {
-      display: flex; background: var(--purple-light); border-radius: 30px; padding: 4px; margin-bottom: 20px;
-    }
-    .auth-toggle-btn {
-      flex: 1; border: none; background: none; padding: 8px; font-weight: 600; font-size: 0.85rem;
-      border-radius: 20px; cursor: pointer; color: var(--purple-primary); text-align: center;
-    }
-    .auth-toggle-btn.active { background: var(--purple-primary); color: white; }
-    .auth-error { color: #e63946; font-size: 0.8rem; margin-top: 4px; display: none; }
-    .auth-footer-text { text-align: center; font-size: 0.82rem; margin-top: 14px; color: #6C547B; }
-    .auth-footer-text a { color: var(--purple-primary); font-weight: 700; text-decoration: none; cursor: pointer; }
-
-    /* User Profile Card inside Modal */
-    .user-profile-card {
-      text-align: center; padding: 10px 0;
-    }
-    .user-avatar {
-      width: 64px; height: 64px; background: var(--purple-light); color: var(--purple-primary);
-      border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; margin-bottom: 12px;
+      width: 100%; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.88rem;
     }
 
     /* Features Strip */
@@ -373,7 +347,7 @@
     /* Responsiveness */
     @media(max-width: 992px) {
       .hero-banner { grid-template-columns: 1fr; text-align: center; }
-      .categories-bar { grid-template-columns: repeat(2, 1fr); }
+      .categories-bar { grid-template-columns: repeat(3, 1fr); }
       .products-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -412,14 +386,14 @@
     <ul class="nav-menu">
       <li class="nav-item"><a class="nav-link active" onclick="showPage('home')">Home</a></li>
       <li class="nav-item">
-        <a class="nav-link" onclick="showPage('collections')">Categories <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+        <a class="nav-link" onclick="showPage('collections')">Collections <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
         <div class="dropdown" id="collections-dropdown"></div>
       </li>
+      <li class="nav-item"><a class="nav-link" onclick="openCategory('hampers')">Hampers</a></li>
       <li class="nav-item">
         <a class="nav-link">Occasions <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
         <div class="dropdown" id="occasions-dropdown"></div>
       </li>
-      <li class="nav-item"><a class="nav-link" onclick="openCategory('hampers')">Hampers</a></li>
       <li class="nav-item"><a class="nav-link" onclick="showPage('about')">About Us</a></li>
       <li class="nav-item"><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
     </ul>
@@ -431,8 +405,8 @@
       <button class="btn-pill" onclick="openDrawer('cart')">
         <i class="fa-solid fa-basket-shopping"></i> Cart <span class="badge" id="header-cart-count">0</span>
       </button>
-      <button class="btn-pill" onclick="openAuthModal()">
-        <i class="fa-regular fa-user"></i> <span id="nav-user-name">Login / Sign Up</span>
+      <button class="btn-pill" onclick="openModal('profile-modal')">
+        <i class="fa-regular fa-user"></i> <span id="nav-user-name">Login</span>
       </button>
     </div>
   </header>
@@ -496,10 +470,23 @@
     <div id="page-collections" class="page-section">
       <div class="section-header">
         <h3 class="section-title" id="category-page-title">All Collections</h3>
-        <button class="btn-primary admin-only" onclick="openAddProductModal()">+ Add Product</button>
+        <button class="btn-primary admin-only" onclick="openAddProductModal()">+ Add Variety Item</button>
       </div>
       <div class="products-grid" id="category-products-grid"></div>
     </div>
 
     <!-- ABOUT US PAGE -->
     <div id="page-about" class="page-section">
+      <div style="background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); max-width: 800px; margin: 20px auto;">
+        <h2 class="section-title" style="margin-bottom: 20px;">About The Aura Atelier</h2>
+        <p style="margin-bottom: 16px; color: #553E63;">Welcome to <b>The Aura Atelier</b>! We specialize in turning deep feelings into beautiful, tangible keepsakes. Whether it's custom handcrafted hampers, exquisite floral arrangements, or personalized memory boxes, every single order is curated with love, precision, and dedication.</p>
+        <p style="color: #553E63;">Our mission is to bring joy to your special relationships on every occasion. From local celebrations to nationwide deliveries across India, we aim to deliver happiness straight to your doorstep.</p>
+      </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="page-contact" class="page-section">
+      <div style="background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); max-width: 600px; margin: 20px auto;">
+        <h2 class="section-title" style="margin-bottom: 20px;">Get in Touch</h2>
+        <div style="display: flex; flex-direction: column; gap: 16px; font-size: 1rem;">
+          <div><i class="fa-solid fa-phone" style="color:
