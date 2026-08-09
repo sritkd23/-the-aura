@@ -4,159 +4,357 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Aura | Gifts & Surprises</title>
+    <!-- Aesthetic Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f7f5f8; color: #333; padding: 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #fcf9f9; color: #2d232e; font-family: 'Plus Jakarta Sans', sans-serif; padding: 20px; }
         
+        h1, h2, h3, .logo-title { font-family: 'Playfair Display', serif; }
+
         /* Header Nav */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: #fff; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .logo { font-size: 20px; font-weight: bold; color: #3b284c; }
-        .nav-icons { display: flex; gap: 20px; align-items: center; cursor: pointer; }
-        .badge { background: #7c5295; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; }
-        .admin-btn { background: #3b284c; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 18px 30px; background: #ffffff; border-radius: 16px; margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .logo-title { font-size: 24px; font-weight: 600; color: #3b284c; letter-spacing: -0.5px; }
+        .logo-sub { font-size: 11px; color: #8a7a93; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+        
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-btn { background: transparent; border: 1px solid #e2d9e5; color: #5a436c; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; }
+        .nav-btn:hover { background: #5a436c; color: #fff; }
+        .admin-btn { background: #3b284c; color: white; border: none; }
 
         /* Hero Banner */
-        .hero { background: #e8dfeb; text-align: center; padding: 60px 20px; border-radius: 20px; margin-bottom: 40px; }
-        .sub-title { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: #666; }
-        .hero h1 { font-size: 42px; color: #3b284c; margin: 15px 0; }
-        .hero p { color: #666; margin-bottom: 25px; }
+        .hero { background: linear-gradient(135deg, #f3ebf5 0%, #e8dfeb 100%); text-align: center; padding: 70px 20px; border-radius: 24px; margin-bottom: 40px; }
+        .sub-title { text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: #7a638b; font-weight: 600; }
+        .hero h1 { font-size: 48px; color: #3b284c; margin: 15px 0; font-style: italic; }
+        .hero p { color: #695873; margin-bottom: 30px; font-size: 15px; }
         
         /* Buttons */
-        .btn-primary { background-color: #6b4c82; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: bold; }
-        .btn-secondary { color: #6b4c82; text-decoration: none; margin-left: 15px; font-weight: bold; }
+        .btn-primary { background-color: #6b4c82; color: white; padding: 14px 32px; border-radius: 30px; text-decoration: none; display: inline-block; font-weight: 500; font-size: 14px; box-shadow: 0 4px 15px rgba(107, 76, 130, 0.2); transition: transform 0.2s; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary { color: #6b4c82; text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 14px; }
 
-        /* Admin Controls */
-        #admin-panel { display: none; background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 30px; border: 2px solid #7c5295; }
-        #admin-panel h3 { color: #3b284c; margin-bottom: 15px; }
-        .admin-form { display: flex; gap: 10px; flex-wrap: wrap; }
-        .admin-form input { padding: 8px; border: 1px solid #ccc; border-radius: 6px; flex: 1; }
-        .admin-form button { background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        /* Admin Dashboard */
+        #admin-panel { display: none; background: #fff; padding: 25px; border-radius: 16px; margin-bottom: 30px; border: 1px solid #dcd0e3; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        #admin-panel h3 { color: #3b284c; margin-bottom: 15px; font-size: 22px; }
+        .admin-section { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0eaf3; }
+        .admin-form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+        .admin-form input, .admin-form select { padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; flex: 1; min-width: 180px; font-family: inherit; }
+        .admin-form button { background: #6b4c82; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
-        /* Products Section */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 20px 0; }
-        .product-card { background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: relative; }
-        .product-card button.add-btn { background: #6b4c82; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
-        .delete-btn { position: absolute; top: 10px; right: 10px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; display: none; }
+        /* Categories Section */
+        .category-header { margin: 40px 0 20px 0; display: flex; justify-content: space-between; align-items: center; }
+        .category-title { font-size: 28px; color: #3b284c; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .product-card { background: white; padding: 16px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); position: relative; border: 1px solid #f2ebf5; transition: transform 0.2s; }
+        .product-card:hover { transform: translateY(-4px); }
+        .product-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
+        .product-card h4 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 6px; color: #3b284c; }
+        .product-card p { color: #6b4c82; font-weight: 600; font-size: 15px; margin-bottom: 12px; }
+        .order-btn { background: #3b284c; color: white; border: none; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500; width: 100%; }
+        .delete-btn { position: absolute; top: 10px; right: 10px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; display: none; }
+
+        /* Customer Details Modal Overlay */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 420px; position: relative; }
+        .modal-content h3 { font-size: 24px; color: #3b284c; margin-bottom: 8px; }
+        .modal-content p { font-size: 13px; color: #7a638b; margin-bottom: 20px; }
+        .modal-content input, .modal-content textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; font-size: 14px; }
+        .modal-content button { width: 100%; background: #25D366; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 20px; cursor: pointer; border: none; background: none; }
     </style>
 </head>
 <body>
 
     <!-- Header Navigation -->
     <header>
-        <div class="logo">The Aura <br><small style="font-size: 10px; color: #777;">Gifts made with love</small></div>
-        <div class="nav-icons">
-            <button class="admin-btn" onclick="openAdminPrompt()">Admin Mode</button>
-            <span onclick="toggleWishlist()">❤️ <span id="wishlist-count" class="badge">0</span></span>
-            <span onclick="toggleCart()">🛒 <span id="cart-count" class="badge">0</span></span>
+        <div>
+            <div class="logo-title">The Aura</div>
+            <div class="logo-sub">Gifts made with love</div>
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn" id="login-nav-btn" onclick="openCustomerDetailsModal()">Login / Customer Info</button>
+            <button class="nav-btn admin-btn" onclick="openAdminPrompt()">Admin Mode</button>
         </div>
     </header>
 
     <!-- Admin Panel (Hidden by default) -->
     <div id="admin-panel">
-        <h3>Admin Dashboard — Add New Gift Product</h3>
-        <div class="admin-form">
-            <input type="text" id="new-title" placeholder="Product Name (e.g. Polaroid Hamper)">
-            <input type="text" id="new-price" placeholder="Price (e.g. ₹399)">
-            <button onclick="addNewProduct()">Add Product</button>
+        <h3>Admin Dashboard</h3>
+        
+        <!-- Add Category Form -->
+        <div class="admin-section">
+            <h4>1. Add New Category</h4>
+            <div class="admin-form">
+                <input type="text" id="new-category-name" placeholder="Category Name (e.g. Hampers for Him)">
+                <button onclick="addCategory()">Add Category</button>
+            </div>
+        </div>
+
+        <!-- Add Variety/Product Form -->
+        <div class="admin-section">
+            <h4>2. Add Variety to Category</h4>
+            <div class="admin-form">
+                <select id="product-category-select">
+                    <!-- Populated dynamically -->
+                </select>
+                <input type="text" id="new-title" placeholder="Variety Name">
+                <input type="text" id="new-price" placeholder="Price (e.g. ₹499)">
+                <input type="text" id="new-img" placeholder="Photo URL (Direct image link)">
+                <button onclick="addNewProduct()">Add Product Variety</button>
+            </div>
         </div>
     </div>
 
     <!-- Hero Banner -->
     <section class="hero">
         <p class="sub-title">Welcome to The Aura</p>
-        <h1>Little things.<br>Big feelings.</h1>
+        <h1>Little things. Big feelings.</h1>
         <p>Beautiful gifts and thoughtful surprises, made specially for your special people.</p>
         
-        <a href="#collection" class="btn-primary">Explore Collection ✨</a>
-        <a href="https://instagram.com" target="_blank" class="btn-secondary">Instagram</a>
+        <a href="#collections" class="btn-primary">Explore Collection ✨</a>
+        <a href="https://instagram.com/_the.aura.in" target="_blank" class="btn-secondary">Instagram (@_the.aura.in)</a>
     </section>
 
-    <!-- Collection Section -->
-    <section id="collection">
-        <h2>A Little Something For Everyone 💜</h2>
-        <div class="products-grid" id="products-grid">
-            <!-- Initial Default Products -->
-            <div class="product-card">
-                <button class="delete-btn" onclick="deleteProduct(this)">×</button>
-                <h3>Custom Hamper</h3>
-                <p>₹499</p>
-                <button class="add-btn" onclick="addToCart('Custom Hamper')">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <button class="delete-btn" onclick="deleteProduct(this)">×</button>
-                <h3>Handmade Frame</h3>
-                <p>₹299</p>
-                <button class="add-btn" onclick="addToCart('Handmade Frame')">Add to Cart</button>
-            </div>
+    <!-- Main Dynamic Collections Section -->
+    <div id="collections">
+        <!-- Default categories and product varieties will load here dynamically -->
+    </div>
+
+    <!-- Customer Login / Details Modal -->
+    <div class="modal-overlay" id="customerModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeCustomerDetailsModal()">×</button>
+            <h3>Customer Info</h3>
+            <p>Please enter your details to route your order directly to WhatsApp.</p>
+            <input type="text" id="cust-name" placeholder="Full Name">
+            <input type="tel" id="cust-phone" placeholder="Phone Number">
+            <input type="email" id="cust-email" placeholder="Email Address">
+            <textarea id="cust-address" rows="3" placeholder="Complete Delivery Address"></textarea>
+            <button onclick="saveCustomerDetails()">Save & Continue Ordering</button>
         </div>
-    </section>
+    </div>
 
     <!-- Interactive JavaScript -->
     <script>
-        let cart = 0;
-        let wishlist = 0;
+        let customerData = JSON.parse(localStorage.getItem('aura_customer')) || null;
+        let selectedProductForOrder = null;
         let isAdminLoggedIn = false;
 
+        // Default Categories & Varieties
+        let storeData = [
+            {
+                category: "Customised Hampers",
+                products: [
+                    { title: "Aura Luxe Hamper", price: "₹999", img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=500" },
+                    { title: "Mini Polaroid Gift Box", price: "₹499", img: "https://images.unsplash.com/photo-151388504200d-88e781628816?w=500" }
+                ]
+            },
+            {
+                category: "For Him",
+                products: [
+                    { title: "Gentleman's Essentials", price: "₹799", img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500" }
+                ]
+            },
+            {
+                category: "For Her",
+                products: [
+                    { title: "Self Care Basket", price: "₹899", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500" }
+                ]
+            },
+            {
+                category: "Photo Frames",
+                products: [
+                    { title: "Retro Wooden Frame", price: "₹399", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500" }
+                ]
+            },
+            {
+                category: "Chocolate Box",
+                products: [
+                    { title: "Handcrafted Truffle Box", price: "₹349", img: "https://images.unsplash.com/photo-1548907040-4baa42d10919?w=500" }
+                ]
+            },
+            {
+                category: "Bouquets",
+                products: [
+                    { title: "Dried Flower Bouquet", price: "₹599", img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=500" }
+                ]
+            }
+        ];
+
+        // Render products & categories on load
+        window.onload = function() {
+            renderStore();
+            updateLoginButtonText();
+        };
+
+        function renderStore() {
+            const container = document.getElementById('collections');
+            const categorySelect = document.getElementById('product-category-select');
+            
+            container.innerHTML = '';
+            categorySelect.innerHTML = '';
+
+            storeData.forEach((catObj, catIndex) => {
+                // Populate Admin Dropdown
+                let option = document.createElement('option');
+                option.value = catIndex;
+                option.innerText = catObj.category;
+                categorySelect.appendChild(option);
+
+                // Build Store UI
+                let categoryHTML = `
+                    <div class="category-header">
+                        <h2 class="category-title">${catObj.category}</h2>
+                    </div>
+                    <div class="products-grid">
+                `;
+
+                catObj.products.forEach((prod, prodIndex) => {
+                    categoryHTML += `
+                        <div class="product-card">
+                            <button class="delete-btn" style="display: ${isAdminLoggedIn ? 'block' : 'none'};" onclick="deleteProduct(${catIndex}, ${prodIndex})">×</button>
+                            <img src="${prod.img}" alt="${prod.title}">
+                            <h4>${prod.title}</h4>
+                            <p>${prod.price}</p>
+                            <button class="order-btn" onclick="initiateOrder('${prod.title}', '${prod.price}')">Order on WhatsApp 💬</button>
+                        </div>
+                    `;
+                });
+
+                categoryHTML += `</div>`;
+                container.innerHTML += categoryHTML;
+            });
+        }
+
+        // Customer Logic
+        function updateLoginButtonText() {
+            const btn = document.getElementById('login-nav-btn');
+            if (customerData && customerData.name) {
+                btn.innerText = `👤 ${customerData.name}`;
+            } else {
+                btn.innerText = "Login / Info";
+            }
+        }
+
+        function openCustomerDetailsModal() {
+            if (customerData) {
+                document.getElementById('cust-name').value = customerData.name || '';
+                document.getElementById('cust-phone').value = customerData.phone || '';
+                document.getElementById('cust-email').value = customerData.email || '';
+                document.getElementById('cust-address').value = customerData.address || '';
+            }
+            document.getElementById('customerModal').style.display = 'flex';
+        }
+
+        function closeCustomerDetailsModal() {
+            document.getElementById('customerModal').style.display = 'none';
+        }
+
+        function saveCustomerDetails() {
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const email = document.getElementById('cust-email').value;
+            const address = document.getElementById('cust-address').value;
+
+            if (!name || !phone || !address) {
+                alert("Please fill in your Name, Phone Number, and Delivery Address.");
+                return;
+            }
+
+            customerData = { name, phone, email, address };
+            localStorage.setItem('aura_customer', JSON.stringify(customerData));
+            updateLoginButtonText();
+            closeCustomerDetailsModal();
+
+            if (selectedProductForOrder) {
+                sendOrderToWhatsApp(selectedProductForOrder.title, selectedProductForOrder.price);
+                selectedProductForOrder = null;
+            }
+        }
+
+        // WhatsApp Order Dispatch
+        function initiateOrder(productTitle, productPrice) {
+            selectedProductForOrder = { title: productTitle, price: productPrice };
+            if (!customerData || !customerData.name || !customerData.phone || !customerData.address) {
+                openCustomerDetailsModal();
+            } else {
+                sendOrderToWhatsApp(productTitle, productPrice);
+            }
+        }
+
+        function sendOrderToWhatsApp(title, price) {
+            const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
+            
+            const message = `✨ *NEW ORDER - THE AURA* ✨\n\n` +
+                `*Order ID:* ${orderId}\n` +
+                `*Item:* ${title}\n` +
+                `*Price:* ${price}\n\n` +
+                `👤 *CUSTOMER DETAILS:*\n` +
+                `• *Name:* ${customerData.name}\n` +
+                `• *Phone:* ${customerData.phone}\n` +
+                `• *Email:* ${customerData.email || 'N/A'}\n` +
+                `• *Address:* ${customerData.address}`;
+
+            const encodedMsg = encodeURIComponent(message);
+            window.open(`https://wa.me/917208718323?text=${encodedMsg}`, '_blank');
+        }
+
+        // Admin Functionality
         function openAdminPrompt() {
             const password = prompt("Enter Admin Password:");
             if (password === "DORAHHH!23") {
                 alert("Admin access granted!");
                 isAdminLoggedIn = true;
                 document.getElementById('admin-panel').style.display = 'block';
-                
-                // Show delete buttons on cards
-                const deleteBtns = document.querySelectorAll('.delete-btn');
-                deleteBtns.forEach(btn => btn.style.display = 'block');
+                renderStore();
             } else {
                 alert("Incorrect password!");
             }
         }
 
+        function addCategory() {
+            const catName = document.getElementById('new-category-name').value;
+            if (!catName) {
+                alert("Enter a category name!");
+                return;
+            }
+            storeData.push({ category: catName, products: [] });
+            document.getElementById('new-category-name').value = '';
+            renderStore();
+        }
+
         function addNewProduct() {
+            const catIndex = document.getElementById('product-category-select').value;
             const title = document.getElementById('new-title').value;
             const price = document.getElementById('new-price').value;
+            let img = document.getElementById('new-img').value;
 
             if (!title || !price) {
-                alert("Please enter both a title and price!");
+                alert("Please enter title and price!");
                 return;
             }
 
-            const grid = document.getElementById('products-grid');
-            const newCard = document.createElement('div');
-            newCard.className = 'product-card';
-            newCard.innerHTML = `
-                <button class="delete-btn" style="display: block;" onclick="deleteProduct(this)">×</button>
-                <h3>${title}</h3>
-                <p>${price}</p>
-                <button class="add-btn" onclick="addToCart('${title}')">Add to Cart</button>
-            `;
-            grid.appendChild(newCard);
+            if (!img) {
+                img = "https://images.unsplash.com/photo-151388504200d-88e781628816?w=500";
+            }
 
-            // Clear inputs
+            storeData[catIndex].products.push({ title, price, img });
+            
             document.getElementById('new-title').value = '';
             document.getElementById('new-price').value = '';
+            document.getElementById('new-img').value = '';
+            
+            renderStore();
         }
 
-        function deleteProduct(button) {
-            button.parentElement.remove();
-        }
-
-        function addToCart(item) {
-            cart++;
-            document.getElementById('cart-count').innerText = cart;
-            alert(item + " added to cart!");
-        }
-
-        function toggleWishlist() {
-            wishlist++;
-            document.getElementById('wishlist-count').innerText = wishlist;
-            alert("Added item to your favorites!");
-        }
-
-        function toggleCart() {
-            alert("You have " + cart + " item(s) in your cart.");
+        function deleteProduct(catIndex, prodIndex) {
+            storeData[catIndex].products.splice(prodIndex, 1);
+            renderStore();
         }
     </script>
-
 </body>
 </html>
