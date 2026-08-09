@@ -293,6 +293,25 @@
     .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
     .drawer-content { flex: 1; overflow-y: auto; }
     .drawer-footer { border-top: 1px solid var(--border-color); padding-top: 16px; margin-top: 10px; }
+    <!-- Inside the Cart Drawer (.drawer-footer) -->
+<div id="cart-checkout-section">
+  <div class="form-group">
+    <label for="cust-name">Full Name *</label>
+    <input type="text" id="cust-name" placeholder="Enter your full name" required>
+  </div>
+  <div class="form-group">
+    <label for="cust-phone">Phone Number *</label>
+    <input type="tel" id="cust-phone" placeholder="Enter 10-digit number" required>
+  </div>
+  <div class="form-group">
+    <label for="cust-address">Delivery Address *</label>
+    <textarea id="cust-address" rows="2" placeholder="Street, City, Pincode" required></textarea>
+  </div>
+
+  <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="checkoutToWhatsApp()">
+    <i class="fa-brands fa-whatsapp"></i> Complete Order via WhatsApp
+  </button>
+</div>
 
     .item-row { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
     .item-row img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
@@ -851,27 +870,10 @@
         alert("Please complete your delivery profile details first.");
         openModal('profile-modal');
       } else {
-        alert(`const message = `✨ New Order - The Aura Atelier ✨
-
-Order ID: AURA-${Date.now()}
-
-Customer:
-Name: ${userProfile.name}
-Phone: ${userProfile.phone}
-Email: ${userProfile.email}
-
-Address:
-${userProfile.address}
-${userProfile.city}, ${userProfile.state} - ${userProfile.pincode}
-
-Products:
-${cart.map(item => `• ${item.name} - ₹${item.price}`).join('\n')}
-
-Total: ₹${cart.reduce((sum, item) => sum + item.price, 0)}
-
-Kindly send your GPay number for payment.`;
-
-window.open(`https://wa.me/917208718323?text=${encodeURIComponent(message)}`, '_blank');
+        alert(`Thank you, ${userProfile.name}! Your order worth ₹${cart.reduce((a,b)=>a+b.price,0)} is placed.`);
+        cart = [];
+        updateBadges();
+        closeAllOverlays();
       }
     }
 
@@ -908,5 +910,62 @@ window.open(`https://wa.me/917208718323?text=${encodeURIComponent(message)}`, '_
       }
     }
   </script>
+  function checkoutToWhatsApp() {
+  // 1. Get Customer Input Details
+  const name = document.getElementById('cust-name')?.value.trim();
+  const phone = document.getElementById('cust-phone')?.value.trim();
+  const address = document.getElementById('cust-address')?.value.trim();
+
+  if (!name || !phone || !address) {
+    alert('Please fill in your Name, Phone Number, and Address before checking out.');
+    return;
+  }
+
+  // 2. Retrieve Cart Data (Assuming 'cart' is an array of objects)
+  // Example structure expected: [{ title: "Custom Hamper", price: 1200, quantity: 1 }]
+  if (!window.cart || window.cart.length === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
+
+  // 3. Generate Random Order ID
+  const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
+
+  // 4. Format Product Details & Calculate Total
+  let grandTotal = 0;
+  let itemSummary = '';
+
+  window.cart.forEach((item, index) => {
+    const itemTotal = item.price * (item.quantity || 1);
+    grandTotal += itemTotal;
+    itemSummary += `${index + 1}. *${item.title}*\n   • Qty: ${item.quantity || 1}\n   • Price: ₹${itemTotal}\n`;
+  });
+
+  // 5. Construct the WhatsApp Message
+  const message = 
+`🛍️ *NEW ORDER PLACED*
+----------------------------------
+🆔 *Order ID:* #${orderId}
+
+👤 *Customer Details:*
+• *Name:* ${name}
+• *Phone:* ${phone}
+• *Address:* ${address}
+
+📦 *Order Summary:*
+${itemSummary}
+----------------------------------
+💰 *Total Amount:* ₹${grandTotal}
+----------------------------------
+💳 *Payment Request:*
+Please send me your *GPay / UPI ID* so I can complete the payment for this order. Thank you!`;
+
+  // 6. Redirect to WhatsApp
+  const whatsappNumber = '917208718323';
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappUrl, '_blank');
+}
 </body>
 </html>
