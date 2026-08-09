@@ -187,17 +187,6 @@
         let isAdminLoggedIn = false;
         let pendingDirectOrder = null;
 
-        <!-- Admin Password Prompt Modal -->
-<div class="modal-overlay" id="adminPasswordModal">
-    <div class="modal-content">
-        <button class="close-modal" onclick="closeModal('adminPasswordModal')">×</button>
-        <h3 class="serif">Admin Authorization</h3>
-        <p>Enter admin passcode to unlock dashboard.</p>
-        <input type="Aura123" id="admin-pass-input" placeholder="Enter Password">
-        <button class="btn-dark" onclick="verifyAdminPassword()">Unlock Admin</button>
-    </div>
-</div>
-
         let storeData = JSON.parse(localStorage.getItem('aura_store_data')) || [
             {
                 category: "Customised Hampers",
