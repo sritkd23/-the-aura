@@ -1,363 +1,328 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Aura Atelier | Handmade Gifts & Surprises</title>
-    <!-- Aesthetic Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #fcf9f9; color: #2d232e; font-family: 'Plus Jakarta Sans', sans-serif; padding: 20px; }
-        
-        h1, h2, h3, h4, .logo-title { font-family: 'Playfair Display', serif; }
+import React, { useState } from 'react';
+import { Heart, ShoppingCart, User, Plus, Trash2, X, Shield, ArrowRight } from 'lucide-react';
 
-        /* Header Nav */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 14px 25px; background: #ffffff; border-radius: 16px; margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); flex-wrap: wrap; gap: 15px; }
-        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
-        .logo-img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid #e8dfeb; }
-        .logo-title { font-size: 22px; font-weight: 600; color: #3b284c; letter-spacing: -0.5px; line-height: 1.1; }
-        .logo-sub { font-size: 10px; color: #8a7a93; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
-        
-        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-        .nav-btn { background: transparent; border: 1px solid #e2d9e5; color: #5a436c; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; }
-        .nav-btn:hover { background: #5a436c; color: #fff; }
-        
-        /* Admin Button Hidden by Default */
-        .admin-btn { background: #3b284c; color: white; border: none; display: none; }
-        
-        .icon-badge { background: #f0eaf3; color: #5a436c; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; user-select: none; transition: background 0.2s; }
-        .icon-badge:hover { background: #e5dbe9; }
-        .badge { background: #6b4c82; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; margin-left: 4px; }
+export default function App() {
+  // Sample initial store products
+  const [products, setProducts] = useState([
+    { id: 1, name: 'Customized Photo Frame', price: 499, image: 'https://via.placeholder.com/200?text=Photo+Frame' },
+    { id: 2, name: 'Handmade Gift Hamper', price: 1299, image: 'https://via.placeholder.com/200?text=Gift+Hamper' },
+  ]);
 
-        /* Hero Banner */
-        .hero { background: linear-gradient(135deg, #f3ebf5 0%, #e8dfeb 100%); text-align: center; padding: 60px 20px; border-radius: 24px; margin-bottom: 40px; }
-        .sub-title { text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: #7a638b; font-weight: 600; }
-        .hero h1 { font-size: 44px; color: #3b284c; margin: 15px 0; font-style: italic; }
-        .hero p { color: #695873; margin-bottom: 25px; font-size: 15px; }
-        
-        .btn-primary { background-color: #6b4c82; color: white; padding: 12px 28px; border-radius: 30px; text-decoration: none; display: inline-block; font-weight: 500; font-size: 14px; box-shadow: 0 4px 15px rgba(107, 76, 130, 0.2); transition: transform 0.2s; }
-        .btn-primary:hover { transform: translateY(-2px); }
-        .btn-secondary { color: #6b4c82; text-decoration: none; margin-left: 15px; font-weight: 600; font-size: 14px; }
+  // State Management
+  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [activeModal, setActiveModal] = useState(null); // 'cart' | 'wishlist' | 'login' | 'admin' | null
 
-        /* Admin Dashboard */
-        #admin-panel { display: none; background: #fff; padding: 25px; border-radius: 16px; margin-bottom: 30px; border: 1px solid #dcd0e3; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        #admin-panel h3 { color: #3b284c; margin-bottom: 15px; font-size: 22px; }
-        .admin-section { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0eaf3; }
-        .admin-form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-        .admin-form input, .admin-form select { padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; flex: 1; min-width: 180px; font-family: inherit; }
-        .admin-form button { background: #6b4c82; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+  // New Product Form State (Admin)
+  const [newProductName, setNewProductName] = useState('');
+  const [newProductPrice, setNewProductPrice] = useState('');
 
-        /* Store Categories & Cards */
-        .category-block { margin-bottom: 45px; }
-        .category-header { border-bottom: 2px solid #f0eaf3; padding-bottom: 10px; margin-bottom: 20px; }
-        .category-title { font-size: 26px; color: #3b284c; font-weight: 600; }
-        
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-        .product-card { background: white; padding: 16px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); position: relative; border: 1px solid #f2ebf5; transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card:hover { transform: translateY(-4px); }
-        .product-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
-        .product-card h4 { font-size: 17px; margin-bottom: 4px; color: #3b284c; }
-        .product-card .price { color: #6b4c82; font-weight: 600; font-size: 15px; margin-bottom: 12px; }
-        
-        .card-actions { display: flex; gap: 8px; margin-top: 8px; }
-        .order-btn { background: #3b284c; color: white; border: none; padding: 10px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 500; flex: 2; }
-        .icon-btn { background: #f4edf6; color: #6b4c82; border: none; padding: 8px; border-radius: 50%; cursor: pointer; font-size: 14px; flex: 0 0 36px; height: 36px; display: flex; justify-content: center; align-items: center; }
-        .delete-btn { position: absolute; top: 10px; right: 10px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; display: none; z-index: 10; }
+  // Cart & Wishlist Actions
+  const toggleWishlist = (product) => {
+    if (wishlist.some((item) => item.id === product.id)) {
+      setWishlist(wishlist.filter((item) => item.id !== product.id));
+    } else {
+      setWishlist([...wishlist, product]);
+    }
+  };
 
-        /* Modals & Drawers */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 25px; border-radius: 20px; width: 90%; max-width: 440px; position: relative; max-height: 85vh; overflow-y: auto; }
-        .modal-content h3 { font-size: 22px; color: #3b284c; margin-bottom: 8px; }
-        .modal-content p { font-size: 13px; color: #7a638b; margin-bottom: 15px; }
-        .modal-content input, .modal-content textarea { width: 100%; padding: 10px 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; font-size: 14px; }
-        .modal-content button.action-btn { width: 100%; background: #25D366; color: white; border: none; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 14px; cursor: pointer; margin-top: 10px; }
-        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 22px; cursor: pointer; border: none; background: none; color: #888; }
+  const addToCart = (product) => {
+    const existing = cart.find((item) => item.id === product.id);
+    if (existing) {
+      setCart(cart.map((item) => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item));
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+  };
 
-        /* Drawer Item Styling */
-        .drawer-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0eaf3; gap: 10px; }
-        .drawer-item img { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; }
-        .drawer-info { flex: 1; text-align: left; }
-        .drawer-info h5 { font-size: 14px; color: #3b284c; }
-        .drawer-info p { font-size: 12px; color: #6b4c82; font-weight: 600; margin: 0; }
-        .remove-item-btn { background: #ffebeb; color: #d9534f; border: none; padding: 6px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; }
-    </style>
-</head>
-<body>
+  const updateQuantity = (id, delta) => {
+    setCart(cart.map((item) => {
+      if (item.id === id) {
+        const newQty = item.quantity + delta;
+        return newQty > 0 ? { ...item, quantity: newQty } : null;
+      }
+      return item;
+    }).filter(Boolean));
+  };
 
-    <!-- Header Navigation with Logo -->
-    <header>
-        <div class="logo-box" onclick="handleLogoClick()">
-            <!-- Replace logo.png with your relative image path or hosted link -->
-            <img src="logo.png" alt="The Aura Atelier Logo" class="logo-img" onerror="this.style.display='none'">
+  const removeFromCart = (id) => {
+    setCart(cart.filter((item) => item.id !== id));
+  };
+
+  const calculateTotal = () => cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  // Admin Actions
+  const handleAddProduct = (e) => {
+    e.preventDefault();
+    if (!newProductName || !newProductPrice) return;
+    const newProduct = {
+      id: Date.now(),
+      name: newProductName,
+      price: parseFloat(newProductPrice),
+      image: 'https://via.placeholder.com/200?text=New+Product',
+    };
+    setProducts([...products, newProduct]);
+    setNewProductName('');
+    setNewProductPrice('');
+  };
+
+  const handleDeleteProduct = (id) => {
+    setProducts(products.filter((p) => p.id !== id));
+    setCart(cart.filter((item) => item.id !== id));
+    setWishlist(wishlist.filter((item) => item.id !== id));
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
+      {/* HEADER / NAVBAR */}
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900">The Aura</h1>
+            <p className="text-xs text-slate-500 uppercase tracking-widest font-medium">Gifts Made With Love</p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            {/* Admin Switcher Toggle */}
+            <button
+              onClick={() => setIsAdmin(!isAdmin)}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 transition ${
+                isAdmin ? 'bg-purple-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              <Shield className="w-3.5 h-3.5" />
+              {isAdmin ? 'Admin Mode ON' : 'User Mode'}
+            </button>
+
+            {/* Wishlist Button */}
+            <button
+              onClick={() => setActiveModal('wishlist')}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-50 text-pink-600 hover:bg-pink-100 text-sm font-medium transition"
+            >
+              <Heart className="w-4 h-4 fill-current" />
+              <span>Wishlist</span>
+              <span className="bg-pink-200 text-pink-800 text-xs px-1.5 py-0.5 rounded-full font-bold">
+                {wishlist.length}
+              </span>
+            </button>
+
+            {/* Cart Button */}
+            <button
+              onClick={() => setActiveModal('cart')}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-100 text-sm font-medium transition"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              <span>Cart</span>
+              <span className="bg-indigo-200 text-indigo-800 text-xs px-1.5 py-0.5 rounded-full font-bold">
+                {cart.reduce((total, item) => total + item.quantity, 0)}
+              </span>
+            </button>
+
+            {/* Login / Customer Info Button */}
+            <button
+              onClick={() => setActiveModal('login')}
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium transition"
+            >
+              <User className="w-4 h-4" />
+              <span>Login / Customer Info</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO SECTION */}
+      <section className="bg-gradient-to-b from-indigo-50/50 to-slate-50 py-12 px-4 text-center">
+        <div className="max-w-2xl mx-auto">
+          <span className="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold tracking-wider uppercase mb-3">
+            WELCOME TO THE AURA
+          </span>
+          <h2 className="text-4xl font-extrabold text-slate-900 mb-2 italic">Little things. Big feelings.</h2>
+          <p className="text-slate-600 mb-6">Beautiful gifts and thoughtful surprises, made specially for your special people.</p>
+          <a
+            href="#shop"
+            className="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-slate-800 transition"
+          >
+            Explore Collection <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </section>
+
+      {/* MAIN CONTENT AREA */}
+      <main id="shop" className="max-w-6xl mx-auto px-4 py-8">
+        {/* ADMIN MANAGEMENT PANEL (Visible when Admin Mode is ON) */}
+        {isAdmin && (
+          <div className="mb-10 bg-purple-50 border border-purple-200 rounded-xl p-6">
+            <h3 className="text-lg font-bold text-purple-900 mb-4 flex items-center gap-2">
+              <Shield className="w-5 h-5 text-purple-600" /> Admin Control Panel
+            </h3>
+            <form onSubmit={handleAddProduct} className="flex flex-wrap gap-3 items-center">
+              <input
+                type="text"
+                placeholder="Product Name"
+                value={newProductName}
+                onChange={(e) => setNewProductName(e.target.value)}
+                className="px-3 py-2 border rounded-lg text-sm flex-1 min-w-[200px]"
+              />
+              <input
+                type="number"
+                placeholder="Price (₹)"
+                value={newProductPrice}
+                onChange={(e) => setNewProductPrice(e.target.value)}
+                className="px-3 py-2 border rounded-lg text-sm w-32"
+              />
+              <button
+                type="submit"
+                className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 flex items-center gap-1"
+              >
+                <Plus className="w-4 h-4" /> Add Product
+              </button>
+            </form>
+          </div>
+        )}
+
+        {/* PRODUCTS GRID */}
+        <h3 className="text-xl font-bold text-slate-900 mb-6">Our Collection</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {products.map((product) => {
+            const isWishlisted = wishlist.some((item) => item.id === product.id);
+            return (
+              <div key={product.id} className="bg-white border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+                <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
+                <div className="p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="font-semibold text-slate-800">{product.name}</h4>
+                    <button onClick={() => toggleWishlist(product)} className="text-slate-400 hover:text-pink-500">
+                      <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-pink-500 text-pink-500' : ''}`} />
+                    </button>
+                  </div>
+                  <p className="text-slate-900 font-bold mb-4">₹{product.price}</p>
+                  
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => addToCart(product)}
+                      className="flex-1 bg-indigo-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition"
+                    >
+                      Add to Cart
+                    </button>
+                    {isAdmin && (
+                      <button
+                        onClick={() => handleDeleteProduct(product.id)}
+                        className="p-2 border border-red-200 text-red-600 hover:bg-red-50 rounded-lg transition"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </main>
+
+      {/* MODALS */}
+      {activeModal && (
+        <div className="fixed inset-0 bg-black/40 z-50 flex justify-end">
+          <div className="bg-white w-full max-w-md h-full p-6 overflow-y-auto flex flex-col justify-between shadow-xl">
             <div>
-                <div class="logo-title">The Aura</div>
-                <div class="logo-sub">Atelier • Gifts made with love</div>
-            </div>
-        </div>
-        <div class="nav-links">
-            <span class="icon-badge" onclick="openWishlistModal()">❤️ Wishlist <span id="wishlist-count" class="badge">0</span></span>
-            <span class="icon-badge" onclick="openCartModal()">🛒 Cart <span id="cart-count" class="badge">0</span></span>
-            <button class="nav-btn" id="login-nav-btn" onclick="openCustomerDetailsModal()">Login / Customer Info</button>
-            <button class="nav-btn admin-btn" id="admin-nav-btn" onclick="openAdminPrompt()">Admin Mode</button>
-        </div>
-    </header>
+              {/* Modal Header */}
+              <div className="flex justify-between items-center pb-4 border-b">
+                <h3 className="text-lg font-bold capitalize">{activeModal}</h3>
+                <button onClick={() => setActiveModal(null)} className="p-1 hover:bg-slate-100 rounded-full">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-    <!-- Admin Panel -->
-    <div id="admin-panel">
-        <h3>Admin Dashboard</h3>
-        
-        <div class="admin-section">
-            <h4>1. Add New Category Line</h4>
-            <div class="admin-form">
-                <input type="text" id="new-category-name" placeholder="Category Name (e.g. Handmade Hampers)">
-                <button onclick="addCategory()">Add Category</button>
-            </div>
-        </div>
-
-        <div class="admin-section">
-            <h4>2. Add Variety Photo & Price</h4>
-            <div class="admin-form">
-                <select id="product-category-select"></select>
-                <input type="text" id="new-title" placeholder="Item/Variety Name">
-                <input type="text" id="new-price" placeholder="Price (e.g. 499)">
-                <input type="text" id="new-img" placeholder="Direct Image URL">
-                <button onclick="addNewProduct()">Add Item</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Banner -->
-    <section class="hero">
-        <p class="sub-title">Welcome to The Aura Atelier</p>
-        <h1>Little things. Big feelings.</h1>
-        <p>Beautiful gifts and thoughtful surprises, made specially for your special people.</p>
-        
-        <a href="#collections" class="btn-primary">Explore Collection ✨</a>
-        <a href="https://instagram.com/_the.aura.in" target="_blank" class="btn-secondary">Instagram (@_the.aura.in)</a>
-    </section>
-
-    <!-- Main Categories Section -->
-    <div id="collections"></div>
-
-    <!-- Customer Details Modal -->
-    <div class="modal-overlay" id="customerModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('customerModal')">×</button>
-            <h3>Customer Info</h3>
-            <p>Please enter your details to route orders directly to WhatsApp.</p>
-            <input type="text" id="cust-name" placeholder="Full Name">
-            <input type="tel" id="cust-phone" placeholder="Phone Number">
-            <input type="email" id="cust-email" placeholder="Email Address">
-            <textarea id="cust-address" rows="3" placeholder="Complete Delivery Address"></textarea>
-            <button class="action-btn" onclick="saveCustomerDetails()">Save Info</button>
-        </div>
-    </div>
-
-    <!-- Cart Modal -->
-    <div class="modal-overlay" id="cartModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('cartModal')">×</button>
-            <h3>Your Cart 🛒</h3>
-            <div id="cart-items-list" style="margin: 15px 0;"></div>
-            <div id="cart-summary" style="text-align: right; font-weight: 600; color: #3b284c; margin-bottom: 15px;">Total: ₹0</div>
-            <button class="action-btn" onclick="checkoutCartWhatsApp()">Order Cart via WhatsApp 💬</button>
-        </div>
-    </div>
-
-    <!-- Wishlist Modal -->
-    <div class="modal-overlay" id="wishlistModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal('wishlistModal')">×</button>
-            <h3>Your Wishlist ❤️</h3>
-            <div id="wishlist-items-list" style="margin: 15px 0;"></div>
-        </div>
-    </div>
-
-    <script>
-        // State & LocalStorage Persistent Data
-        let customerData = JSON.parse(localStorage.getItem('aura_customer')) || null;
-        let cartItems = JSON.parse(localStorage.getItem('aura_cart')) || [];
-        let wishlistItems = JSON.parse(localStorage.getItem('aura_wishlist')) || [];
-        
-        let logoClickCount = 0;
-        let isAdminLoggedIn = false;
-        let pendingDirectOrder = null;
-
-        let storeData = JSON.parse(localStorage.getItem('aura_store_data')) || [
-            {
-                category: "Customised Hampers",
-                products: [
-                    { title: "Aura Luxe Hamper", price: "999", img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=500" },
-                    { title: "Mini Polaroid Gift Box", price: "499", img: "https://images.unsplash.com/photo-151388504200d-88e781628816?w=500" }
-                ]
-            },
-            {
-                category: "Photo Frames & Retro Prints",
-                products: [
-                    { title: "Retro Wooden Frame", price: "399", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500" }
-                ]
-            }
-        ];
-
-        window.onload = function() {
-            checkAdminDevicePermission();
-            renderStore();
-            updateBadges();
-            updateLoginButtonText();
-        };
-
-        // Device Admin Authorization Check
-        function checkAdminDevicePermission() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('admin') === 'true' || localStorage.getItem('aura_is_admin_device') === 'true') {
-                localStorage.setItem('aura_is_admin_device', 'true');
-                document.getElementById('admin-nav-btn').style.display = 'inline-block';
-            }
-        }
-
-        function handleLogoClick() {
-            logoClickCount++;
-            if (logoClickCount >= 5) {
-                localStorage.setItem('aura_is_admin_device', 'true');
-                document.getElementById('admin-nav-btn').style.display = 'inline-block';
-                alert("Admin Access Unlocked on this device!");
-                logoClickCount = 0;
-            }
-        }
-
-        function saveStoreData() {
-            localStorage.setItem('aura_store_data', JSON.stringify(storeData));
-        }
-
-        function renderStore() {
-            const container = document.getElementById('collections');
-            const categorySelect = document.getElementById('product-category-select');
-            
-            container.innerHTML = '';
-            categorySelect.innerHTML = '';
-
-            storeData.forEach((catObj, catIndex) => {
-                let option = document.createElement('option');
-                option.value = catIndex;
-                option.innerText = catObj.category;
-                categorySelect.appendChild(option);
-
-                let categoryHTML = `
-                    <div class="category-block">
-                        <div class="category-header">
-                            <h2 class="category-title">${catObj.category}</h2>
+              {/* CART MODAL CONTENT */}
+              {activeModal === 'cart' && (
+                <div className="mt-4">
+                  {cart.length === 0 ? (
+                    <div className="text-center py-12 text-slate-500">
+                      <ShoppingCart className="w-12 h-12 mx-auto mb-3 stroke-1" />
+                      <p>Your cart is empty.</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {cart.map((item) => (
+                        <div key={item.id} className="flex justify-between items-center border-b pb-3">
+                          <div>
+                            <h5 className="font-semibold text-sm">{item.name}</h5>
+                            <p className="text-xs text-slate-500">₹{item.price} each</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button onClick={() => updateQuantity(item.id, -1)} className="px-2 py-0.5 bg-slate-100 rounded text-xs">-</button>
+                            <span className="text-xs font-bold">{item.quantity}</span>
+                            <button onClick={() => updateQuantity(item.id, 1)} className="px-2 py-0.5 bg-slate-100 rounded text-xs">+</button>
+                            <button onClick={() => removeFromCart(item.id)} className="text-red-500 ml-2">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
                         </div>
-                        <div class="products-grid">
-                `;
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
-                catObj.products.forEach((prod, prodIndex) => {
-                    const priceVal = String(prod.price).replace(/[^0-9]/g, '');
-                    categoryHTML += `
-                        <div class="product-card">
-                            <button class="delete-btn" style="display: ${isAdminLoggedIn ? 'block' : 'none'};" onclick="deleteProduct(${catIndex}, ${prodIndex})">×</button>
-                            <div>
-                                <img src="${prod.img}" alt="${prod.title}">
-                                <h4>${prod.title}</h4>
-                                <p class="price">₹${priceVal}</p>
-                            </div>
-                            <div class="card-actions">
-                                <button class="order-btn" onclick="initiateDirectOrder('${prod.title}', '${priceVal}')">WhatsApp 💬</button>
-                                <button class="icon-btn" onclick="addToWishlist('${prod.title}', '${priceVal}', '${prod.img}')">❤️</button>
-                                <button class="icon-btn" onclick="addToCart('${prod.title}', '${priceVal}', '${prod.img}')">🛒</button>
-                            </div>
+              {/* WISHLIST MODAL CONTENT */}
+              {activeModal === 'wishlist' && (
+                <div className="mt-4">
+                  {wishlist.length === 0 ? (
+                    <div className="text-center py-12 text-slate-500">
+                      <Heart className="w-12 h-12 mx-auto mb-3 stroke-1" />
+                      <p>Your wishlist is empty.</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {wishlist.map((item) => (
+                        <div key={item.id} className="flex justify-between items-center border-b pb-3">
+                          <div>
+                            <h5 className="font-semibold text-sm">{item.name}</h5>
+                            <p className="text-xs text-slate-500">₹{item.price}</p>
+                          </div>
+                          <button
+                            onClick={() => { addToCart(item); toggleWishlist(item); }}
+                            className="text-xs bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-full font-medium"
+                          >
+                            Move to Cart
+                          </button>
                         </div>
-                    `;
-                });
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
-                categoryHTML += `</div></div>`;
-                container.innerHTML += categoryHTML;
-            });
-        }
+              {/* LOGIN / CUSTOMER INFO MODAL */}
+              {activeModal === 'login' && (
+                <div className="mt-6 space-y-4">
+                  <h4 className="font-semibold text-sm">Customer Profile</h4>
+                  <input type="text" placeholder="Full Name" className="w-full px-3 py-2 border rounded-lg text-sm" />
+                  <input type="email" placeholder="Email Address" className="w-full px-3 py-2 border rounded-lg text-sm" />
+                  <button className="w-full bg-slate-900 text-white py-2 rounded-lg text-sm font-medium">Save Details</button>
+                </div>
+              )}
+            </div>
 
-        // Cart & Wishlist Logic
-        function addToCart(title, price, img) {
-            cartItems.push({ title, price: parseInt(price), img });
-            localStorage.setItem('aura_cart', JSON.stringify(cartItems));
-            updateBadges();
-            alert(`Added "${title}" to your Cart 🛒`);
-        }
-
-        function addToWishlist(title, price, img) {
-            if (!wishlistItems.some(item => item.title === title)) {
-                wishlistItems.push({ title, price: parseInt(price), img });
-                localStorage.setItem('aura_wishlist', JSON.stringify(wishlistItems));
-                updateBadges();
-                alert(`Added "${title}" to your Wishlist ❤️`);
-            } else {
-                alert(`"${title}" is already in your Wishlist!`);
-            }
-        }
-
-        function removeFromCart(index) {
-            cartItems.splice(index, 1);
-            localStorage.setItem('aura_cart', JSON.stringify(cartItems));
-            updateBadges();
-            openCartModal();
-        }
-
-        function removeFromWishlist(index) {
-            wishlistItems.splice(index, 1);
-            localStorage.setItem('aura_wishlist', JSON.stringify(wishlistItems));
-            updateBadges();
-            openWishlistModal();
-        }
-
-        function moveWishlistToCart(index) {
-            const item = wishlistItems[index];
-            cartItems.push(item);
-            wishlistItems.splice(index, 1);
-            localStorage.setItem('aura_cart', JSON.stringify(cartItems));
-            localStorage.setItem('aura_wishlist', JSON.stringify(wishlistItems));
-            updateBadges();
-            openWishlistModal();
-        }
-
-        function updateBadges() {
-            document.getElementById('cart-count').innerText = cartItems.length;
-            document.getElementById('wishlist-count').innerText = wishlistItems.length;
-        }
-
-        function openCartModal() {
-            const listContainer = document.getElementById('cart-items-list');
-            listContainer.innerHTML = '';
-            let total = 0;
-
-            if (cartItems.length === 0) {
-                listContainer.innerHTML = '<p>Your cart is empty.</p>';
-            } else {
-                cartItems.forEach((item, index) => {
-                    total += item.price;
-                    listContainer.innerHTML += `
-                        <div class="drawer-item">
-                            <img src="${item.img}">
-                            <div class="drawer-info">
-                                <h5>${item.title}</h5>
-                                <p>₹${item.price}</p>
-                            </div>
-                            <button class="remove-item-btn" onclick="removeFromCart(${index})">Remove</button>
-                        </div>
-                    `;
-                });
-            }
-
-            document.getElementById('cart-summary').innerText = `Total: ₹${total}`;
-            document.getElementById('cartModal').style.display = 'flex';
-        }
-
-        function openWishlistModal() {
-            const listContainer = document.getElementById('wishlist-items-list');
-            listContainer.innerHTML = '';
-
-            if (wishlistItems.length === 0) {
-                listContainer.innerHTML = '<p>Your wishlist is empty.</p>';
-            } else {
-                wishlistItems.forEach((item, index
+            {/* CART FOOTER / CHECKOUT */}
+            {activeModal === 'cart' && cart.length > 0 && (
+              <div className="border-t pt-4">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="font-medium text-slate-600">Total Amount:</span>
+                  <span className="text-xl font-bold text-slate-900">₹{calculateTotal()}</span>
+                </div>
+                <button
+                  onClick={() => alert(`Proceeding to checkout with total amount: ₹${calculateTotal()}`)}
+                  className="w-full bg-indigo-600 text-white py-3 rounded-xl font-medium hover:bg-indigo-700 transition"
+                >
+                  Proceed to Checkout
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
