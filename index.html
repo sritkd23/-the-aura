@@ -13,17 +13,19 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #fcf9f9; color: #2d232e; font-family: 'Plus Jakarta Sans', sans-serif; padding: 20px; }
         
-        h1, h2, h3, .logo-title { font-family: 'Playfair Display', serif; }
+        h1, h2, h3, h4, .logo-title { font-family: 'Playfair Display', serif; }
 
         /* Header Nav */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 18px 30px; background: #ffffff; border-radius: 16px; margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 18px 30px; background: #ffffff; border-radius: 16px; margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); flex-wrap: wrap; gap: 15px; }
         .logo-title { font-size: 24px; font-weight: 600; color: #3b284c; letter-spacing: -0.5px; }
         .logo-sub { font-size: 11px; color: #8a7a93; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
         
-        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
         .nav-btn { background: transparent; border: 1px solid #e2d9e5; color: #5a436c; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.3s; }
         .nav-btn:hover { background: #5a436c; color: #fff; }
         .admin-btn { background: #3b284c; color: white; border: none; }
+        .icon-badge { background: #f0eaf3; color: #5a436c; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; user-select: none; }
+        .badge { background: #6b4c82; color: white; border-radius: 50%; padding: 2px 7px; font-size: 11px; margin-left: 4px; }
 
         /* Hero Banner */
         .hero { background: linear-gradient(135deg, #f3ebf5 0%, #e8dfeb 100%); text-align: center; padding: 70px 20px; border-radius: 24px; margin-bottom: 40px; }
@@ -44,20 +46,24 @@
         .admin-form input, .admin-form select { padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; flex: 1; min-width: 180px; font-family: inherit; }
         .admin-form button { background: #6b4c82; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
-        /* Categories Section */
-        .category-header { margin: 40px 0 20px 0; display: flex; justify-content: space-between; align-items: center; }
-        .category-title { font-size: 28px; color: #3b284c; }
+        /* Category Line-by-Line Section */
+        .category-block { margin-bottom: 45px; }
+        .category-header { border-bottom: 2px solid #f0eaf3; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .category-title { font-size: 28px; color: #3b284c; font-weight: 600; }
         
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; margin-bottom: 30px; }
-        .product-card { background: white; padding: 16px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); position: relative; border: 1px solid #f2ebf5; transition: transform 0.2s; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 25px; }
+        .product-card { background: white; padding: 16px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); position: relative; border: 1px solid #f2ebf5; transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
         .product-card:hover { transform: translateY(-4px); }
-        .product-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
-        .product-card h4 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 6px; color: #3b284c; }
-        .product-card p { color: #6b4c82; font-weight: 600; font-size: 15px; margin-bottom: 12px; }
-        .order-btn { background: #3b284c; color: white; border: none; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500; width: 100%; }
-        .delete-btn { position: absolute; top: 10px; right: 10px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; display: none; }
+        .product-card img { width: 100%; height: 210px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
+        .product-card h4 { font-size: 18px; margin-bottom: 6px; color: #3b284c; }
+        .product-card .price { color: #6b4c82; font-weight: 600; font-size: 15px; margin-bottom: 12px; }
+        
+        .card-actions { display: flex; gap: 8px; margin-top: 8px; }
+        .order-btn { background: #3b284c; color: white; border: none; padding: 10px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500; flex: 2; }
+        .icon-btn { background: #f4edf6; color: #6b4c82; border: none; padding: 10px; border-radius: 50%; cursor: pointer; font-size: 14px; flex: 0 0 38px; height: 38px; display: flex; justify-content: center; align-items: center; }
+        .delete-btn { position: absolute; top: 10px; right: 10px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; display: none; z-index: 10; }
 
-        /* Customer Details Modal Overlay */
+        /* Modals */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 420px; position: relative; }
         .modal-content h3 { font-size: 24px; color: #3b284c; margin-bottom: 8px; }
@@ -76,35 +82,37 @@
             <div class="logo-sub">Gifts made with love</div>
         </div>
         <div class="nav-links">
+            <span class="icon-badge" onclick="showWishlistAlert()">❤️ Wishlist <span id="wishlist-count" class="badge">0</span></span>
+            <span class="icon-badge" onclick="showCartAlert()">🛒 Cart <span id="cart-count" class="badge">0</span></span>
             <button class="nav-btn" id="login-nav-btn" onclick="openCustomerDetailsModal()">Login / Customer Info</button>
             <button class="nav-btn admin-btn" onclick="openAdminPrompt()">Admin Mode</button>
         </div>
     </header>
 
-    <!-- Admin Panel (Hidden by default) -->
+    <!-- Admin Panel -->
     <div id="admin-panel">
         <h3>Admin Dashboard</h3>
         
         <!-- Add Category Form -->
         <div class="admin-section">
-            <h4>1. Add New Category</h4>
+            <h4>1. Add New Category Line</h4>
             <div class="admin-form">
-                <input type="text" id="new-category-name" placeholder="Category Name (e.g. Hampers for Him)">
+                <input type="text" id="new-category-name" placeholder="Category Name (e.g. Handmade Hampers)">
                 <button onclick="addCategory()">Add Category</button>
             </div>
         </div>
 
-        <!-- Add Variety/Product Form -->
+        <!-- Add Product/Variety Form -->
         <div class="admin-section">
-            <h4>2. Add Variety to Category</h4>
+            <h4>2. Add Variety Photo & Price to Category</h4>
             <div class="admin-form">
                 <select id="product-category-select">
                     <!-- Populated dynamically -->
                 </select>
-                <input type="text" id="new-title" placeholder="Variety Name">
+                <input type="text" id="new-title" placeholder="Item/Variety Name">
                 <input type="text" id="new-price" placeholder="Price (e.g. ₹499)">
-                <input type="text" id="new-img" placeholder="Photo URL (Direct image link)">
-                <button onclick="addNewProduct()">Add Product Variety</button>
+                <input type="text" id="new-img" placeholder="Direct Image URL">
+                <button onclick="addNewProduct()">Add Variety Photo</button>
             </div>
         </div>
     </div>
@@ -119,17 +127,17 @@
         <a href="https://instagram.com/_the.aura.in" target="_blank" class="btn-secondary">Instagram (@_the.aura.in)</a>
     </section>
 
-    <!-- Main Dynamic Collections Section -->
+    <!-- Main Categories Section (Line by Line) -->
     <div id="collections">
-        <!-- Default categories and product varieties will load here dynamically -->
+        <!-- Dynamic Line-by-Line Categories load here -->
     </div>
 
-    <!-- Customer Login / Details Modal -->
+    <!-- Customer Details Modal -->
     <div class="modal-overlay" id="customerModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeCustomerDetailsModal()">×</button>
             <h3>Customer Info</h3>
-            <p>Please enter your details to route your order directly to WhatsApp.</p>
+            <p>Please enter your details to place your order directly on WhatsApp.</p>
             <input type="text" id="cust-name" placeholder="Full Name">
             <input type="tel" id="cust-phone" placeholder="Phone Number">
             <input type="email" id="cust-email" placeholder="Email Address">
@@ -141,10 +149,12 @@
     <!-- Interactive JavaScript -->
     <script>
         let customerData = JSON.parse(localStorage.getItem('aura_customer')) || null;
+        let cartItems = [];
+        let wishlistItems = [];
         let selectedProductForOrder = null;
         let isAdminLoggedIn = false;
 
-        // Default Categories & Varieties
+        // Default Categories & Varieties (Line by Line)
         let storeData = [
             {
                 category: "Customised Hampers",
@@ -185,7 +195,6 @@
             }
         ];
 
-        // Render products & categories on load
         window.onload = function() {
             renderStore();
             updateLoginButtonText();
@@ -199,44 +208,80 @@
             categorySelect.innerHTML = '';
 
             storeData.forEach((catObj, catIndex) => {
-                // Populate Admin Dropdown
+                // Populate Admin Select Option
                 let option = document.createElement('option');
                 option.value = catIndex;
                 option.innerText = catObj.category;
                 categorySelect.appendChild(option);
 
-                // Build Store UI
+                // Build Line-by-Line Category Block
                 let categoryHTML = `
-                    <div class="category-header">
-                        <h2 class="category-title">${catObj.category}</h2>
-                    </div>
-                    <div class="products-grid">
+                    <div class="category-block">
+                        <div class="category-header">
+                            <h2 class="category-title">${catObj.category}</h2>
+                        </div>
+                        <div class="products-grid">
                 `;
 
                 catObj.products.forEach((prod, prodIndex) => {
                     categoryHTML += `
                         <div class="product-card">
                             <button class="delete-btn" style="display: ${isAdminLoggedIn ? 'block' : 'none'};" onclick="deleteProduct(${catIndex}, ${prodIndex})">×</button>
-                            <img src="${prod.img}" alt="${prod.title}">
-                            <h4>${prod.title}</h4>
-                            <p>${prod.price}</p>
-                            <button class="order-btn" onclick="initiateOrder('${prod.title}', '${prod.price}')">Order on WhatsApp 💬</button>
+                            <div>
+                                <img src="${prod.img}" alt="${prod.title}">
+                                <h4>${prod.title}</h4>
+                                <p class="price">${prod.price}</p>
+                            </div>
+                            <div class="card-actions">
+                                <button class="order-btn" onclick="initiateOrder('${prod.title}', '${prod.price}')">WhatsApp 💬</button>
+                                <button class="icon-btn" onclick="addToWishlist('${prod.title}')">❤️</button>
+                                <button class="icon-btn" onclick="addToCart('${prod.title}')">🛒</button>
+                            </div>
                         </div>
                     `;
                 });
 
-                categoryHTML += `</div>`;
+                categoryHTML += `</div></div>`;
                 container.innerHTML += categoryHTML;
             });
         }
 
-        // Customer Logic
+        // Wishlist & Cart Counter Logic
+        function addToWishlist(itemTitle) {
+            wishlistItems.push(itemTitle);
+            document.getElementById('wishlist-count').innerText = wishlistItems.length;
+            alert(`Added "${itemTitle}" to your Wishlist ❤️`);
+        }
+
+        function addToCart(itemTitle) {
+            cartItems.push(itemTitle);
+            document.getElementById('cart-count').innerText = cartItems.length;
+            alert(`Added "${itemTitle}" to your Cart 🛒`);
+        }
+
+        function showWishlistAlert() {
+            if (wishlistItems.length === 0) {
+                alert("Your wishlist is currently empty!");
+            } else {
+                alert("Wishlist Items:\n• " + wishlistItems.join("\n• "));
+            }
+        }
+
+        function showCartAlert() {
+            if (cartItems.length === 0) {
+                alert("Your cart is currently empty!");
+            } else {
+                alert("Cart Items:\n• " + cartItems.join("\n• "));
+            }
+        }
+
+        // Customer Details Modal Logic
         function updateLoginButtonText() {
             const btn = document.getElementById('login-nav-btn');
             if (customerData && customerData.name) {
                 btn.innerText = `👤 ${customerData.name}`;
             } else {
-                btn.innerText = "Login / Info";
+                btn.innerText = "Login / Customer Info";
             }
         }
 
@@ -261,7 +306,7 @@
             const address = document.getElementById('cust-address').value;
 
             if (!name || !phone || !address) {
-                alert("Please fill in your Name, Phone Number, and Delivery Address.");
+                alert("Please complete your Name, Phone Number, and Delivery Address.");
                 return;
             }
 
@@ -276,7 +321,7 @@
             }
         }
 
-        // WhatsApp Order Dispatch
+        // WhatsApp Order Logic
         function initiateOrder(productTitle, productPrice) {
             selectedProductForOrder = { title: productTitle, price: productPrice };
             if (!customerData || !customerData.name || !customerData.phone || !customerData.address) {
@@ -303,7 +348,7 @@
             window.open(`https://wa.me/917208718323?text=${encodedMsg}`, '_blank');
         }
 
-        // Admin Functionality
+        // Admin Controls
         function openAdminPrompt() {
             const password = prompt("Enter Admin Password:");
             if (password === "DORAHHH!23") {
@@ -319,7 +364,7 @@
         function addCategory() {
             const catName = document.getElementById('new-category-name').value;
             if (!catName) {
-                alert("Enter a category name!");
+                alert("Please enter a category name!");
                 return;
             }
             storeData.push({ category: catName, products: [] });
@@ -334,27 +379,9 @@
             let img = document.getElementById('new-img').value;
 
             if (!title || !price) {
-                alert("Please enter title and price!");
+                alert("Please enter both title and price!");
                 return;
             }
 
             if (!img) {
-                img = "https://images.unsplash.com/photo-151388504200d-88e781628816?w=500";
-            }
-
-            storeData[catIndex].products.push({ title, price, img });
-            
-            document.getElementById('new-title').value = '';
-            document.getElementById('new-price').value = '';
-            document.getElementById('new-img').value = '';
-            
-            renderStore();
-        }
-
-        function deleteProduct(catIndex, prodIndex) {
-            storeData[catIndex].products.splice(prodIndex, 1);
-            renderStore();
-        }
-    </script>
-</body>
-</html>
+                img = "http
