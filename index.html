@@ -851,10 +851,27 @@
         alert("Please complete your delivery profile details first.");
         openModal('profile-modal');
       } else {
-        alert(`Thank you, ${userProfile.name}! Your order worth ₹${cart.reduce((a,b)=>a+b.price,0)} is placed.`);
-        cart = [];
-        updateBadges();
-        closeAllOverlays();
+        alert(`const message = `✨ New Order - The Aura Atelier ✨
+
+Order ID: AURA-${Date.now()}
+
+Customer:
+Name: ${userProfile.name}
+Phone: ${userProfile.phone}
+Email: ${userProfile.email}
+
+Address:
+${userProfile.address}
+${userProfile.city}, ${userProfile.state} - ${userProfile.pincode}
+
+Products:
+${cart.map(item => `• ${item.name} - ₹${item.price}`).join('\n')}
+
+Total: ₹${cart.reduce((sum, item) => sum + item.price, 0)}
+
+Kindly send your GPay number for payment.`;
+
+window.open(`https://wa.me/917208718323?text=${encodeURIComponent(message)}`, '_blank');
       }
     }
 
