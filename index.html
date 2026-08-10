@@ -320,11 +320,23 @@
     .side-nav-item { color: white; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; gap: 4px; position: relative; cursor: pointer; }
     .side-badge { position: absolute; top: -4px; right: 2px; background: white; color: var(--purple-primary); font-size: 0.65rem; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
-    .whatsapp-btn {
-      position: fixed; bottom: 24px; right: 24px; background: var(--whatsapp-green); color: white;
-      width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); text-decoration: none; z-index: 99;
+    /* Floating WhatsApp Action Buttons */
+    .whatsapp-btn-container {
+      position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; z-index: 99;
     }
+
+    .whatsapp-btn {
+      background: var(--whatsapp-green); color: white;
+      width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); text-decoration: none;
+    }
+
+    .whatsapp-custom-btn {
+      background: var(--purple-primary); color: white;
+      padding: 10px 16px; border-radius: 25px; display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 15px rgba(60, 22, 97, 0.3); text-decoration: none;
+    }
+    .whatsapp-custom-btn:hover { background: var(--purple-hover); }
 
     /* Empty Placeholder */
     .empty-msg { text-align: center; padding: 40px; color: #888; font-style: italic; }
@@ -502,10 +514,15 @@
     </div>
   </aside>
 
-  <!-- WhatsApp Action Button -->
-  <a href="https://wa.me/917208718323" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
+  <!-- WhatsApp Action Buttons (Standard & Customisation) -->
+  <div class="whatsapp-btn-container">
+    <a href="https://wa.me/917208718323?text=Hi!%20I%20have%20a%20customisation%20enquiry%20for%20a%20gift." target="_blank" class="whatsapp-custom-btn" title="Customisation Enquiries">
+      <i class="fa-brands fa-whatsapp"></i> Customisation Enquiries
+    </a>
+    <a href="https://wa.me/917208718323" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
 
   <!-- Drawers & Modals -->
   <div class="overlay" id="overlay" onclick="closeAllOverlays()"></div>
@@ -721,9 +738,11 @@
     // --- Shopping Cart & Wishlist Actions ---
     function addToCart(prodId) {
       const prod = products.find(p => p.id === prodId);
-      cart.push(prod);
-      updateBadges();
-      openDrawer('cart');
+      if (prod) {
+        cart.push(prod);
+        updateBadges();
+        openDrawer('cart');
+      }
     }
 
     function toggleWishlist(prodId) {
@@ -732,7 +751,7 @@
         wishlist.splice(idx, 1);
       } else {
         const prod = products.find(p => p.id === prodId);
-        wishlist.push(prod);
+        if (prod) wishlist.push(prod);
       }
       updateBadges();
       renderProducts();
@@ -793,7 +812,7 @@
               <span>Total:</span>
               <span>₹${total}</span>
             </div>
-            <button class="btn-primary" style="width:100%" onclick="checkout()">Proceed to Checkout</button>
+            <button class="btn-primary" style="width:100%" onclick="checkout()">Proceed to Checkout via WhatsApp</button>
           `;
         }
       } else {
@@ -846,16 +865,48 @@
       closeAllOverlays();
     }
 
+    // --- WhatsApp Redirect Checkout Logic ---
     function checkout() {
       if (!userProfile.name) {
         alert("Please complete your delivery profile details first.");
         openModal('profile-modal');
-      } else {
-        alert(`Thank you, ${userProfile.name}! Your order worth ₹${cart.reduce((a,b)=>a+b.price,0)} is placed.`);
-        cart = [];
-        updateBadges();
-        closeAllOverlays();
+        return;
       }
+
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
+      const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+
+      // Build product list text
+      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} - ₹${item.price}`).join('\n');
+
+      // WhatsApp Message Format
+      let message = `✨ *NEW ORDER PLACED* ✨\n\n` +
+        `🆔 *Order ID:* ${orderId}\n\n` +
+        `👤 *Customer Details:*\n` +
+        `• *Name:* ${userProfile.name}\n` +
+        `• *Phone:* ${userProfile.phone}\n` +
+        `• *Email:* ${userProfile.email}\n` +
+        `• *Address:* ${userProfile.address}, ${userProfile.city}, ${userProfile.state} - ${userProfile.pincode}\n\n` +
+        `🛍️ *Order Details:*\n${productDetails}\n\n` +
+        `💰 *Total Amount:* ₹${totalAmount}\n\n` +
+        `💳 *Payment Details:*\n` +
+        `Please send payment to GPay Number: *7208718323*\n` +
+        `Send payment screenshot here once done to confirm order.`;
+
+      const whatsappUrl = `https://wa.me/917208718323?text=${encodeURIComponent(message)}`;
+
+      // Reset cart state
+      cart = [];
+      updateBadges();
+      closeAllOverlays();
+
+      // Redirect to WhatsApp
+      window.open(whatsappUrl, '_blank');
     }
 
     // --- Admin Product Operations ---
