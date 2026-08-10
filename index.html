@@ -16,6 +16,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- Razorpay Checkout SDK Integration -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <style>
     :root {
       --bg-cream: #FFFDF9;
@@ -939,7 +942,7 @@
               <span>Total:</span>
               <span>₹${total}</span>
             </div>
-            <button class="btn-primary" style="width:100%" onclick="checkout()">Proceed to Checkout via WhatsApp</button>
+            <button class="btn-primary" style="width:100%" onclick="checkout()">Proceed to Online Payment</button>
           `;
         }
       } else {
@@ -1044,7 +1047,7 @@
       }).join('');
     }
 
-    // --- WhatsApp Redirect Checkout Logic ---
+    // --- Online Payment Checkout Logic (Razorpay + WhatsApp Order) ---
     function checkout() {
       if (!userProfile.name) {
         alert("Please complete your delivery profile details first.");
@@ -1057,31 +1060,52 @@
         return;
       }
 
-      const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
       const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
 
-      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} - ₹${item.price}`).join('\n');
+      const options = {
+        "key": "YOUR_RAZORPAY_KEY_ID", // Replace with your actual Razorpay Key ID
+        "amount": totalAmount * 100, // Converts rupees to paise
+        "currency": "INR",
+        "name": "The Aura Atelier",
+        "description": "Gift Order Payment",
+        "handler": function (response) {
+          const paymentId = response.razorpay_payment_id;
+          const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
 
-      let message = `✨ *NEW ORDER PLACED* ✨\n\n` +
-        `🆔 *Order ID:* ${orderId}\n\n` +
-        `👤 *Customer Details:*\n` +
-        `• *Name:* ${userProfile.name}\n` +
-        `• *Phone:* ${userProfile.phone}\n` +
-        `• *Email:* ${userProfile.email}\n` +
-        `• *Address:* ${userProfile.address}, ${userProfile.city}, ${userProfile.state} - ${userProfile.pincode}\n\n` +
-        `🛍️ *Order Details:*\n${productDetails}\n\n` +
-        `💰 *Total Amount:* ₹${totalAmount}\n\n` +
-        `💳 *Payment Details:*\n` +
-        `Please send payment to GPay Number: *7208718323*\n` +
-        `Send payment screenshot here once done to confirm order.`;
+          let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} - ₹${item.price}`).join('\n');
 
-      const whatsappUrl = `https://wa.me/917208718323?text=${encodeURIComponent(message)}`;
+          let message = `✨ *NEW PAID ORDER PLACED* ✨\n\n` +
+            `🆔 *Order ID:* ${orderId}\n` +
+            `💳 *Payment ID:* ${paymentId}\n\n` +
+            `👤 *Customer Details:*\n` +
+            `• *Name:* ${userProfile.name}\n` +
+            `• *Phone:* ${userProfile.phone}\n` +
+            `• *Email:* ${userProfile.email}\n` +
+            `• *Address:* ${userProfile.address}, ${userProfile.city}, ${userProfile.state} - ${userProfile.pincode}\n\n` +
+            `🛍️ *Order Details:*\n${productDetails}\n\n` +
+            `💰 *Total Paid:* ₹${totalAmount}\n\n` +
+            `✅ Payment confirmed via Razorpay.`;
 
-      cart = [];
-      updateBadges();
-      closeAllOverlays();
+          const whatsappUrl = `https://wa.me/917208718323?text=${encodeURIComponent(message)}`;
 
-      window.open(whatsappUrl, '_blank');
+          cart = [];
+          updateBadges();
+          closeAllOverlays();
+
+          window.open(whatsappUrl, '_blank');
+        },
+        "prefill": {
+          "name": userProfile.name,
+          "email": userProfile.email,
+          "contact": userProfile.phone
+        },
+        "theme": {
+          "color": "#3C1661"
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
     }
 
     // --- Admin Product Operations ---
