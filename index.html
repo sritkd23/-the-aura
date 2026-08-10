@@ -424,7 +424,7 @@
       .features-grid { grid-template-columns: 1fr; gap: 12px; }
 
       .side-drawer { width: 100%; right: -100%; }
-      .side-nav { display: none; } /* Hide duplicate vertical bar on mobile to clear screen space */
+      .side-nav { display: none; }
 
       .whatsapp-btn-container { bottom: 16px; right: 16px; }
       .whatsapp-custom-btn { font-size: 0.78rem; padding: 8px 12px; }
@@ -608,7 +608,7 @@
     </div>
   </aside>
 
-  <!-- WhatsApp Action Buttons (Standard & Customisation) -->
+  <!-- WhatsApp Action Buttons -->
   <div class="whatsapp-btn-container">
     <a href="https://wa.me/917208718323?text=Hi!%20I%20have%20a%20customisation%20enquiry%20for%20a%20gift." target="_blank" class="whatsapp-custom-btn" title="Customisation Enquiries">
       <i class="fa-brands fa-whatsapp"></i> Customisation Enquiries
@@ -858,7 +858,10 @@
             <h4 class="product-title">${p.name}</h4>
             <div class="product-price">₹${p.price}</div>
             <p class="product-desc">${p.desc || ''}</p>
-            <button class="btn-primary" style="width: fit-content;" onclick="addToCart(${p.id})">Add to Cart</button>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn-primary" onclick="addToCart(${p.id})">Add to Cart</button>
+              <button class="btn-outline" style="padding: 8px 16px; font-size: 0.85rem;" onclick="buyNow(${p.id})">Buy Now</button>
+            </div>
           </div>
           ${isAdmin ? `<button class="delete-prod-btn" onclick="removeProduct(${p.id})"><i class="fa-solid fa-trash"></i> Delete</button>` : ''}
         </div>
@@ -873,6 +876,21 @@
         updateBadges();
         openDrawer('cart');
       }
+    }
+
+    function buyNow(prodId) {
+      const prod = products.find(p => p.id === prodId);
+      if (!prod) return;
+
+      if (!userProfile.name) {
+        alert("Please complete your delivery profile details first.");
+        openModal('profile-modal');
+        return;
+      }
+
+      cart = [prod];
+      updateBadges();
+      checkout();
     }
 
     function toggleWishlist(prodId) {
@@ -1063,7 +1081,7 @@
       const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
 
       const options = {
-        "key": "YOUR_RAZORPAY_KEY_ID", // Replace with your actual Razorpay Key ID
+        "key": "TNz7KjEk787iAh", // Your connected Razorpay Key ID
         "amount": totalAmount * 100, // Converts rupees to paise
         "currency": "INR",
         "name": "The Aura Atelier",
@@ -1104,8 +1122,15 @@
         }
       };
 
-      const rzp = new Razorpay(options);
-      rzp.open();
+      try {
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (response) {
+          alert("Payment Failed: " + response.error.description);
+        });
+        rzp.open();
+      } catch (err) {
+        alert("Razorpay failed to load. Please check your network connection or Key ID.");
+      }
     }
 
     // --- Admin Product Operations ---
