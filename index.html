@@ -839,7 +839,7 @@
       if(instantBuyMode) {
         cart = [cartItem]; 
         closeAllOverlays();
-        checkoutGPay();
+        openOrderSummary();
       } else {
         cart.push(cartItem);
         updateBadges();
@@ -908,6 +908,8 @@
     function closeAllOverlays() {
       document.getElementById('overlay').classList.remove('active');
       document.querySelectorAll('.side-drawer').forEach(d => d.classList.remove('active'));
+      let summaryDrawer = document.getElementById('order-summary-drawer');
+      if(summaryDrawer) summaryDrawer.remove();
     }
 
     function renderDrawerContent(type) {
@@ -951,8 +953,8 @@
             <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1.2rem; margin: 10px 0 20px;">
               <span>Total:</span><span style="color:var(--purple-primary)">₹${total.toFixed(2)}</span>
             </div>
-            <button class="btn-primary" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="checkoutGPay()">
-              <i class="fa-brands fa-google-pay" style="font-size:1.4rem;"></i> Secure Checkout
+            <button class="btn-primary" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="openOrderSummary()">
+              Proceed to Checkout
             </button>
           `;
         }
@@ -972,6 +974,91 @@
          }
          footer.innerHTML = '';
       }
+    }
+
+    function openOrderSummary() {
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      if (!userProfile.name) {
+        alert("Please save your delivery profile details first before checkout.");
+        openModal('profile-modal');
+        return;
+      }
+
+      closeAllOverlays();
+
+      let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+      let discount = subtotal * discountAmount;
+      let totalAmount = subtotal - discount;
+
+      let itemsHtml = cart.map(item => `
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.9rem; color:var(--text-dark);">
+          <span>${item.name}</span>
+          <span>₹${item.price}</span>
+        </div>
+      `).join('');
+
+      let summaryHtml = `
+        <div class="side-drawer active" id="order-summary-drawer" style="right:0;">
+          <div class="drawer-header">
+            <h3>Order Summary</h3>
+            <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:2rem; cursor:pointer; color:var(--purple-primary);">&times;</button>
+          </div>
+          <div class="drawer-content">
+            <div style="background:#FAF5FF; padding:15px; border-radius:12px; margin-bottom:20px; border:1px solid var(--border-color);">
+              <h4 style="color:var(--purple-primary); margin-bottom:8px;">Shipping Details</h4>
+              <p style="font-size:0.9rem; color:var(--text-dark);"><b>Name:</b> ${userProfile.name}</p>
+              <p style="font-size:0.9rem; color:var(--text-dark);"><b>Phone:</b> ${userProfile.phone}</p>
+              <p style="font-size:0.9rem; color:var(--text-dark);"><b>Address:</b> ${userProfile.address}</p>
+            </div>
+
+            <h4 style="color:var(--purple-primary); margin-bottom:10px;">Items in Order</h4>
+            <div style="margin-bottom:20px; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
+              ${itemsHtml}
+            </div>
+
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span>Subtotal:</span><span>₹${subtotal.toFixed(2)}</span>
+            </div>
+            ${discount > 0 ? `<div style="display:flex; justify-content:space-between; margin-bottom:6px; color:var(--accent-pink);">
+              <span>Discount:</span><span>-₹${discount.toFixed(2)}</span>
+            </div>` : ''}
+            <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1.2rem; margin: 15px 0 25px; color:var(--purple-primary);">
+              <span>Final Total:</span><span>₹${totalAmount.toFixed(2)}</span>
+            </div>
+
+            <button class="btn-primary" style="width:100%;" onclick="proceedToPayment()">Confirm & Proceed to Payment</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('overlay').classList.add('active');
+      let existingDrawer = document.getElementById('order-summary-drawer');
+      if (existingDrawer) existingDrawer.remove();
+      document.body.insertAdjacentHTML('beforeend', summaryHtml);
+    }
+
+    function proceedToPayment() {
+      let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+      let totalAmount = subtotal - (subtotal * discountAmount);
+      const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
+      
+      const orderRecord = { id: orderId, total: totalAmount.toFixed(2), items: [...cart], customerName: userProfile.name, phone: userProfile.phone };
+      pastOrders.unshift(orderRecord);
+      globalOrders.unshift(orderRecord); 
+
+      const upiId = "sadhatkd23@okicici"; 
+      const gpayLink = `upi://pay?pa=${upiId}&pn=The%20Aura%20Atelier&tr=${orderId}&tn=Order%20${orderId}&am=${totalAmount}&cu=INR`;
+
+      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} ${item.customNote ? `(Note: ${item.customNote})` : ''}`).join('\n');
+      let message = `✨ *NEW ORDER PLACED* ✨\n\n🆔 *Order ID:* ${orderId}\n\n👤 *Customer Details:*\nName: ${userProfile.name}\nPhone: ${userProfile.phone}\nAddress: ${userProfile.address}\n\n🛍️ *Items:*\n${productDetails}\n\n💰 *Total Paid:* ₹${totalAmount.toFixed(2)}`;
+
+      cart = []; updateBadges(); appliedPromo = null; discountAmount = 0; closeAllOverlays();
+      window.location.href = gpayLink;
+      
+      setTimeout(() => { window.open(`https://wa.me/917208718323?text=${encodeURIComponent(message)}`, '_blank'); }, 1500);
     }
 
     function switchAdminTab(tabId, btn) {
@@ -1130,33 +1217,6 @@
           <div style="font-size:0.85rem; margin-top:8px; color:var(--text-dark);">${order.items.length} Item(s)</div>
         </div>
       `).join('');
-    }
-
-    function checkoutGPay() {
-      if (!userProfile.name) {
-        alert("Please save your delivery profile details first before checkout.");
-        openModal('profile-modal');
-        return;
-      }
-      
-      let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-      let totalAmount = subtotal - (subtotal * discountAmount);
-      const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
-      
-      const orderRecord = { id: orderId, total: totalAmount.toFixed(2), items: [...cart], customerName: userProfile.name, phone: userProfile.phone };
-      pastOrders.unshift(orderRecord);
-      globalOrders.unshift(orderRecord); 
-
-      const upiId = "sadhatkd23@okicici"; 
-      const gpayLink = `upi://pay?pa=${upiId}&pn=The%20Aura%20Atelier&tr=${orderId}&tn=Order%20${orderId}&am=${totalAmount}&cu=INR`;
-
-      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} ${item.customNote ? `(Note: ${item.customNote})` : ''}`).join('\n');
-      let message = `✨ *NEW ORDER PLACED* ✨\n\n🆔 *Order ID:* ${orderId}\n\n👤 *Customer Details:*\nName: ${userProfile.name}\nPhone: ${userProfile.phone}\nAddress: ${userProfile.address}\n\n🛍️ *Items:*\n${productDetails}\n\n💰 *Total Paid:* ₹${totalAmount.toFixed(2)}`;
-
-      cart = []; updateBadges(); appliedPromo = null; discountAmount = 0; closeAllOverlays();
-      window.location.href = gpayLink;
-      
-      setTimeout(() => { window.open(`https://wa.me/917208718323?text=${encodeURIComponent(message)}`, '_blank'); }, 1500);
     }
   </script>
 </body>
