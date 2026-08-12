@@ -365,7 +365,7 @@
         <div class="section-header">
           <h3 class="section-title">Trending Hampers</h3>
           <div>
-            <button class="btn-primary admin-only" onclick="alert('Adding product system would connect to backend here.')">+ Add Item</button>
+            <button class="btn-primary admin-only" onclick="openDrawer('admin-dashboard')">+ Add Item</button>
             <button class="btn-outline btn-outline-small" onclick="openCategory('hampers')">View All <i class="fa-solid fa-arrow-right"></i></button>
           </div>
         </div>
@@ -430,6 +430,7 @@
     <div class="drawer-content">
       <div class="admin-tabs">
         <button class="admin-tab-btn active" onclick="switchAdminTab('analytics', this)">Analytics</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('products', this)">Products</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('orders', this)">Orders</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('occasions', this)">Occasions</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('promo', this)">Promos</button>
@@ -447,6 +448,28 @@
             <span style="font-size:0.8rem; color:#666;">Total Reach</span>
           </div>
         </div>
+      </div>
+
+      <!-- Products Management View -->
+      <div id="admin-products" class="admin-view" style="display:none;">
+        <div class="form-group" style="background:#FAF8FC; padding:15px; border-radius:8px; border:1px solid var(--border-color);">
+          <label>Add New Product</label>
+          <input type="text" id="new-prod-name" placeholder="Product Name" style="margin-bottom:8px;">
+          <input type="number" id="new-prod-price" placeholder="Price (₹)" style="margin-bottom:8px;">
+          <select id="new-prod-cat" style="margin-bottom:8px;">
+            <option value="hampers">Hampers</option>
+            <option value="bouquets">Bouquets</option>
+            <option value="chocolates">Chocolates</option>
+            <option value="greeting-cards">Cards</option>
+            <option value="for-him">For Him</option>
+            <option value="for-her">For Her</option>
+          </select>
+          <input type="text" id="new-prod-img" placeholder="Image URL (Leave blank for default)" style="margin-bottom:8px;">
+          <textarea id="new-prod-desc" placeholder="Product Description" rows="2" style="margin-bottom:8px;"></textarea>
+          <button class="btn-primary" style="width:100%;" onclick="adminAddProduct()">Add Product</button>
+        </div>
+        <h4 style="margin-top:20px; margin-bottom:10px; color:var(--purple-primary);">Current Products</h4>
+        <div id="admin-products-list"></div>
       </div>
 
       <!-- Orders View -->
@@ -863,6 +886,7 @@
         document.getElementById('stat-visits').innerText = adminStats.visits.toLocaleString();
         document.getElementById('stat-reach').innerText = adminStats.reach.toLocaleString();
         adminRenderOrders();
+        adminRenderProducts();
       }
     }
 
@@ -963,6 +987,61 @@
           <div>${o.items.map(item => `<div class="admin-order-item">- ${item.name} ${item.customNote ? `(Note)`:``}</div>`).join('')}</div>
         </div>
       `).join('');
+    }
+
+    function adminRenderProducts() {
+      const list = document.getElementById('admin-products-list');
+      list.innerHTML = products.map(p => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; background:white; border:1px solid var(--border-color); border-radius:8px; margin-bottom:8px; box-shadow:var(--shadow-sm);">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <img src="${p.img}" style="width:40px; height:40px; border-radius:4px; object-fit:cover;">
+            <div>
+              <b style="font-size:0.9rem; color:var(--purple-primary);">${p.name}</b>
+              <div style="font-size:0.8rem; color:#666;">₹${p.price} | ${p.cat}</div>
+            </div>
+          </div>
+          <button style="border:none; background:rgba(255, 77, 77, 0.1); color:#ff4d4d; width:32px; height:32px; border-radius:50%; cursor:pointer;" onclick="adminRemoveProduct(${p.id})"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `).join('');
+    }
+
+    function adminAddProduct() {
+      const name = document.getElementById('new-prod-name').value;
+      const price = document.getElementById('new-prod-price').value;
+      const cat = document.getElementById('new-prod-cat').value;
+      const img = document.getElementById('new-prod-img').value || 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600';
+      const desc = document.getElementById('new-prod-desc').value;
+
+      if(!name || !price) {
+        alert("Please enter product name and price.");
+        return;
+      }
+
+      const newProd = {
+        id: Date.now(),
+        name,
+        price: parseInt(price),
+        img,
+        cat,
+        desc
+      };
+
+      products.push(newProd);
+      
+      // clear inputs
+      document.getElementById('new-prod-name').value = '';
+      document.getElementById('new-prod-price').value = '';
+      document.getElementById('new-prod-img').value = '';
+      document.getElementById('new-prod-desc').value = '';
+
+      adminRenderProducts();
+      renderProducts(); // Refresh storefront
+    }
+
+    function adminRemoveProduct(id) {
+      products = products.filter(p => p.id !== id);
+      adminRenderProducts();
+      renderProducts();
     }
 
     function adminRenderOccasions() {
