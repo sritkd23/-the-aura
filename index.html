@@ -27,6 +27,7 @@
       --border-color: #EADAF2;
       --accent-pink: #D070B8;
       --whatsapp-green: #25D366;
+      --star-gold: #FFD700;
       --shadow-sm: 0 4px 15px rgba(60, 22, 97, 0.05);
       --shadow-md: 0 10px 30px rgba(60, 22, 97, 0.1);
       --shadow-hover: 0 15px 35px rgba(60, 22, 97, 0.15);
@@ -53,7 +54,7 @@
       overflow-x: hidden;
     }
 
-    /* Admin Banner */
+    /* Admin Banner & Styles */
     .admin-indicator {
       display: none; background: #222; color: var(--admin-gold); text-align: center;
       padding: 8px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
@@ -65,7 +66,7 @@
     /* Top Announcement Bar */
     .announcement-bar {
       background: linear-gradient(90deg, #EADAFA, #F3EAF8);
-      padding: 8px 5%; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; color: var(--purple-primary); font-weight: 600;
+      padding: 8px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; color: var(--purple-primary); font-weight: 600;
     }
     .announcement-left, .announcement-right { display: flex; align-items: center; gap: 20px; }
     .announcement-item { display: flex; align-items: center; gap: 6px; }
@@ -91,9 +92,7 @@
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
     /* Search Bar */
-    .search-container {
-      position: relative; display: flex; align-items: center;
-    }
+    .search-container { position: relative; display: flex; align-items: center; }
     .search-input {
       padding: 8px 16px 8px 36px; border-radius: 20px; border: 1px solid var(--border-color); background: #FAF8FC; font-size: 0.85rem; width: 200px; transition: all 0.3s;
     }
@@ -130,14 +129,15 @@
     .hero-buttons { display: flex; gap: 16px; }
 
     .btn-primary {
-      background: var(--purple-primary); color: white; border: none; padding: 14px 28px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 15px rgba(60, 22, 97, 0.3); transition: all 0.3s;
+      background: var(--purple-primary); color: white; border: none; padding: 14px 28px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 15px rgba(60, 22, 97, 0.3); transition: all 0.3s; display: inline-block; text-align: center;
     }
     .btn-primary:hover { background: var(--purple-hover); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(60, 22, 97, 0.4); }
 
     .btn-outline {
-      background: transparent; color: var(--purple-primary); border: 2px solid var(--purple-primary); padding: 12px 26px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s;
+      background: transparent; color: var(--purple-primary); border: 2px solid var(--purple-primary); padding: 12px 26px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s; text-align: center;
     }
     .btn-outline:hover { background: var(--purple-light); transform: translateY(-3px); }
+    .btn-outline-small { padding: 8px 16px; font-size: 0.85rem; }
 
     .hero-img-box {
       width: 100%; max-width: 500px; height: 350px; background-size: cover; background-position: center; border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin-left: auto; transition: transform 0.5s;
@@ -161,14 +161,14 @@
     .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
     .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--purple-primary); }
 
-    /* Product Grid */
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px; }
+    /* Product Grid & Cards */
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px; }
     .product-card {
       background: white; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 16px; display: flex; flex-direction: column; position: relative; transition: all 0.3s ease; box-shadow: var(--shadow-sm);
     }
     .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: #D1BCE3; }
     
-    .product-img-container { width: 100%; height: 250px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px; position: relative; }
+    .product-img-container { width: 100%; height: 250px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px; position: relative; cursor: pointer; }
     .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .product-card:hover .product-img { transform: scale(1.05); }
     
@@ -179,24 +179,32 @@
     .wishlist-btn.active { color: #E63946; }
 
     .product-info { flex: 1; display: flex; flex-direction: column; }
-    .product-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; color: var(--purple-primary); }
+    .product-rating { color: var(--star-gold); font-size: 0.85rem; margin-bottom: 4px; }
+    .product-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; color: var(--purple-primary); cursor: pointer;}
+    .product-title:hover { text-decoration: underline; }
     .product-price { font-size: 1.2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
-    .product-desc { font-size: 0.9rem; color: #6C547B; margin-bottom: 20px; flex: 1; }
-    .product-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .product-actions button { padding: 10px; font-size: 0.9rem; border-radius: 8px; }
+    .product-desc { font-size: 0.9rem; color: #6C547B; margin-bottom: 16px; flex: 1; }
+    .product-actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
 
     /* Modals / Drawers */
     .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 5, 24, 0.5); backdrop-filter: blur(3px); z-index: 200; display: none; opacity: 0; transition: opacity 0.3s; }
     .overlay.active { display: block; opacity: 1; }
 
     .side-drawer {
-      position: fixed; top: 0; right: -450px; width: 420px; height: 100%; background: white; z-index: 201; transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 24px; display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1); border-left: 1px solid var(--border-color);
+      position: fixed; top: 0; right: -480px; width: 450px; max-width: 100vw; height: 100%; background: white; z-index: 201; transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 24px; display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1); border-left: 1px solid var(--border-color);
     }
     .side-drawer.active { right: 0; }
     .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--purple-primary); }
     .drawer-content { flex: 1; overflow-y: auto; padding-right: 8px; }
     .drawer-footer { border-top: 1px solid var(--border-color); padding-top: 20px; margin-top: 10px; background: white; }
 
+    /* Product Review/Details Styles */
+    .detail-img { width: 100%; height: 280px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 16px; }
+    .review-stars-input { font-size: 1.5rem; color: #ccc; cursor: pointer; margin-bottom: 10px; display: flex; gap: 5px; }
+    .review-stars-input i:hover, .review-stars-input i.active, .review-stars-input i:hover ~ i { color: var(--star-gold); }
+    .review-card { background: #FAF8FC; padding: 14px; border-radius: var(--radius-sm); margin-bottom: 12px; border: 1px solid var(--border-color); }
+    .review-card-header { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; }
+    
     /* Cart Items */
     .item-row { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; background: #FAF8FC; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
     .item-row img { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; }
@@ -206,10 +214,17 @@
     .remove-btn { color: #ff4d4d; cursor: pointer; font-size: 1rem; border: none; background: rgba(255, 77, 77, 0.1); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
     .remove-btn:hover { background: rgba(255, 77, 77, 0.2); }
 
-    /* Forms & Promo Box */
+    /* Admin Styles */
+    .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); overflow-x: auto; padding-bottom: 5px; }
+    .admin-tab-btn { background: none; border: none; padding: 10px 15px; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #888; border-bottom: 2px solid transparent; white-space: nowrap; }
+    .admin-tab-btn.active { border-bottom-color: var(--purple-primary); color: var(--purple-primary); }
+    .analytics-card { background: white; border: 1px solid var(--border-color); padding: 20px; border-radius: var(--radius-sm); text-align: center; flex: 1; box-shadow: var(--shadow-sm); }
+    .analytics-card h4 { font-size: 2rem; color: var(--purple-primary); margin-bottom: 5px; }
+
+    /* Forms */
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--purple-primary); }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.9rem; transition: border-color 0.2s; background: #FCFAFF; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.9rem; transition: border-color 0.2s; background: #FCFAFF; }
     .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--purple-primary); background: white; }
     
     .promo-box { display: flex; gap: 10px; margin-bottom: 16px; }
@@ -219,6 +234,7 @@
     /* Orders Tracker Box */
     .order-card { background: white; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
     .order-status { display: inline-block; padding: 4px 10px; background: #E8F5E9; color: #2E7D32; font-size: 0.75rem; border-radius: 20px; font-weight: 700; margin-bottom: 10px; }
+    .admin-order-item { font-size: 0.85rem; padding: 4px 0; border-bottom: 1px dashed #eee; }
 
     /* WhatsApp Buttons */
     .whatsapp-btn-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 16px; align-items: flex-end; z-index: 99; }
@@ -227,33 +243,35 @@
     .whatsapp-custom-btn { background: var(--purple-primary); color: white; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 6px 20px rgba(60, 22, 97, 0.3); text-decoration: none; transition: transform 0.3s; }
     .whatsapp-custom-btn:hover { transform: translateY(-3px); }
 
-    /* Mobile Responsiveness */
+    /* Mobile Enhancements */
     @media(max-width: 992px) {
-      .announcement-bar { flex-direction: column; gap: 6px; text-align: center; padding: 10px; }
+      .announcement-bar { flex-direction: column; gap: 8px; text-align: center; padding: 12px; }
       
-      .navbar { flex-wrap: wrap; padding: 16px; gap: 16px; }
-      .search-container { order: 3; width: 100%; }
+      .navbar { flex-wrap: wrap; padding: 12px 16px; gap: 12px; }
+      .search-container { order: 3; width: 100%; margin-top: 10px; }
       .search-input { width: 100%; }
       .search-input:focus { width: 100%; }
       
       .nav-menu { overflow-x: auto; width: 100%; padding-bottom: 6px; gap: 20px; scrollbar-width: none; order: 4; }
-      .nav-actions { order: 2; }
+      .nav-actions { order: 2; gap: 8px; }
+      .btn-pill span:not(.badge) { display: none; } /* hide 'Login' text on mobile */
       
-      .hero-banner { grid-template-columns: 1fr; padding: 30px 20px; text-align: center; }
-      .hero-title { font-size: 2.2rem; }
-      .hero-desc { margin: 0 auto 24px; font-size: 0.95rem; }
-      .hero-buttons { flex-direction: column; align-items: center; }
-      .hero-buttons button, .hero-buttons a { width: 100%; max-width: 300px; }
-      .hero-img-box { height: 250px; margin-top: 20px; }
+      .hero-banner { grid-template-columns: 1fr; padding: 40px 20px; text-align: center; margin-top: 0; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+      .hero-title { font-size: 2.5rem; }
+      .hero-desc { margin: 0 auto 24px; font-size: 1rem; }
+      .hero-buttons { flex-direction: column; align-items: center; width: 100%; }
+      .hero-buttons button, .hero-buttons a { width: 100%; }
+      .hero-img-box { height: 280px; margin-top: 30px; }
 
-      .categories-bar { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 12px; scrollbar-width: none; }
-      .category-card { flex: 0 0 120px; padding: 12px; }
+      .categories-bar { display: flex; overflow-x: auto; gap: 16px; padding: 10px 0 20px 0; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .category-card { flex: 0 0 130px; padding: 16px; }
 
-      .products-grid { grid-template-columns: 1fr; gap: 20px; }
+      .products-grid { grid-template-columns: 1fr; gap: 24px; }
       .product-card { padding: 16px; }
       
-      .side-drawer { width: 100%; right: -100%; }
       .whatsapp-btn-container { bottom: 20px; right: 20px; }
+      
+      .side-drawer { width: 100%; right: -100%; padding: 20px 16px; }
     }
   </style>
 </head>
@@ -264,12 +282,10 @@
     <i class="fa-solid fa-user-shield"></i> ADMIN MODE ACTIVE — Click "The Aura" logo 5 times to exit.
   </div>
 
-  <!-- Announcement Bar -->
+  <!-- Announcement Bar (Dynamic) -->
   <div class="announcement-bar">
-    <div class="announcement-left">
-      <span class="announcement-item"><i class="fa-regular fa-heart"></i> Handmade with love</span>
-      <span class="announcement-item"><i class="fa-solid fa-gift"></i> Premium Quality</span>
-      <span class="announcement-item"><i class="fa-solid fa-truck"></i> Delivery Across India</span>
+    <div class="announcement-left" id="dynamic-announcement">
+      <span class="announcement-item">✨ Welcome to The Aura Atelier! Premium handmade gifts across India. ✨</span>
     </div>
     <div class="announcement-right">
       <span>Follow us</span>
@@ -287,7 +303,7 @@
       <span>ATELIER • GIFTS MADE WITH LOVE</span>
     </div>
 
-    <!-- NEW: Search Bar -->
+    <!-- Search Bar -->
     <div class="search-container">
       <i class="fa-solid fa-search search-icon"></i>
       <input type="text" id="global-search" class="search-input" placeholder="Search gifts, hampers..." onkeyup="handleSearch()">
@@ -307,6 +323,11 @@
     </ul>
 
     <div class="nav-actions">
+      <!-- Admin Button -->
+      <button class="btn-pill admin-only" onclick="openDrawer('admin-dashboard')" style="background:var(--admin-gold); color:white; border:none;">
+        <i class="fa-solid fa-gauge"></i> <span>Admin</span>
+      </button>
+
       <button class="btn-pill" onclick="openDrawer('wishlist')">
         <i class="fa-regular fa-heart"></i> <span class="badge" id="header-wishlist-count">0</span>
       </button>
@@ -344,8 +365,8 @@
         <div class="section-header">
           <h3 class="section-title">Trending Hampers</h3>
           <div>
-            <button class="btn-primary admin-only" onclick="openAddProductModal('hampers')">+ Add Item</button>
-            <button class="btn-outline" style="padding: 8px 16px;" onclick="openCategory('hampers')">View All <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="btn-primary admin-only" onclick="alert('Adding product system would connect to backend here.')">+ Add Item</button>
+            <button class="btn-outline btn-outline-small" onclick="openCategory('hampers')">View All <i class="fa-solid fa-arrow-right"></i></button>
           </div>
         </div>
         <div class="products-grid" id="featured-hampers-grid"></div>
@@ -356,7 +377,6 @@
     <div id="page-collections" class="page-section">
       <div class="section-header">
         <h3 class="section-title" id="category-page-title">All Collections</h3>
-        <!-- NEW: Price Filter -->
         <select id="price-filter" onchange="renderProducts()" style="padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border-color); outline: none;">
           <option value="all">Sort by Price</option>
           <option value="low-high">Low to High</option>
@@ -380,7 +400,7 @@
   <!-- OVERLAYS & MODALS -->
   <div class="overlay" id="overlay" onclick="closeAllOverlays()"></div>
 
-  <!-- Cart / Wishlist / Orders Drawer -->
+  <!-- Cart / Wishlist Drawer -->
   <div class="side-drawer" id="side-drawer">
     <div class="drawer-header">
       <h3 id="drawer-title">Your Cart</h3>
@@ -388,6 +408,74 @@
     </div>
     <div class="drawer-content" id="drawer-list"></div>
     <div class="drawer-footer" id="drawer-footer"></div>
+  </div>
+
+  <!-- Product Details & Review Modal -->
+  <div class="side-drawer" id="product-detail-modal">
+    <div class="drawer-header">
+      <h3>Product Info</h3>
+      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+    </div>
+    <div class="drawer-content" id="product-detail-content">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <!-- Admin Dashboard Modal -->
+  <div class="side-drawer" id="admin-dashboard">
+    <div class="drawer-header">
+      <h3>Admin Dashboard</h3>
+      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" onclick="switchAdminTab('analytics', this)">Analytics</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('orders', this)">Orders</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('occasions', this)">Occasions</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('promo', this)">Promos</button>
+      </div>
+      
+      <!-- Analytics View -->
+      <div id="admin-analytics" class="admin-view">
+        <div style="display:flex; gap:15px; margin-bottom: 20px;">
+          <div class="analytics-card">
+            <h4 id="stat-visits">2,401</h4>
+            <span style="font-size:0.8rem; color:#666;">Page Visits</span>
+          </div>
+          <div class="analytics-card">
+            <h4 id="stat-reach">8,950</h4>
+            <span style="font-size:0.8rem; color:#666;">Total Reach</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders View -->
+      <div id="admin-orders" class="admin-view" style="display:none;">
+        <div id="admin-all-orders-list"></div>
+      </div>
+
+      <!-- Occasions View -->
+      <div id="admin-occasions" class="admin-view" style="display:none;">
+        <div class="form-group">
+          <label>Add New Occasion Menu</label>
+          <div style="display:flex; gap:10px;">
+            <input type="text" id="new-occasion-input" placeholder="e.g. Mother's Day">
+            <button class="btn-primary" onclick="adminAddOccasion()">Add</button>
+          </div>
+        </div>
+        <div id="admin-occasions-list" style="margin-top: 15px;"></div>
+      </div>
+
+      <!-- Promos View -->
+      <div id="admin-promo" class="admin-view" style="display:none;">
+        <div class="form-group">
+          <label>Update Top Announcement Bar</label>
+          <textarea id="admin-promo-text" rows="3">✨ Welcome to The Aura Atelier! Premium handmade gifts across India. ✨</textarea>
+          <button class="btn-primary" style="margin-top:10px; width:100%;" onclick="adminUpdatePromo()">Publish Announcement</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- Profile & Orders Modal -->
@@ -398,8 +486,8 @@
     </div>
     <div class="drawer-content">
       <div style="display:flex; gap:10px; margin-bottom: 20px;">
-        <button class="btn-primary" style="flex:1;" onclick="toggleProfileTab('details')">Details</button>
-        <button class="btn-outline" style="flex:1;" onclick="toggleProfileTab('orders')">My Orders</button>
+        <button class="btn-primary" id="btn-tab-details" style="flex:1;" onclick="toggleProfileTab('details')">Details</button>
+        <button class="btn-outline" id="btn-tab-orders" style="flex:1;" onclick="toggleProfileTab('orders')">My Orders</button>
       </div>
 
       <!-- Profile Form -->
@@ -411,14 +499,14 @@
         <button type="submit" class="btn-primary" style="width:100%;">Save Profile</button>
       </form>
 
-      <!-- Orders View -->
+      <!-- User Orders View -->
       <div id="orders-view" style="display:none;">
         <div id="orders-list"></div>
       </div>
     </div>
   </div>
 
-  <!-- NEW: Gift Customization Modal -->
+  <!-- Gift Customization Modal -->
   <div class="side-drawer" id="customization-modal">
     <div class="drawer-header">
       <h3>Personalize Gift</h3>
@@ -446,11 +534,34 @@
     let currentCategory = 'all';
     let searchQuery = '';
     
-    // NEW: App State for checkout features
+    // Configurable Occasions (Admin controlled)
+    let occasions = ['Diwali', 'Birthday', 'Anniversary', 'Valentine\'s Day'];
+
+    let products = [
+      { id: 1, name: 'Mini Polaroid Gift Box', price: 499, img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'Beautiful polaroid memories boxed with love and fairy lights.' },
+      { id: 2, name: 'Birthday Surprise Box', price: 899, img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'The perfect surprise hamper for their special day.' },
+      { id: 3, name: 'Velvet Rose Bouquet', price: 1299, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=600', cat: 'bouquets', desc: 'Fresh velvet roses styled elegantly.' },
+      { id: 4, name: 'Premium Chocolate Tray', price: 650, img: 'https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=600', cat: 'chocolates', desc: 'Assorted handmade premium chocolates.' }
+    ];
+
+    // Reviews System
+    let productReviews = {
+      1: [{ name: "Ananya", rating: 5, text: "Loved the polaroids, such good quality!" }],
+      2: [{ name: "Rishabh", rating: 4, text: "Great packaging and quick delivery." }]
+    };
+
+    let cart = [];
+    let wishlist = [];
+    let userProfile = {};
     let appliedPromo = null;
     let discountAmount = 0;
     let pendingProductToAdd = null; 
-    let pastOrders = [];
+    let instantBuyMode = false;
+
+    // Analytics & Order Tracking
+    let adminStats = { visits: 2401, reach: 8950 };
+    let globalOrders = []; 
+    let pastOrders = []; // Current user's orders
 
     const categories = [
       { id: 'bouquets', name: 'Bouquets', icon: 'fa-spa' },
@@ -461,24 +572,15 @@
       { id: 'hampers', name: 'Hampers', icon: 'fa-gift' }
     ];
 
-    const occasions = ['Diwali', 'Birthday', 'Anniversary', 'Valentine\'s Day'];
-
-    let products = [
-      { id: 1, name: 'Mini Polaroid Gift Box', price: 499, img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'Beautiful polaroid memories boxed with love and fairy lights.' },
-      { id: 2, name: 'Birthday Surprise Box', price: 899, img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'The perfect surprise hamper for their special day.' },
-      { id: 3, name: 'Velvet Rose Bouquet', price: 1299, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=600', cat: 'bouquets', desc: 'Fresh velvet roses styled elegantly.' },
-      { id: 4, name: 'Premium Chocolate Tray', price: 650, img: 'https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=600', cat: 'chocolates', desc: 'Assorted handmade premium chocolates.' }
-    ];
-
-    let cart = [];
-    let wishlist = [];
-    let userProfile = {};
-
     window.onload = function() {
+      // Dummy Analytics increase
+      adminStats.visits++; adminStats.reach += Math.floor(Math.random() * 5);
+      
       renderNavigation();
       renderQuickCategories();
       renderProducts();
       updateBadges();
+      adminRenderOccasions();
     };
 
     function registerLogoClick() {
@@ -488,7 +590,7 @@
         document.body.classList.toggle('admin-mode', isAdmin);
         alert(isAdmin ? "Admin Mode Activated!" : "Admin Mode Deactivated!");
         logoClickCount = 0;
-        renderProducts();
+        renderProducts(); // Reveal admin buttons on products
       }
     }
 
@@ -543,6 +645,13 @@
       renderProducts();
     }
 
+    function getAverageRating(prodId) {
+      const revs = productReviews[prodId] || [];
+      if (revs.length === 0) return 0;
+      let sum = revs.reduce((acc, r) => acc + r.rating, 0);
+      return (sum / revs.length).toFixed(1);
+    }
+
     function renderProducts() {
       const homeGrid = document.getElementById('featured-hampers-grid');
       const hamperProds = products.filter(p => p.cat === 'hampers');
@@ -551,15 +660,13 @@
       const catGrid = document.getElementById('category-products-grid');
       let filtered = products;
 
-      // Apply Category Filter
       if (currentCategory !== 'all' && !searchQuery) {
         filtered = filtered.filter(p => p.cat === currentCategory);
       }
-      // Apply Search Filter
       if (searchQuery) {
         filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery));
       }
-      // Apply Sort
+
       const sortVal = document.getElementById('price-filter') ? document.getElementById('price-filter').value : 'all';
       if(sortVal === 'low-high') filtered.sort((a,b) => a.price - b.price);
       if(sortVal === 'high-low') filtered.sort((a,b) => b.price - a.price);
@@ -573,29 +680,113 @@
 
     function getProductCardHtml(p) {
       const isWish = wishlist.some(item => item.id === p.id);
+      const avgRating = getAverageRating(p.id);
+      const reviewCount = (productReviews[p.id] || []).length;
+      
+      let starsHtml = '';
+      if(reviewCount > 0) {
+        starsHtml = `<div class="product-rating"><i class="fa-solid fa-star"></i> ${avgRating} (${reviewCount})</div>`;
+      }
+
       return `
         <div class="product-card">
           <button class="wishlist-btn ${isWish ? 'active' : ''}" onclick="toggleWishlist(${p.id})">
             <i class="fa-${isWish ? 'solid' : 'regular'} fa-heart"></i>
           </button>
-          <div class="product-img-container">
+          <div class="product-img-container" onclick="openProductDetails(${p.id})">
             <img class="product-img" src="${p.img}" alt="${p.name}">
           </div>
           <div class="product-info">
-            <h4 class="product-title">${p.name}</h4>
+            ${starsHtml}
+            <h4 class="product-title" onclick="openProductDetails(${p.id})">${p.name}</h4>
             <div class="product-price">₹${p.price}</div>
             <p class="product-desc">${p.desc}</p>
-            <div class="product-actions">
-              <button class="btn-outline" onclick="initiateAddToCart(${p.id}, false)">Add to Cart</button>
-              <button class="btn-primary" onclick="initiateAddToCart(${p.id}, true)">Buy Now</button>
+            <div style="display:flex; gap:10px;">
+              <button class="btn-outline" style="flex:1;" onclick="initiateAddToCart(${p.id}, false)">Add to Cart</button>
+              <button class="btn-primary" style="flex:1;" onclick="initiateAddToCart(${p.id}, true)">Buy Now</button>
             </div>
           </div>
         </div>
       `;
     }
 
-    // --- NEW: Customization Flow ---
-    let instantBuyMode = false;
+    // --- Product Details & Reviews Flow ---
+    let currentDetailProdId = null;
+    let selectedRating = 0;
+
+    function openProductDetails(prodId) {
+      currentDetailProdId = prodId;
+      const p = products.find(x => x.id === prodId);
+      const revs = productReviews[prodId] || [];
+      const content = document.getElementById('product-detail-content');
+
+      let reviewsHtml = revs.length === 0 
+        ? `<div style="color:#888; font-size:0.9rem; margin-bottom:15px;">No reviews yet. Be the first!</div>`
+        : revs.map(r => `
+            <div class="review-card">
+              <div class="review-card-header">
+                <b>${r.name}</b>
+                <span style="color:var(--star-gold);">${'<i class="fa-solid fa-star"></i>'.repeat(r.rating)}</span>
+              </div>
+              <div style="font-size:0.9rem; color:#553E63;">"${r.text}"</div>
+            </div>
+          `).join('');
+
+      content.innerHTML = `
+        <img src="${p.img}" class="detail-img">
+        <h2 style="color:var(--purple-primary); margin-bottom: 5px;">${p.name}</h2>
+        <div style="font-size:1.4rem; font-weight:700; margin-bottom:15px;">₹${p.price}</div>
+        <p style="color:#666; margin-bottom:20px; line-height:1.6;">${p.desc}</p>
+        
+        <div style="display:flex; gap:10px; margin-bottom:30px;">
+           <button class="btn-outline" style="flex:1;" onclick="initiateAddToCart(${p.id}, false)">Add to Cart</button>
+           <button class="btn-primary" style="flex:1;" onclick="initiateAddToCart(${p.id}, true)">Buy Now</button>
+        </div>
+
+        <hr style="border:none; border-top:1px solid var(--border-color); margin-bottom:20px;">
+        
+        <h3 style="margin-bottom:15px; color:var(--purple-primary);">Customer Reviews</h3>
+        ${reviewsHtml}
+
+        <div style="margin-top: 20px; background:#FAF8FC; padding:15px; border-radius:12px;">
+          <h4 style="margin-bottom:10px;">Write a Review</h4>
+          <div class="review-stars-input" id="star-selector">
+            <i class="fa-solid fa-star" onclick="setRating(1)"></i>
+            <i class="fa-solid fa-star" onclick="setRating(2)"></i>
+            <i class="fa-solid fa-star" onclick="setRating(3)"></i>
+            <i class="fa-solid fa-star" onclick="setRating(4)"></i>
+            <i class="fa-solid fa-star" onclick="setRating(5)"></i>
+          </div>
+          <textarea id="review-text" rows="2" style="width:100%; border:1px solid var(--border-color); border-radius:8px; padding:10px; margin-bottom:10px;" placeholder="What did you think of this product?"></textarea>
+          <button class="btn-primary" style="width:100%; padding:8px;" onclick="submitReview()">Submit Review</button>
+        </div>
+      `;
+      selectedRating = 0;
+      openModal('product-detail-modal');
+    }
+
+    function setRating(rating) {
+      selectedRating = rating;
+      const stars = document.getElementById('star-selector').children;
+      for(let i=0; i<5; i++) {
+        if(i < rating) stars[i].classList.add('active');
+        else stars[i].classList.remove('active');
+      }
+    }
+
+    function submitReview() {
+      if(selectedRating === 0) { alert("Please select a star rating."); return; }
+      const text = document.getElementById('review-text').value;
+      const name = userProfile.name ? userProfile.name.split(' ')[0] : "Guest User";
+      
+      if(!productReviews[currentDetailProdId]) productReviews[currentDetailProdId] = [];
+      productReviews[currentDetailProdId].push({ name, rating: selectedRating, text });
+      
+      openProductDetails(currentDetailProdId); // Refresh modal
+      renderProducts(); // Refresh star counts on cards
+    }
+
+    // --- Customization & Cart Flow ---
     function initiateAddToCart(prodId, isBuyNow) {
       pendingProductToAdd = products.find(p => p.id === prodId);
       instantBuyMode = isBuyNow;
@@ -611,7 +802,6 @@
       const fileInput = document.getElementById('custom-photo');
       const hasPhoto = fileInput.files.length > 0 ? true : false;
 
-      // Create a unique cart item
       const cartItem = {
         ...pendingProductToAdd,
         cartId: Date.now() + Math.random(),
@@ -620,7 +810,7 @@
       };
 
       if(instantBuyMode) {
-        cart = [cartItem]; // Overwrite cart for instant checkout
+        cart = [cartItem]; 
         closeAllOverlays();
         checkoutGPay();
       } else {
@@ -650,25 +840,40 @@
       document.getElementById('header-wishlist-count').innerText = wishlist.length;
     }
 
-    // --- PROMO CODE LOGIC ---
     function applyPromo() {
       const code = document.getElementById('promo-input').value.toUpperCase();
       if(code === 'AURA10') {
-        appliedPromo = 'AURA10';
-        discountAmount = 0.10; // 10%
+        appliedPromo = 'AURA10'; discountAmount = 0.10; 
         alert("Promo Code Applied! 10% Off.");
       } else {
         alert("Invalid or expired promo code.");
-        appliedPromo = null;
-        discountAmount = 0;
+        appliedPromo = null; discountAmount = 0;
       }
       renderDrawerContent('cart');
     }
 
-    function openDrawer(type) {
+    // --- Core UI Functions ---
+    function openDrawer(drawerId) {
       document.getElementById('overlay').classList.add('active');
-      document.getElementById('side-drawer').classList.add('active');
-      renderDrawerContent(type);
+      document.getElementById(drawerId).classList.add('active');
+      if (drawerId === 'cart' || drawerId === 'wishlist') {
+        renderDrawerContent(drawerId);
+      }
+      if (drawerId === 'admin-dashboard') {
+        document.getElementById('stat-visits').innerText = adminStats.visits.toLocaleString();
+        document.getElementById('stat-reach').innerText = adminStats.reach.toLocaleString();
+        adminRenderOrders();
+      }
+    }
+
+    function openModal(modalId) {
+      document.getElementById('overlay').classList.add('active');
+      document.getElementById(modalId).classList.add('active');
+    }
+
+    function closeAllOverlays() {
+      document.getElementById('overlay').classList.remove('active');
+      document.querySelectorAll('.side-drawer').forEach(d => d.classList.remove('active'));
     }
 
     function renderDrawerContent(type) {
@@ -700,7 +905,7 @@
 
           footer.innerHTML = `
             <div class="promo-box">
-              <input type="text" id="promo-input" placeholder="Promo Code (e.g. AURA10)" value="${appliedPromo || ''}">
+              <input type="text" id="promo-input" placeholder="Promo Code (AURA10)" value="${appliedPromo || ''}">
               <button onclick="applyPromo()">Apply</button>
             </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#666;">
@@ -713,7 +918,7 @@
               <span>Total:</span><span style="color:var(--purple-primary)">₹${total.toFixed(2)}</span>
             </div>
             <button class="btn-primary" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="checkoutGPay()">
-              <i class="fa-solid fa-lock"></i> Secure Checkout
+              <i class="fa-brands fa-google-pay" style="font-size:1.4rem;"></i> Secure GPay Checkout
             </button>
           `;
         }
@@ -734,24 +939,76 @@
       }
     }
 
-    // --- Profile & Orders Logic ---
-    function openModal(modalId) {
-      document.getElementById('overlay').classList.add('active');
-      document.getElementById(modalId).classList.add('active');
-    }
-    function closeAllOverlays() {
-      document.getElementById('overlay').classList.remove('active');
-      document.querySelectorAll('.side-drawer').forEach(d => d.classList.remove('active'));
+    // --- Admin Dashboard Features ---
+    function switchAdminTab(tabId, btn) {
+      document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.admin-view').forEach(v => v.style.display = 'none');
+      btn.classList.add('active');
+      document.getElementById('admin-' + tabId).style.display = 'block';
     }
 
+    function adminRenderOrders() {
+      const container = document.getElementById('admin-all-orders-list');
+      if(globalOrders.length === 0) {
+        container.innerHTML = `<div style="color:#888; text-align:center; padding:20px;">No global orders yet.</div>`;
+        return;
+      }
+      container.innerHTML = globalOrders.map(o => `
+        <div class="order-card">
+          <div style="display:flex; justify-content:space-between;">
+             <b style="color:var(--purple-primary);">${o.id}</b>
+             <span style="color:#2E7D32; font-weight:700;">₹${o.total}</span>
+          </div>
+          <div style="font-size:0.85rem; color:#666; margin-bottom:8px;">Customer: ${o.customerName} | ${o.phone}</div>
+          <div>${o.items.map(item => `<div class="admin-order-item">- ${item.name} ${item.customNote ? `(Note)`:``}</div>`).join('')}</div>
+        </div>
+      `).join('');
+    }
+
+    function adminRenderOccasions() {
+      const list = document.getElementById('admin-occasions-list');
+      list.innerHTML = occasions.map(occ => `
+        <div style="display:flex; justify-content:space-between; padding:10px; background:#FAF8FC; border:1px solid var(--border-color); border-radius:8px; margin-bottom:8px;">
+          <span>${occ}</span>
+          <button style="border:none; background:none; color:#ff4d4d; cursor:pointer;" onclick="adminRemoveOccasion('${occ}')"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `).join('');
+      renderNavigation(); // Update public navbar
+    }
+
+    function adminAddOccasion() {
+      const input = document.getElementById('new-occasion-input');
+      if(input.value.trim() !== '') {
+        occasions.push(input.value.trim());
+        input.value = '';
+        adminRenderOccasions();
+      }
+    }
+
+    function adminRemoveOccasion(occName) {
+      occasions = occasions.filter(o => o !== occName);
+      adminRenderOccasions();
+    }
+
+    function adminUpdatePromo() {
+      const text = document.getElementById('admin-promo-text').value;
+      document.getElementById('dynamic-announcement').innerHTML = `<span class="announcement-item">${text}</span>`;
+      alert("Announcement updated successfully on live site!");
+    }
+
+    // --- Profile & Orders Logic ---
     function toggleProfileTab(tab) {
       if(tab === 'details') {
+        document.getElementById('btn-tab-details').classList.replace('btn-outline', 'btn-primary');
+        document.getElementById('btn-tab-orders').classList.replace('btn-primary', 'btn-outline');
         document.getElementById('profile-form').style.display = 'block';
         document.getElementById('orders-view').style.display = 'none';
       } else {
+        document.getElementById('btn-tab-orders').classList.replace('btn-outline', 'btn-primary');
+        document.getElementById('btn-tab-details').classList.replace('btn-primary', 'btn-outline');
         document.getElementById('profile-form').style.display = 'none';
         document.getElementById('orders-view').style.display = 'block';
-        renderOrders();
+        renderUserOrders();
       }
     }
 
@@ -764,11 +1021,11 @@
         address: document.getElementById('cust-address').value
       };
       document.getElementById('nav-user-name').innerText = userProfile.name.split(' ')[0];
-      alert('Profile saved!');
+      alert('Profile saved successfully!');
       closeAllOverlays();
     }
 
-    function renderOrders() {
+    function renderUserOrders() {
       const list = document.getElementById('orders-list');
       if(pastOrders.length === 0) {
         list.innerHTML = `<div style="text-align:center; padding:20px; color:#888;">No past orders found.</div>`;
@@ -784,10 +1041,10 @@
       `).join('');
     }
 
-    // --- Checkout Logic ---
+    // --- Checkout Logic (GPay via Intent) ---
     function checkoutGPay() {
       if (!userProfile.name) {
-        alert("Please save your delivery profile details first.");
+        alert("Please save your delivery profile details first before checkout.");
         openModal('profile-modal');
         return;
       }
@@ -796,8 +1053,10 @@
       let totalAmount = subtotal - (subtotal * discountAmount);
       const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
       
-      // Save to Orders
-      pastOrders.unshift({ id: orderId, total: totalAmount.toFixed(2), items: [...cart] });
+      // Save order tracking
+      const orderRecord = { id: orderId, total: totalAmount.toFixed(2), items: [...cart], customerName: userProfile.name, phone: userProfile.phone };
+      pastOrders.unshift(orderRecord);
+      globalOrders.unshift(orderRecord); 
 
       const upiId = "sadhatkd23@okicici"; 
       const gpayLink = `upi://pay?pa=${upiId}&pn=The%20Aura%20Atelier&tr=${orderId}&tn=Order%20${orderId}&am=${totalAmount}&cu=INR`;
@@ -807,6 +1066,8 @@
 
       cart = []; updateBadges(); appliedPromo = null; discountAmount = 0; closeAllOverlays();
       window.location.href = gpayLink;
+      
+      // Open WhatsApp to send summary details to Merchant
       setTimeout(() => { window.open(`https://wa.me/917208718323?text=${encodeURIComponent(message)}`, '_blank'); }, 1500);
     }
   </script>
