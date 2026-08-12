@@ -448,15 +448,27 @@
             <div style="background: var(--purple-light); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--purple-primary);"><i class="fa-brands fa-instagram"></i></div>
             <div><b>Instagram</b><br><a href="https://instagram.com/_the.aura.in" style="color: #553E63; text-decoration: none;">@_the.aura.in</a></div>
           </div>
+
+          <!-- ADDED EMAIL SECTION HERE -->
+          <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px; color: var(--text-dark);">
+            <div style="background: var(--purple-light); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--purple-primary);"><i class="fa-solid fa-envelope"></i></div>
+            <div><b>Email</b><br><a href="mailto:sadhatkd23@gmail.com" style="color: #553E63; text-decoration: none;">sadhatkd23@gmail.com</a></div>
+          </div>
         </div>
 
         <!-- Contact Form -->
         <div style="flex: 1 1 300px; background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
           <h4 style="color: var(--purple-primary); font-size: 1.3rem; margin-bottom: 20px;">Send a Message</h4>
-          <form onsubmit="event.preventDefault(); alert('Message sent! We will get back to you soon.'); this.reset();">
-            <div class="form-group"><label>Your Name</label><input type="text" required></div>
-            <div class="form-group"><label>Email Address</label><input type="email" required></div>
-            <div class="form-group"><label>Message</label><textarea rows="4" required></textarea></div>
+          
+          <!-- UPDATED FORM TO SEND DIRECTLY TO YOUR EMAIL -->
+          <form action="https://formsubmit.co/sadhatkd23@gmail.com" method="POST">
+            <!-- Hidden inputs to customize the email behavior -->
+            <input type="hidden" name="_subject" value="New Message from The Aura Atelier Website!">
+            <input type="hidden" name="_captcha" value="false">
+            
+            <div class="form-group"><label>Your Name</label><input type="text" name="Name" required></div>
+            <div class="form-group"><label>Email Address</label><input type="email" name="Email" required></div>
+            <div class="form-group"><label>Message</label><textarea rows="4" name="Message" required></textarea></div>
             <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
           </form>
         </div>
