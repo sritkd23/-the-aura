@@ -962,6 +962,7 @@
          document.getElementById('drawer-title').innerText = 'Your Wishlist';
          if (wishlist.length === 0) {
           list.innerHTML = `<div style="text-align:center; padding: 40px; color:var(--purple-primary);">Your wishlist is empty.</div>`;
+          footer.innerHTML = '';
          } else {
            list.innerHTML = wishlist.map((item) => `
             <div class="item-row">
@@ -971,8 +972,8 @@
               <button class="remove-btn" onclick="removeFromWishlist(${item.id})"><i class="fa-solid fa-trash"></i></button>
             </div>
           `).join('');
+          footer.innerHTML = '';
          }
-         footer.innerHTML = '';
       }
     }
 
@@ -995,7 +996,7 @@
 
       let itemsHtml = cart.map(item => `
         <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.9rem; color:var(--text-dark);">
-          <span>${item.name}</span>
+          <span>${item.name} ${item.customNote ? `<i>(Note: ${item.customNote})</i>` : ''}</span>
           <span>₹${item.price}</span>
         </div>
       `).join('');
@@ -1029,7 +1030,7 @@
               <span>Final Total:</span><span>₹${totalAmount.toFixed(2)}</span>
             </div>
 
-            <button class="btn-primary" style="width:100%;" onclick="proceedToPayment()">Confirm & Proceed to Payment</button>
+            <button class="btn-primary" style="width:100%;" onclick="proceedToPayment()">Confirm Order & Pay via WhatsApp</button>
           </div>
         </div>
       `;
@@ -1049,16 +1050,13 @@
       pastOrders.unshift(orderRecord);
       globalOrders.unshift(orderRecord); 
 
-      const upiId = "sadhatkd23@okicici"; 
-      const gpayLink = `upi://pay?pa=${upiId}&pn=The%20Aura%20Atelier&tr=${orderId}&tn=Order%20${orderId}&am=${totalAmount}&cu=INR`;
-
-      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} ${item.customNote ? `(Note: ${item.customNote})` : ''}`).join('\n');
-      let message = `✨ *NEW ORDER PLACED* ✨\n\n🆔 *Order ID:* ${orderId}\n\n👤 *Customer Details:*\nName: ${userProfile.name}\nPhone: ${userProfile.phone}\nAddress: ${userProfile.address}\n\n🛍️ *Items:*\n${productDetails}\n\n💰 *Total Paid:* ₹${totalAmount.toFixed(2)}`;
+      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} - ₹${item.price} ${item.customNote ? `(Note: ${item.customNote})` : ''}`).join('\n');
+      
+      let message = `✨ *NEW ORDER PLACED* ✨\n\n🆔 *Order ID:* ${orderId}\n\n👤 *Customer Details:*\nName: ${userProfile.name}\nPhone: ${userProfile.phone}\nAddress: ${userProfile.address}\n\n🛍️ *Product Details & Price:*\n${productDetails}\n\n💰 *Total Amount:* ₹${totalAmount.toFixed(2)}\n\n👉 *Please send your Google Pay number and payment QR/details.*`;
 
       cart = []; updateBadges(); appliedPromo = null; discountAmount = 0; closeAllOverlays();
-      window.location.href = gpayLink;
       
-      setTimeout(() => { window.open(`https://wa.me/917208718323?text=${encodeURIComponent(message)}`, '_blank'); }, 1500);
+      window.location.href = `https://wa.me/917208718323?text=${encodeURIComponent(message)}`;
     }
 
     function switchAdminTab(tabId, btn) {
@@ -1081,7 +1079,7 @@
              <span style="color:var(--accent-pink); font-weight:700;">₹${o.total}</span>
           </div>
           <div style="font-size:0.85rem; color:var(--text-dark); margin-bottom:8px;">Customer: ${o.customerName} | ${o.phone}</div>
-          <div>${o.items.map(item => `<div class="admin-order-item">- ${item.name} ${item.customNote ? `(Note)`:``}</div>`).join('')}</div>
+          <div>${o.items.map(item => `<div class="admin-order-item">- ${item.name} (₹${item.price})</div>`).join('')}</div>
         </div>
       `).join('');
     }
@@ -1219,5 +1217,5 @@
       `).join('');
     }
   </script>
-</body>
+</body>       
 </html>
