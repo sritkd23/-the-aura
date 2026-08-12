@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Aura Atelier | Gifts Made With Love</title>
   
-  <!-- WhatsApp & Social Media Preview Meta Tags -->
   <meta property="og:title" content="The Aura Atelier | Gifts Made With Love">
   <meta property="og:description" content="Beautiful gifts, customized hampers, and thoughtful surprises made specially for your special people. Delivery across India.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=800">
@@ -29,7 +28,8 @@
       --accent-pink: #D070B8;
       --whatsapp-green: #25D366;
       --shadow-sm: 0 4px 15px rgba(60, 22, 97, 0.05);
-      --shadow-md: 0 8px 25px rgba(60, 22, 97, 0.08);
+      --shadow-md: 0 10px 30px rgba(60, 22, 97, 0.1);
+      --shadow-hover: 0 15px 35px rgba(60, 22, 97, 0.15);
       --radius-lg: 24px;
       --radius-md: 16px;
       --radius-sm: 12px;
@@ -38,24 +38,25 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-cream); }
+    ::-webkit-scrollbar-thumb { background: #D1BCE3; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--purple-primary); }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-cream);
       color: var(--text-dark);
       line-height: 1.5;
       padding-bottom: 40px;
+      overflow-x: hidden;
     }
 
     /* Admin Banner */
     .admin-indicator {
-      display: none;
-      background: #222;
-      color: var(--admin-gold);
-      text-align: center;
-      padding: 6px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 1px;
+      display: none; background: #222; color: var(--admin-gold); text-align: center;
+      padding: 8px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
     }
     body.admin-mode .admin-indicator { display: block; }
     body.admin-mode .admin-only { display: inline-flex !important; }
@@ -63,372 +64,196 @@
 
     /* Top Announcement Bar */
     .announcement-bar {
-      background-color: #FAF4FD;
-      border-bottom: 1px solid var(--border-color);
-      padding: 8px 5%;
-      font-size: 0.82rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--purple-primary);
+      background: linear-gradient(90deg, #EADAFA, #F3EAF8);
+      padding: 8px 5%; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; color: var(--purple-primary); font-weight: 600;
     }
-
     .announcement-left, .announcement-right { display: flex; align-items: center; gap: 20px; }
     .announcement-item { display: flex; align-items: center; gap: 6px; }
     .social-links { display: flex; gap: 12px; }
-    .social-links a { color: var(--purple-primary); text-decoration: none; font-size: 0.9rem; }
+    .social-links a { color: var(--purple-primary); text-decoration: none; font-size: 1rem; transition: transform 0.2s; }
+    .social-links a:hover { transform: scale(1.2); }
 
-    /* Navbar */
+    /* Navbar with Glassmorphism */
     .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 5%;
-      background: var(--bg-cream);
-      position: relative;
+      display: flex; justify-content: space-between; align-items: center; padding: 16px 5%;
+      background: rgba(255, 253, 249, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 150; border-bottom: 1px solid rgba(234, 218, 242, 0.5);
     }
-
     .brand-logo { text-decoration: none; color: var(--purple-primary); cursor: pointer; user-select: none; }
-    .brand-logo h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; line-height: 1; }
-    .brand-logo span { font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-top: 4px; color: #6C547B; }
+    .brand-logo h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; line-height: 1; margin-bottom: 2px; }
+    .brand-logo span { font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6C547B; }
 
     .nav-menu { display: flex; gap: 24px; list-style: none; align-items: center; }
     .nav-item { position: relative; }
-    .nav-link { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.92rem; display: flex; align-items: center; gap: 5px; cursor: pointer; }
+    .nav-link { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; display: flex; align-items: center; gap: 5px; cursor: pointer; transition: color 0.2s; }
     .nav-link:hover, .nav-link.active { color: var(--purple-primary); font-weight: 600; }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--purple-primary); transition: width 0.3s; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Search Bar */
+    .search-container {
+      position: relative; display: flex; align-items: center;
+    }
+    .search-input {
+      padding: 8px 16px 8px 36px; border-radius: 20px; border: 1px solid var(--border-color); background: #FAF8FC; font-size: 0.85rem; width: 200px; transition: all 0.3s;
+    }
+    .search-input:focus { width: 250px; outline: none; border-color: var(--purple-primary); background: white; box-shadow: var(--shadow-sm); }
+    .search-icon { position: absolute; left: 12px; color: #888; font-size: 0.85rem; }
 
     /* Dropdown Styles */
     .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-md);
-      min-width: 200px;
-      display: none;
-      flex-direction: column;
-      z-index: 120;
-      padding: 8px 0;
+      position: absolute; top: 100%; left: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color); border-radius: var(--radius-sm); box-shadow: var(--shadow-md);
+      min-width: 200px; display: none; flex-direction: column; z-index: 120; padding: 8px 0; opacity: 0; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s;
     }
-    .nav-item:hover .dropdown { display: flex; }
-    .dropdown-item {
-      padding: 8px 16px;
-      text-decoration: none;
-      color: var(--text-dark);
-      font-size: 0.88rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .dropdown-item:hover { background: var(--purple-light); color: var(--purple-primary); }
+    .nav-item:hover .dropdown { display: flex; opacity: 1; transform: translateY(0); }
+    .dropdown-item { padding: 10px 20px; color: var(--text-dark); font-size: 0.9rem; cursor: pointer; transition: background 0.2s; }
+    .dropdown-item:hover { background: var(--purple-light); color: var(--purple-primary); font-weight: 600; }
 
     .nav-actions { display: flex; gap: 12px; align-items: center; }
     .btn-pill {
-      background: var(--purple-light);
-      border: 1px solid var(--border-color);
-      padding: 8px 16px;
-      border-radius: 30px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--purple-primary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
+      background: white; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 30px; font-size: 0.88rem; font-weight: 600; color: var(--purple-primary); cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s; box-shadow: var(--shadow-sm);
     }
-
-    .badge {
-      background: var(--purple-primary);
-      color: white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-    }
+    .btn-pill:hover { background: var(--purple-light); border-color: var(--purple-primary); transform: translateY(-2px); }
+    .badge { background: var(--purple-primary); color: white; border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; }
 
     .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
 
     /* Hero Banner */
     .hero-banner {
-      background: linear-gradient(135deg, #F5EBFA 0%, #E8D4F5 100%);
-      border-radius: var(--radius-lg);
-      padding: 40px 60px;
-      margin: 10px 0 30px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      position: relative;
-      min-height: 380px;
+      background: linear-gradient(135deg, #F5EBFA 0%, #E8D4F5 100%); border-radius: var(--radius-lg);
+      padding: 60px 40px; margin: 20px 0 40px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; min-height: 400px; box-shadow: var(--shadow-sm);
     }
-
-    .hero-subtitle { font-size: 0.8rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; color: var(--purple-primary); margin-bottom: 12px; }
-    .hero-title { font-family: 'Playfair Display', serif; font-size: 3rem; font-style: italic; color: var(--purple-primary); margin-bottom: 12px; line-height: 1.1; }
-    .hero-desc { color: #553E63; font-size: 0.98rem; max-width: 380px; margin-bottom: 28px; }
-    .hero-buttons { display: flex; gap: 14px; }
+    .hero-subtitle { font-size: 0.8rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; color: var(--purple-primary); margin-bottom: 12px; display: inline-block; background: white; padding: 4px 12px; border-radius: 20px; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-style: italic; color: var(--purple-primary); margin-bottom: 16px; line-height: 1.1; }
+    .hero-desc { color: #553E63; font-size: 1.05rem; max-width: 400px; margin-bottom: 30px; line-height: 1.6; }
+    .hero-buttons { display: flex; gap: 16px; }
 
     .btn-primary {
-      background: var(--purple-primary);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(60, 22, 97, 0.2);
+      background: var(--purple-primary); color: white; border: none; padding: 14px 28px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 15px rgba(60, 22, 97, 0.3); transition: all 0.3s;
     }
-    .btn-primary:hover { background: var(--purple-hover); }
+    .btn-primary:hover { background: var(--purple-hover); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(60, 22, 97, 0.4); }
 
     .btn-outline {
-      background: transparent;
-      color: var(--purple-primary);
-      border: 1.5px solid var(--purple-primary);
-      padding: 12px 20px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
+      background: transparent; color: var(--purple-primary); border: 2px solid var(--purple-primary); padding: 12px 26px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s;
     }
+    .btn-outline:hover { background: var(--purple-light); transform: translateY(-3px); }
 
     .hero-img-box {
-      width: 100%;
-      max-width: 480px;
-      height: 320px;
-      background-size: cover;
-      background-position: center;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-md);
+      width: 100%; max-width: 500px; height: 350px; background-size: cover; background-position: center; border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin-left: auto; transition: transform 0.5s;
     }
+    .hero-img-box:hover { transform: scale(1.02) rotate(1deg); }
 
-    /* Categories Horizontal Grid */
-    .categories-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 40px; }
+    /* Categories Bar */
+    .categories-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 50px; }
     .category-card {
-      background: #FAFAF8;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 14px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: var(--text-dark);
-      cursor: pointer;
+      background: white; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: 600; font-size: 0.9rem; color: var(--text-dark); cursor: pointer; transition: all 0.3s; box-shadow: var(--shadow-sm);
     }
-    .category-card:hover { border-color: var(--purple-primary); background: white; }
+    .category-card i { font-size: 1.5rem; color: var(--accent-pink); transition: transform 0.3s; }
+    .category-card:hover { border-color: var(--purple-primary); transform: translateY(-5px); box-shadow: var(--shadow-md); color: var(--purple-primary); }
+    .category-card:hover i { transform: scale(1.2); color: var(--purple-primary); }
 
     /* Section Styling */
-    .page-section { display: none; }
+    .page-section { display: none; animation: fadeIn 0.5s ease; }
     .page-section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--purple-primary); }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--purple-primary); }
 
     /* Product Grid */
-    .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 40px; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px; }
     .product-card {
-      background: #FAF8FC;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 20px;
-      position: relative;
-      align-items: center;
+      background: white; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 16px; display: flex; flex-direction: column; position: relative; transition: all 0.3s ease; box-shadow: var(--shadow-sm);
     }
-
-    .product-img-container { width: 100%; height: 180px; border-radius: var(--radius-md); overflow: hidden; }
-    .product-img { width: 100%; height: 100%; object-fit: cover; }
-    .product-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
-    .product-price { font-size: 1.1rem; font-weight: 700; color: var(--purple-primary); margin-bottom: 8px; }
-    .product-desc { font-size: 0.85rem; color: #6C547B; margin-bottom: 14px; }
-
+    .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: #D1BCE3; }
+    
+    .product-img-container { width: 100%; height: 250px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px; position: relative; }
+    .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .product-card:hover .product-img { transform: scale(1.05); }
+    
     .wishlist-btn {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid var(--border-color);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #888;
+      position: absolute; top: 12px; right: 12px; background: rgba(255, 255, 255, 0.9); border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #888; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.2s; z-index: 10;
     }
+    .wishlist-btn:hover { transform: scale(1.1); }
     .wishlist-btn.active { color: #E63946; }
 
-    .delete-prod-btn {
-      position: absolute;
-      bottom: 16px;
-      right: 16px;
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 0.75rem;
-    }
+    .product-info { flex: 1; display: flex; flex-direction: column; }
+    .product-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; color: var(--purple-primary); }
+    .product-price { font-size: 1.2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .product-desc { font-size: 0.9rem; color: #6C547B; margin-bottom: 20px; flex: 1; }
+    .product-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .product-actions button { padding: 10px; font-size: 0.9rem; border-radius: 8px; }
 
-    /* Modal / Drawer Overlay */
-    .overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4); z-index: 200; display: none;
-    }
-    .overlay.active { display: block; }
+    /* Modals / Drawers */
+    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 5, 24, 0.5); backdrop-filter: blur(3px); z-index: 200; display: none; opacity: 0; transition: opacity 0.3s; }
+    .overlay.active { display: block; opacity: 1; }
 
     .side-drawer {
-      position: fixed; top: 0; right: -420px; width: 400px; height: 100%;
-      background: white; z-index: 201; transition: right 0.3s ease;
-      padding: 24px; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+      position: fixed; top: 0; right: -450px; width: 420px; height: 100%; background: white; z-index: 201; transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 24px; display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1); border-left: 1px solid var(--border-color);
     }
     .side-drawer.active { right: 0; }
-    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
-    .drawer-content { flex: 1; overflow-y: auto; }
-    .drawer-footer { border-top: 1px solid var(--border-color); padding-top: 16px; margin-top: 10px; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--purple-primary); }
+    .drawer-content { flex: 1; overflow-y: auto; padding-right: 8px; }
+    .drawer-footer { border-top: 1px solid var(--border-color); padding-top: 20px; margin-top: 10px; background: white; }
 
-    .item-row { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
-    .item-row img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
-    .item-details { flex: 1; }
-    .remove-btn { color: #ff4d4d; cursor: pointer; font-size: 0.85rem; border: none; background: none; }
+    /* Cart Items */
+    .item-row { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; background: #FAF8FC; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+    .item-row img { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; }
+    .item-details { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .item-details b { color: var(--purple-primary); font-size: 0.95rem; }
+    .item-details .custom-note-preview { font-size: 0.75rem; color: #888; font-style: italic; background: #fff; padding: 4px; border-radius: 4px; border: 1px dashed #ccc; }
+    .remove-btn { color: #ff4d4d; cursor: pointer; font-size: 1rem; border: none; background: rgba(255, 77, 77, 0.1); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .remove-btn:hover { background: rgba(255, 77, 77, 0.2); }
 
-    /* Form Styles */
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.88rem;
-    }
-
-    /* Features Strip */
-    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
-    .feature-box { background: #FDF9FE; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; gap: 14px; }
-    .feature-icon { width: 44px; height: 44px; background: var(--purple-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--purple-primary); }
-
-    /* Floating Navigation Elements */
-    .side-nav {
-      position: fixed; right: 0; top: 50%; transform: translateY(-50%);
-      background: var(--purple-primary); border-radius: 16px 0 0 16px; padding: 12px 8px;
-      display: flex; flex-direction: column; gap: 16px; z-index: 100;
-    }
-    .side-nav-item { color: white; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; gap: 4px; position: relative; cursor: pointer; }
-    .side-badge { position: absolute; top: -4px; right: 2px; background: white; color: var(--purple-primary); font-size: 0.65rem; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-
-    /* Floating WhatsApp Action Buttons */
-    .whatsapp-btn-container {
-      position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; z-index: 99;
-    }
-
-    .whatsapp-btn {
-      background: var(--whatsapp-green); color: white;
-      width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); text-decoration: none;
-    }
-
-    .whatsapp-custom-btn {
-      background: var(--purple-primary); color: white;
-      padding: 10px 16px; border-radius: 25px; display: flex; align-items: center; gap: 8px;
-      font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 15px rgba(60, 22, 97, 0.3); text-decoration: none;
-    }
-    .whatsapp-custom-btn:hover { background: var(--purple-hover); }
-
-    /* Empty Placeholder */
-    .empty-msg { text-align: center; padding: 40px; color: #888; font-style: italic; }
-
-    /* Customer Reviews Section */
-    .reviews-section {
-      background: #FAF8FC;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      margin: 40px 0 20px;
-    }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .review-card {
-      background: white;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-    .review-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .review-author { font-weight: 700; color: var(--purple-primary); font-size: 0.95rem; }
-    .star-rating { color: #FFB800; font-size: 0.9rem; }
-    .review-comment { font-size: 0.88rem; color: #553E63; }
+    /* Forms & Promo Box */
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--purple-primary); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.9rem; transition: border-color 0.2s; background: #FCFAFF; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--purple-primary); background: white; }
     
-    .rating-picker { display: flex; gap: 6px; margin-top: 4px; font-size: 1.4rem; color: #CCC; cursor: pointer; }
-    .rating-picker .fa-star.active { color: #FFB800; }
+    .promo-box { display: flex; gap: 10px; margin-bottom: 16px; }
+    .promo-box input { flex: 1; padding: 10px 14px; border: 1px dashed var(--purple-primary); border-radius: 8px; font-size: 0.9rem; text-transform: uppercase; }
+    .promo-box button { background: var(--purple-light); color: var(--purple-primary); border: none; padding: 0 16px; border-radius: 8px; font-weight: 600; cursor: pointer; }
 
-    /* --- ENHANCED MOBILE RESPONSIVENESS & TOUCH OPTIMIZATIONS --- */
+    /* Orders Tracker Box */
+    .order-card { background: white; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
+    .order-status { display: inline-block; padding: 4px 10px; background: #E8F5E9; color: #2E7D32; font-size: 0.75rem; border-radius: 20px; font-weight: 700; margin-bottom: 10px; }
+
+    /* WhatsApp Buttons */
+    .whatsapp-btn-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 16px; align-items: flex-end; z-index: 99; }
+    .whatsapp-btn { background: var(--whatsapp-green); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); text-decoration: none; transition: transform 0.3s; }
+    .whatsapp-btn:hover { transform: scale(1.1); }
+    .whatsapp-custom-btn { background: var(--purple-primary); color: white; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 6px 20px rgba(60, 22, 97, 0.3); text-decoration: none; transition: transform 0.3s; }
+    .whatsapp-custom-btn:hover { transform: translateY(-3px); }
+
+    /* Mobile Responsiveness */
     @media(max-width: 992px) {
-      .announcement-bar { flex-direction: column; gap: 6px; text-align: center; }
-      .announcement-left { gap: 10px; font-size: 0.75rem; flex-wrap: wrap; justify-content: center; }
+      .announcement-bar { flex-direction: column; gap: 6px; text-align: center; padding: 10px; }
       
-      .navbar { flex-wrap: wrap; padding: 12px 16px; gap: 12px; }
-      .nav-menu { overflow-x: auto; width: 100%; padding-bottom: 6px; gap: 16px; scrollbar-width: none; }
-      .nav-menu::-webkit-scrollbar { display: none; }
-      .nav-actions { width: 100%; justify-content: space-between; }
-      .btn-pill { padding: 6px 12px; font-size: 0.8rem; }
+      .navbar { flex-wrap: wrap; padding: 16px; gap: 16px; }
+      .search-container { order: 3; width: 100%; }
+      .search-input { width: 100%; }
+      .search-input:focus { width: 100%; }
+      
+      .nav-menu { overflow-x: auto; width: 100%; padding-bottom: 6px; gap: 20px; scrollbar-width: none; order: 4; }
+      .nav-actions { order: 2; }
+      
+      .hero-banner { grid-template-columns: 1fr; padding: 30px 20px; text-align: center; }
+      .hero-title { font-size: 2.2rem; }
+      .hero-desc { margin: 0 auto 24px; font-size: 0.95rem; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .hero-buttons button, .hero-buttons a { width: 100%; max-width: 300px; }
+      .hero-img-box { height: 250px; margin-top: 20px; }
 
-      .hero-banner { 
-        grid-template-columns: 1fr; 
-        padding: 24px; 
-        text-align: center;
-        min-height: auto;
-      }
-      .hero-title { font-size: 2rem; }
-      .hero-desc { margin: 0 auto 20px; }
-      .hero-buttons { justify-content: center; flex-wrap: wrap; }
-      .hero-img-box { height: 220px; margin: 0 auto; }
+      .categories-bar { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 12px; scrollbar-width: none; }
+      .category-card { flex: 0 0 120px; padding: 12px; }
 
-      .categories-bar { 
-        display: flex; 
-        overflow-x: auto; 
-        gap: 10px; 
-        padding-bottom: 8px; 
-        scrollbar-width: none;
-      }
-      .categories-bar::-webkit-scrollbar { display: none; }
-      .category-card { flex: 0 0 auto; padding: 10px 14px; white-space: nowrap; }
-
-      .products-grid { grid-template-columns: 1fr; gap: 16px; }
-      .product-card { grid-template-columns: 1fr; padding: 12px; }
-      .product-img-container { height: 200px; }
-
-      .features-grid { grid-template-columns: 1fr; gap: 12px; }
-
+      .products-grid { grid-template-columns: 1fr; gap: 20px; }
+      .product-card { padding: 16px; }
+      
       .side-drawer { width: 100%; right: -100%; }
-      .side-nav { display: none; }
-
-      .whatsapp-btn-container { bottom: 16px; right: 16px; }
-      .whatsapp-custom-btn { font-size: 0.78rem; padding: 8px 12px; }
-      .whatsapp-btn { width: 44px; height: 44px; font-size: 1.5rem; }
-
-      .reviews-section { padding: 20px; }
-      .reviews-grid { grid-template-columns: 1fr; }
+      .whatsapp-btn-container { bottom: 20px; right: 20px; }
     }
   </style>
 </head>
@@ -462,6 +287,12 @@
       <span>ATELIER • GIFTS MADE WITH LOVE</span>
     </div>
 
+    <!-- NEW: Search Bar -->
+    <div class="search-container">
+      <i class="fa-solid fa-search search-icon"></i>
+      <input type="text" id="global-search" class="search-input" placeholder="Search gifts, hampers..." onkeyup="handleSearch()">
+    </div>
+
     <ul class="nav-menu">
       <li class="nav-item"><a class="nav-link active" onclick="showPage('home')">Home</a></li>
       <li class="nav-item">
@@ -473,16 +304,14 @@
         <a class="nav-link">Occasions <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
         <div class="dropdown" id="occasions-dropdown"></div>
       </li>
-      <li class="nav-item"><a class="nav-link" onclick="showPage('about')">About Us</a></li>
-      <li class="nav-item"><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
     </ul>
 
     <div class="nav-actions">
       <button class="btn-pill" onclick="openDrawer('wishlist')">
-        <i class="fa-regular fa-heart"></i> Wishlist <span class="badge" id="header-wishlist-count">0</span>
+        <i class="fa-regular fa-heart"></i> <span class="badge" id="header-wishlist-count">0</span>
       </button>
       <button class="btn-pill" onclick="openDrawer('cart')">
-        <i class="fa-solid fa-basket-shopping"></i> Cart <span class="badge" id="header-cart-count">0</span>
+        <i class="fa-solid fa-basket-shopping"></i> <span class="badge" id="header-cart-count">0</span>
       </button>
       <button class="btn-pill" onclick="openModal('profile-modal')">
         <i class="fa-regular fa-user"></i> <span id="nav-user-name">Login</span>
@@ -492,269 +321,166 @@
 
   <!-- Content Pages -->
   <main class="container">
-
     <!-- HOME PAGE -->
     <div id="page-home" class="page-section active">
       <section class="hero-banner">
         <div class="hero-content">
           <div class="hero-subtitle">WELCOME TO THE AURA ATELIER ✦</div>
           <h2 class="hero-title">Little things. Big feelings. ♡</h2>
-          <p class="hero-desc">Beautiful gifts and thoughtful surprises, made specially for your special people.</p>
+          <p class="hero-desc">Beautiful gifts and thoughtful surprises, carefully handcrafted to make your loved ones feel truly special.</p>
           <div class="hero-buttons">
             <button class="btn-primary" onclick="showPage('collections')">Explore Collection ✨</button>
-            <a href="https://instagram.com/_the.aura.in" target="_blank" class="btn-outline">Instagram (@_the.aura.in)</a>
+            <a href="https://instagram.com/_the.aura.in" target="_blank" class="btn-outline">Follow Instagram</a>
           </div>
         </div>
         <div class="hero-image-wrapper">
-          <div class="hero-img-box" style="background-image: url('https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=800');"></div>
+          <div class="hero-img-box" style="background-image: url('https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=800');"></div>
         </div>
       </section>
 
-      <!-- Category Quick Select -->
       <section class="categories-bar" id="quick-categories"></section>
 
-      <!-- Customised Hampers / Featured -->
       <section>
         <div class="section-header">
-          <h3 class="section-title">Customised Hampers</h3>
+          <h3 class="section-title">Trending Hampers</h3>
           <div>
             <button class="btn-primary admin-only" onclick="openAddProductModal('hampers')">+ Add Item</button>
-            <button class="btn-pill" style="display:inline-flex;" onclick="openCategory('hampers')">View All</button>
+            <button class="btn-outline" style="padding: 8px 16px;" onclick="openCategory('hampers')">View All <i class="fa-solid fa-arrow-right"></i></button>
           </div>
         </div>
         <div class="products-grid" id="featured-hampers-grid"></div>
       </section>
-
-      <!-- Customer Reviews Section -->
-      <section class="reviews-section">
-        <div class="section-header">
-          <h3 class="section-title">Customer Reviews</h3>
-          <button class="btn-primary" onclick="openModal('review-modal')">+ Write a Review</button>
-        </div>
-        <div class="reviews-grid" id="reviews-grid"></div>
-      </section>
-
-      <section class="features-grid">
-        <div class="feature-box">
-          <div class="feature-icon"><i class="fa-regular fa-heart"></i></div>
-          <div><h4>Handmade with Love</h4><p>Crafted with passion</p></div>
-        </div>
-        <div class="feature-box">
-          <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
-          <div><h4>Premium Quality</h4><p>Only the best</p></div>
-        </div>
-        <div class="feature-box">
-          <div class="feature-icon"><i class="fa-solid fa-box-open"></i></div>
-          <div><h4>Secure Packaging</h4><p>Safe & sound</p></div>
-        </div>
-        <div class="feature-box">
-          <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
-          <div><h4>On-time Delivery</h4><p>On your special day</p></div>
-        </div>
-      </section>
     </div>
 
-    <!-- COLLECTIONS / CATEGORY VIEW -->
+    <!-- COLLECTIONS PAGE -->
     <div id="page-collections" class="page-section">
       <div class="section-header">
         <h3 class="section-title" id="category-page-title">All Collections</h3>
-        <button class="btn-primary admin-only" onclick="openAddProductModal()">+ Add Variety Item</button>
+        <!-- NEW: Price Filter -->
+        <select id="price-filter" onchange="renderProducts()" style="padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border-color); outline: none;">
+          <option value="all">Sort by Price</option>
+          <option value="low-high">Low to High</option>
+          <option value="high-low">High to Low</option>
+        </select>
       </div>
       <div class="products-grid" id="category-products-grid"></div>
     </div>
-
-    <!-- ABOUT US PAGE -->
-    <div id="page-about" class="page-section">
-      <div style="background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); max-width: 800px; margin: 20px auto;">
-        <h2 class="section-title" style="margin-bottom: 20px;">About The Aura Atelier</h2>
-        <p style="margin-bottom: 16px; color: #553E63;">Welcome to <b>The Aura Atelier</b>! We specialize in turning deep feelings into beautiful, tangible keepsakes. Whether it's custom handcrafted hampers, exquisite floral arrangements, or personalized memory boxes, every single order is curated with love, precision, and dedication.</p>
-        <p style="color: #553E63;">Our mission is to bring joy to your special relationships on every occasion. From local celebrations to nationwide deliveries across India, we aim to deliver happiness straight to your doorstep.</p>
-      </div>
-    </div>
-
-    <!-- CONTACT PAGE -->
-    <div id="page-contact" class="page-section">
-      <div style="background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); max-width: 600px; margin: 20px auto;">
-        <h2 class="section-title" style="margin-bottom: 20px;">Get in Touch</h2>
-        <div style="display: flex; flex-direction: column; gap: 16px; font-size: 1rem;">
-          <div><i class="fa-solid fa-phone" style="color: var(--purple-primary); width: 25px;"></i> <b>Phone:</b> 7208718323</div>
-          <div><i class="fa-solid fa-envelope" style="color: var(--purple-primary); width: 25px;"></i> <b>Email:</b> sadhatkd23@gmail.com</div>
-          <div><i class="fa-brands fa-instagram" style="color: var(--purple-primary); width: 25px;"></i> <b>Instagram:</b> <a href="https://instagram.com/_the.aura.in" target="_blank" style="color: var(--purple-primary);">@_the.aura.in</a></div>
-          <div><i class="fa-solid fa-truck" style="color: var(--purple-primary); width: 25px;"></i> Delivery available across India</div>
-        </div>
-      </div>
-    </div>
-
   </main>
-
-  <!-- Side Navigation Overlay & Bar -->
-  <aside class="side-nav">
-    <div class="side-nav-item" onclick="openModal('profile-modal')">
-      <i class="fa-regular fa-user"></i>
-      <span>Profile</span>
-    </div>
-    <div class="side-nav-item" onclick="openDrawer('cart')">
-      <i class="fa-solid fa-basket-shopping"></i>
-      <span class="side-badge" id="side-cart-count">0</span>
-      <span>Cart</span>
-    </div>
-    <div class="side-nav-item" onclick="openDrawer('wishlist')">
-      <i class="fa-regular fa-heart"></i>
-      <span class="side-badge" id="side-wish-count">0</span>
-      <span>Wishlist</span>
-    </div>
-  </aside>
 
   <!-- WhatsApp Action Buttons -->
   <div class="whatsapp-btn-container">
-    <a href="https://wa.me/917208718323?text=Hi!%20I%20have%20a%20customisation%20enquiry%20for%20a%20gift." target="_blank" class="whatsapp-custom-btn" title="Customisation Enquiries">
-      <i class="fa-brands fa-whatsapp"></i> Customisation Enquiries
+    <a href="https://wa.me/917208718323?text=Hi!%20I%20have%20a%20customisation%20enquiry." target="_blank" class="whatsapp-custom-btn">
+      <i class="fa-solid fa-wand-magic-sparkles"></i> Custom Enquiries
     </a>
-    <a href="https://wa.me/917208718323" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
+    <a href="https://wa.me/917208718323" target="_blank" class="whatsapp-btn">
       <i class="fa-brands fa-whatsapp"></i>
     </a>
   </div>
 
-  <!-- Drawers & Modals -->
+  <!-- OVERLAYS & MODALS -->
   <div class="overlay" id="overlay" onclick="closeAllOverlays()"></div>
 
-  <!-- Cart / Wishlist Drawer -->
+  <!-- Cart / Wishlist / Orders Drawer -->
   <div class="side-drawer" id="side-drawer">
     <div class="drawer-header">
       <h3 id="drawer-title">Your Cart</h3>
-      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">&times;</button>
+      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--text-dark);">&times;</button>
     </div>
     <div class="drawer-content" id="drawer-list"></div>
     <div class="drawer-footer" id="drawer-footer"></div>
   </div>
 
-  <!-- User Profile & Delivery Details Modal -->
+  <!-- Profile & Orders Modal -->
   <div class="side-drawer" id="profile-modal">
     <div class="drawer-header">
-      <h3>Customer Details</h3>
-      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">&times;</button>
+      <h3>My Account</h3>
+      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
     </div>
     <div class="drawer-content">
+      <div style="display:flex; gap:10px; margin-bottom: 20px;">
+        <button class="btn-primary" style="flex:1;" onclick="toggleProfileTab('details')">Details</button>
+        <button class="btn-outline" style="flex:1;" onclick="toggleProfileTab('orders')">My Orders</button>
+      </div>
+
+      <!-- Profile Form -->
       <form id="profile-form" onsubmit="saveProfile(event)">
         <div class="form-group"><label>Full Name</label><input type="text" id="cust-name" required></div>
         <div class="form-group"><label>Phone Number</label><input type="tel" id="cust-phone" required></div>
         <div class="form-group"><label>Email Address</label><input type="email" id="cust-email" required></div>
-        <div class="form-group">
-          <label>Gender</label>
-          <select id="cust-gender">
-            <option value="Female">Female</option>
-            <option value="Male">Male</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Locality / Address</label><textarea id="cust-address" rows="2" required></textarea></div>
-        <div class="form-group"><label>City</label><input type="text" id="cust-city" required></div>
-        <div class="form-group"><label>State</label><input type="text" id="cust-state" required></div>
-        <div class="form-group"><label>Pincode</label><input type="text" id="cust-pincode" required></div>
-        <button type="submit" class="btn-primary" style="width:100%; margin-top:10px;">Save Profile</button>
+        <div class="form-group"><label>Complete Address</label><textarea id="cust-address" rows="3" required></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;">Save Profile</button>
       </form>
+
+      <!-- Orders View -->
+      <div id="orders-view" style="display:none;">
+        <div id="orders-list"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Customer Review Modal -->
-  <div class="side-drawer" id="review-modal">
+  <!-- NEW: Gift Customization Modal -->
+  <div class="side-drawer" id="customization-modal">
     <div class="drawer-header">
-      <h3>Write a Review</h3>
-      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">&times;</button>
+      <h3>Personalize Gift</h3>
+      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
     </div>
     <div class="drawer-content">
-      <form id="review-form" onsubmit="saveReview(event)">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" id="review-name" required placeholder="Enter your name">
-        </div>
-        <div class="form-group">
-          <label>Rating</label>
-          <div class="rating-picker" id="star-picker">
-            <i class="fa-solid fa-star active" onclick="setRating(1)"></i>
-            <i class="fa-solid fa-star active" onclick="setRating(2)"></i>
-            <i class="fa-solid fa-star active" onclick="setRating(3)"></i>
-            <i class="fa-solid fa-star active" onclick="setRating(4)"></i>
-            <i class="fa-solid fa-star active" onclick="setRating(5)"></i>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Your Experience</label>
-          <textarea id="review-comment" rows="3" required placeholder="Share your experience with our products or service..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%; margin-top:10px;">Submit Review</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Admin Add Variety / Product Modal -->
-  <div class="side-drawer" id="admin-product-modal">
-    <div class="drawer-header">
-      <h3>Admin: Add Variety/Product</h3>
-      <button onclick="closeAllOverlays()" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">&times;</button>
-    </div>
-    <div class="drawer-content">
-      <form id="admin-add-form" onsubmit="saveProduct(event)">
-        <div class="form-group"><label>Product Name</label><input type="text" id="prod-name" required></div>
-        <div class="form-group"><label>Price (₹)</label><input type="number" id="prod-price" required></div>
-        <div class="form-group"><label>Photo URL</label><input type="url" id="prod-img" placeholder="https://..." required></div>
-        <div class="form-group">
-          <label>Category / Placement</label>
-          <select id="prod-category"></select>
-        </div>
-        <div class="form-group"><label>Description</label><textarea id="prod-desc" rows="2"></textarea></div>
-        <button type="submit" class="btn-primary" style="width:100%; margin-top:10px;">Add Variety</button>
-      </form>
+      <p style="font-size:0.9rem; color:#666; margin-bottom: 20px;">Add a special touch to your gift. This is completely free!</p>
+      <div class="form-group">
+        <label>Message on Greeting Card (Optional)</label>
+        <textarea id="custom-note" rows="3" placeholder="E.g., Happy Birthday! Wishing you all the best..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Upload Photos (For Polaroids/Frames)</label>
+        <input type="file" id="custom-photo" accept="image/*">
+        <small style="color:#888; font-size:0.75rem;">Max 3 photos. Or send them via WhatsApp later.</small>
+      </div>
+      <button class="btn-primary" style="width:100%; margin-top: 10px;" onclick="confirmAddToCart()">Confirm & Add to Cart</button>
     </div>
   </div>
 
   <script>
-    // --- Application State ---
+    // --- State Variables ---
     let logoClickCount = 0;
     let isAdmin = false;
     let currentCategory = 'all';
-    let selectedRating = 5;
+    let searchQuery = '';
+    
+    // NEW: App State for checkout features
+    let appliedPromo = null;
+    let discountAmount = 0;
+    let pendingProductToAdd = null; 
+    let pastOrders = [];
 
     const categories = [
       { id: 'bouquets', name: 'Bouquets', icon: 'fa-spa' },
       { id: 'for-him', name: 'For Him', icon: 'fa-user-tie' },
       { id: 'for-her', name: 'For Her', icon: 'fa-person-dress' },
-      { id: 'chocolates', name: 'Chocolate Gifts', icon: 'fa-cookie' },
-      { id: 'greeting-cards', name: 'Greeting Cards', icon: 'fa-envelope' },
+      { id: 'chocolates', name: 'Chocolates', icon: 'fa-cookie' },
+      { id: 'greeting-cards', name: 'Cards', icon: 'fa-envelope' },
       { id: 'hampers', name: 'Hampers', icon: 'fa-gift' }
     ];
 
-    const occasions = [
-      'Diwali', 'Rakshabandhan', 'Pongal', 'Friendship Day', 
-      'Boyfriend Day', 'Girlfriend Day', "Valentine's Day"
-    ];
+    const occasions = ['Diwali', 'Birthday', 'Anniversary', 'Valentine\'s Day'];
 
     let products = [
-      { id: 1, name: 'Mini Polaroid Gift Box', price: 499, img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'Memories boxed with love.' },
-      { id: 2, name: 'Birthday Surprise Box', price: 899, img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'The perfect surprise for their special day.' },
+      { id: 1, name: 'Mini Polaroid Gift Box', price: 499, img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'Beautiful polaroid memories boxed with love and fairy lights.' },
+      { id: 2, name: 'Birthday Surprise Box', price: 899, img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'The perfect surprise hamper for their special day.' },
       { id: 3, name: 'Velvet Rose Bouquet', price: 1299, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=600', cat: 'bouquets', desc: 'Fresh velvet roses styled elegantly.' },
-      { id: 4, name: 'Gents Executive Box', price: 1499, img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600', cat: 'for-him', desc: 'Curated essentials for him.' }
-    ];
-
-    let reviews = [
-      { id: 1, name: 'Ananya S.', rating: 5, comment: 'The hamper was crafted so beautifully! Fast delivery and exceptional packaging.' },
-      { id: 2, name: 'Rohan M.', rating: 5, comment: 'Ordered the Polaroid gift box for my partner. Absolutely loved the personal touch!' }
+      { id: 4, name: 'Premium Chocolate Tray', price: 650, img: 'https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=600', cat: 'chocolates', desc: 'Assorted handmade premium chocolates.' }
     ];
 
     let cart = [];
     let wishlist = [];
     let userProfile = {};
 
-    // --- Initialization ---
     window.onload = function() {
       renderNavigation();
       renderQuickCategories();
       renderProducts();
-      renderReviews();
       updateBadges();
     };
 
-    // --- Admin Secret Toggle (5 clicks on logo) ---
     function registerLogoClick() {
       logoClickCount++;
       if (logoClickCount === 5) {
@@ -766,76 +492,80 @@
       }
     }
 
-    // --- Navigation & Dropdowns ---
     function renderNavigation() {
       const colDropdown = document.getElementById('collections-dropdown');
       colDropdown.innerHTML = `<div class="dropdown-item" onclick="openCategory('all')"><b>All Collections</b></div>`;
-      categories.forEach(c => {
-        colDropdown.innerHTML += `<div class="dropdown-item" onclick="openCategory('${c.id}')">${c.name}</div>`;
-      });
+      categories.forEach(c => colDropdown.innerHTML += `<div class="dropdown-item" onclick="openCategory('${c.id}')">${c.name}</div>`);
 
       const occDropdown = document.getElementById('occasions-dropdown');
       occDropdown.innerHTML = '';
-      occasions.forEach(occ => {
-        occDropdown.innerHTML += `<div class="dropdown-item" onclick="openCategory('occ-${occ}')">${occ}</div>`;
-      });
-
-      const catSelect = document.getElementById('prod-category');
-      catSelect.innerHTML = '';
-      categories.forEach(c => catSelect.innerHTML += `<option value="${c.id}">${c.name}</option>`);
-      occasions.forEach(o => catSelect.innerHTML += `<option value="occ-${o}">Occasion: ${o}</option>`);
+      occasions.forEach(occ => occDropdown.innerHTML += `<div class="dropdown-item" onclick="openCategory('occ-${occ}')">${occ}</div>`);
     }
 
     function renderQuickCategories() {
       const grid = document.getElementById('quick-categories');
-      grid.innerHTML = '';
-      categories.forEach(c => {
-        grid.innerHTML += `
-          <div class="category-card" onclick="openCategory('${c.id}')">
-            <i class="fa-solid ${c.icon}"></i> ${c.name}
-          </div>
-        `;
-      });
+      grid.innerHTML = categories.map(c => `
+        <div class="category-card" onclick="openCategory('${c.id}')">
+          <i class="fa-solid ${c.icon}"></i> ${c.name}
+        </div>
+      `).join('');
     }
 
-    // --- Navigation Router ---
     function showPage(pageId) {
       document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
       document.getElementById(`page-${pageId}`).classList.add('active');
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      event.target.classList.add('active');
     }
 
     function openCategory(catId) {
       currentCategory = catId;
+      searchQuery = '';
+      document.getElementById('global-search').value = '';
       showPage('collections');
-      let title = "Collections";
-      if(catId.startsWith('occ-')) {
-        title = `Occasion: ${catId.replace('occ-', '')}`;
-      } else {
+      let title = "All Collections";
+      if(catId !== 'all') {
         const catObj = categories.find(c => c.id === catId);
-        title = catObj ? catObj.name : "All Collections";
+        title = catObj ? catObj.name : `Occasion: ${catId.replace('occ-', '')}`;
       }
       document.getElementById('category-page-title').innerText = title;
       renderProducts();
     }
 
-    // --- Rendering Products ---
+    function handleSearch() {
+      searchQuery = document.getElementById('global-search').value.toLowerCase();
+      if(searchQuery) {
+        showPage('collections');
+        document.getElementById('category-page-title').innerText = `Search Results for "${searchQuery}"`;
+      } else {
+        openCategory('all');
+      }
+      renderProducts();
+    }
+
     function renderProducts() {
       const homeGrid = document.getElementById('featured-hampers-grid');
       const hamperProds = products.filter(p => p.cat === 'hampers');
-      homeGrid.innerHTML = hamperProds.length ? hamperProds.map(p => getProductCardHtml(p)).join('') : `<div class="empty-msg">No hampers added yet.</div>`;
+      homeGrid.innerHTML = hamperProds.map(p => getProductCardHtml(p)).join('');
 
       const catGrid = document.getElementById('category-products-grid');
       let filtered = products;
-      if (currentCategory !== 'all') {
-        filtered = products.filter(p => p.cat === currentCategory);
+
+      // Apply Category Filter
+      if (currentCategory !== 'all' && !searchQuery) {
+        filtered = filtered.filter(p => p.cat === currentCategory);
       }
+      // Apply Search Filter
+      if (searchQuery) {
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery));
+      }
+      // Apply Sort
+      const sortVal = document.getElementById('price-filter') ? document.getElementById('price-filter').value : 'all';
+      if(sortVal === 'low-high') filtered.sort((a,b) => a.price - b.price);
+      if(sortVal === 'high-low') filtered.sort((a,b) => b.price - a.price);
 
       if (filtered.length === 0) {
-        if (currentCategory.startsWith('occ-')) {
-          catGrid.innerHTML = `<div class="empty-msg" style="grid-column: span 2;">No collection in this occasion right now.</div>`;
-        } else {
-          catGrid.innerHTML = `<div class="empty-msg" style="grid-column: span 2;">No products available in this category yet.</div>`;
-        }
+        catGrid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:#888;">No products found.</div>`;
       } else {
         catGrid.innerHTML = filtered.map(p => getProductCardHtml(p)).join('');
       }
@@ -854,75 +584,87 @@
           <div class="product-info">
             <h4 class="product-title">${p.name}</h4>
             <div class="product-price">₹${p.price}</div>
-            <p class="product-desc">${p.desc || ''}</p>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <button class="btn-primary" onclick="addToCart(${p.id})">Add to Cart</button>
-              <button class="btn-outline" style="padding: 8px 16px; font-size: 0.85rem;" onclick="buyNow(${p.id})">Buy Now</button>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-actions">
+              <button class="btn-outline" onclick="initiateAddToCart(${p.id}, false)">Add to Cart</button>
+              <button class="btn-primary" onclick="initiateAddToCart(${p.id}, true)">Buy Now</button>
             </div>
           </div>
-          ${isAdmin ? `<button class="delete-prod-btn" onclick="removeProduct(${p.id})"><i class="fa-solid fa-trash"></i> Delete</button>` : ''}
         </div>
       `;
     }
 
-    // --- Shopping Cart & Wishlist Actions ---
-    function addToCart(prodId) {
-      const prod = products.find(p => p.id === prodId);
-      if (prod) {
-        cart.push(prod);
+    // --- NEW: Customization Flow ---
+    let instantBuyMode = false;
+    function initiateAddToCart(prodId, isBuyNow) {
+      pendingProductToAdd = products.find(p => p.id === prodId);
+      instantBuyMode = isBuyNow;
+      document.getElementById('custom-note').value = '';
+      document.getElementById('custom-photo').value = '';
+      openModal('customization-modal');
+    }
+
+    function confirmAddToCart() {
+      if(!pendingProductToAdd) return;
+      
+      const note = document.getElementById('custom-note').value;
+      const fileInput = document.getElementById('custom-photo');
+      const hasPhoto = fileInput.files.length > 0 ? true : false;
+
+      // Create a unique cart item
+      const cartItem = {
+        ...pendingProductToAdd,
+        cartId: Date.now() + Math.random(),
+        customNote: note,
+        hasPhoto: hasPhoto
+      };
+
+      if(instantBuyMode) {
+        cart = [cartItem]; // Overwrite cart for instant checkout
+        closeAllOverlays();
+        checkoutGPay();
+      } else {
+        cart.push(cartItem);
         updateBadges();
         openDrawer('cart');
       }
-    }
-
-    function buyNow(prodId) {
-      const prod = products.find(p => p.id === prodId);
-      if (!prod) return;
-
-      if (!userProfile.name) {
-        alert("Please complete your delivery profile details first.");
-        openModal('profile-modal');
-        return;
-      }
-
-      cart = [prod];
-      updateBadges();
-      checkoutGPay(); // Replaced razorpay call with GPay
+      pendingProductToAdd = null;
     }
 
     function toggleWishlist(prodId) {
       const idx = wishlist.findIndex(p => p.id === prodId);
-      if (idx > -1) {
-        wishlist.splice(idx, 1);
-      } else {
-        const prod = products.find(p => p.id === prodId);
-        if (prod) wishlist.push(prod);
-      }
+      if (idx > -1) wishlist.splice(idx, 1);
+      else wishlist.push(products.find(p => p.id === prodId));
       updateBadges();
       renderProducts();
     }
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
+    function removeFromCart(cartId) {
+      cart = cart.filter(c => c.cartId !== cartId);
       updateBadges();
       renderDrawerContent('cart');
     }
 
-    function removeFromWishlist(index) {
-      wishlist.splice(index, 1);
-      updateBadges();
-      renderProducts();
-      renderDrawerContent('wishlist');
-    }
-
     function updateBadges() {
       document.getElementById('header-cart-count').innerText = cart.length;
-      document.getElementById('side-cart-count').innerText = cart.length;
       document.getElementById('header-wishlist-count').innerText = wishlist.length;
-      document.getElementById('side-wish-count').innerText = wishlist.length;
     }
 
-    // --- Drawer Management ---
+    // --- PROMO CODE LOGIC ---
+    function applyPromo() {
+      const code = document.getElementById('promo-input').value.toUpperCase();
+      if(code === 'AURA10') {
+        appliedPromo = 'AURA10';
+        discountAmount = 0.10; // 10%
+        alert("Promo Code Applied! 10% Off.");
+      } else {
+        alert("Invalid or expired promo code.");
+        appliedPromo = null;
+        discountAmount = 0;
+      }
+      renderDrawerContent('cart');
+    }
+
     function openDrawer(type) {
       document.getElementById('overlay').classList.add('active');
       document.getElementById('side-drawer').classList.add('active');
@@ -930,69 +672,87 @@
     }
 
     function renderDrawerContent(type) {
-      const title = document.getElementById('drawer-title');
       const list = document.getElementById('drawer-list');
       const footer = document.getElementById('drawer-footer');
 
       if (type === 'cart') {
-        title.innerText = 'Your Shopping Cart';
+        document.getElementById('drawer-title').innerText = 'Your Shopping Cart';
         if (cart.length === 0) {
-          list.innerHTML = `<div class="empty-msg">Your cart is empty.</div>`;
+          list.innerHTML = `<div style="text-align:center; padding: 40px; color:#888;">Your cart is empty.</div>`;
           footer.innerHTML = '';
         } else {
-          let total = cart.reduce((sum, item) => sum + item.price, 0);
-          list.innerHTML = cart.map((item, idx) => `
+          let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+          let discount = subtotal * discountAmount;
+          let total = subtotal - discount;
+
+          list.innerHTML = cart.map((item) => `
             <div class="item-row">
-              <img src="${item.img}" alt="${item.name}">
+              <img src="${item.img}">
               <div class="item-details">
                 <b>${item.name}</b>
                 <div>₹${item.price}</div>
+                ${item.customNote ? `<div class="custom-note-preview"><i class="fa-solid fa-pen-nib"></i> "${item.customNote}"</div>` : ''}
+                ${item.hasPhoto ? `<div class="custom-note-preview"><i class="fa-solid fa-image"></i> Photo attached</div>` : ''}
               </div>
-              <button class="remove-btn" onclick="removeFromCart(${idx})"><i class="fa-solid fa-trash"></i></button>
+              <button class="remove-btn" onclick="removeFromCart(${item.cartId})"><i class="fa-solid fa-trash"></i></button>
             </div>
           `).join('');
 
           footer.innerHTML = `
-            <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:12px; font-size:1.1rem;">
-              <span>Total:</span>
-              <span>₹${total}</span>
+            <div class="promo-box">
+              <input type="text" id="promo-input" placeholder="Promo Code (e.g. AURA10)" value="${appliedPromo || ''}">
+              <button onclick="applyPromo()">Apply</button>
             </div>
-            <button class="btn-primary" style="width:100%; background-color:#1A73E8; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="checkoutGPay()">
-              <i class="fa-brands fa-google-pay" style="font-size: 1.2rem;"></i> Pay with GPay / UPI
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#666;">
+              <span>Subtotal:</span><span>₹${subtotal.toFixed(2)}</span>
+            </div>
+            ${discount > 0 ? `<div style="display:flex; justify-content:space-between; margin-bottom:6px; color:var(--whatsapp-green);">
+              <span>Discount (${appliedPromo}):</span><span>-₹${discount.toFixed(2)}</span>
+            </div>` : ''}
+            <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1.2rem; margin: 10px 0 20px;">
+              <span>Total:</span><span style="color:var(--purple-primary)">₹${total.toFixed(2)}</span>
+            </div>
+            <button class="btn-primary" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="checkoutGPay()">
+              <i class="fa-solid fa-lock"></i> Secure Checkout
             </button>
           `;
         }
-      } else {
-        title.innerText = 'Your Wishlist';
-        if (wishlist.length === 0) {
-          list.innerHTML = `<div class="empty-msg">Your wishlist is empty.</div>`;
-          footer.innerHTML = '';
-        } else {
-          list.innerHTML = wishlist.map((item, idx) => `
+      } else if (type === 'wishlist') {
+         document.getElementById('drawer-title').innerText = 'Your Wishlist';
+         if (wishlist.length === 0) {
+          list.innerHTML = `<div style="text-align:center; padding: 40px; color:#888;">Your wishlist is empty.</div>`;
+         } else {
+           list.innerHTML = wishlist.map((item, idx) => `
             <div class="item-row">
-              <img src="${item.img}" alt="${item.name}">
-              <div class="item-details">
-                <b>${item.name}</b>
-                <div>₹${item.price}</div>
-              </div>
-              <button class="btn-primary" style="padding:4px 10px; font-size:0.75rem;" onclick="addToCart(${item.id})">Move to Cart</button>
-              <button class="remove-btn" onclick="removeFromWishlist(${idx})"><i class="fa-solid fa-trash"></i></button>
+              <img src="${item.img}">
+              <div class="item-details"><b>${item.name}</b><div>₹${item.price}</div></div>
+              <button class="btn-primary" style="padding:6px 12px; font-size:0.8rem;" onclick="initiateAddToCart(${item.id}, false)">Add</button>
             </div>
           `).join('');
-          footer.innerHTML = '';
-        }
+         }
+         footer.innerHTML = '';
       }
     }
 
-    // --- Profile & Form Actions ---
+    // --- Profile & Orders Logic ---
     function openModal(modalId) {
       document.getElementById('overlay').classList.add('active');
       document.getElementById(modalId).classList.add('active');
     }
-
     function closeAllOverlays() {
       document.getElementById('overlay').classList.remove('active');
       document.querySelectorAll('.side-drawer').forEach(d => d.classList.remove('active'));
+    }
+
+    function toggleProfileTab(tab) {
+      if(tab === 'details') {
+        document.getElementById('profile-form').style.display = 'block';
+        document.getElementById('orders-view').style.display = 'none';
+      } else {
+        document.getElementById('profile-form').style.display = 'none';
+        document.getElementById('orders-view').style.display = 'block';
+        renderOrders();
+      }
     }
 
     function saveProfile(e) {
@@ -1001,151 +761,53 @@
         name: document.getElementById('cust-name').value,
         phone: document.getElementById('cust-phone').value,
         email: document.getElementById('cust-email').value,
-        gender: document.getElementById('cust-gender').value,
-        address: document.getElementById('cust-address').value,
-        city: document.getElementById('cust-city').value,
-        state: document.getElementById('cust-state').value,
-        pincode: document.getElementById('cust-pincode').value,
+        address: document.getElementById('cust-address').value
       };
       document.getElementById('nav-user-name').innerText = userProfile.name.split(' ')[0];
-      alert('Delivery details updated successfully!');
+      alert('Profile saved!');
       closeAllOverlays();
     }
 
-    // --- Customer Reviews Operations ---
-    function setRating(stars) {
-      selectedRating = stars;
-      const icons = document.querySelectorAll('#star-picker .fa-star');
-      icons.forEach((icon, index) => {
-        if (index < stars) {
-          icon.classList.add('active');
-        } else {
-          icon.classList.remove('active');
-        }
-      });
-    }
-
-    function saveReview(e) {
-      e.preventDefault();
-      const newReview = {
-        id: Date.now(),
-        name: document.getElementById('review-name').value,
-        rating: selectedRating,
-        comment: document.getElementById('review-comment').value
-      };
-      reviews.unshift(newReview);
-      renderReviews();
-      closeAllOverlays();
-      document.getElementById('review-form').reset();
-      setRating(5);
-    }
-
-    function renderReviews() {
-      const grid = document.getElementById('reviews-grid');
-      if (reviews.length === 0) {
-        grid.innerHTML = `<div class="empty-msg">No reviews yet. Be the first to share your feedback!</div>`;
+    function renderOrders() {
+      const list = document.getElementById('orders-list');
+      if(pastOrders.length === 0) {
+        list.innerHTML = `<div style="text-align:center; padding:20px; color:#888;">No past orders found.</div>`;
         return;
       }
-
-      grid.innerHTML = reviews.map(r => {
-        let starsHtml = '';
-        for (let i = 1; i <= 5; i++) {
-          starsHtml += `<i class="fa-solid fa-star${i <= r.rating ? '' : '-o'}" style="color:${i <= r.rating ? '#FFB800' : '#CCC'}"></i>`;
-        }
-        return `
-          <div class="review-card">
-            <div class="review-header">
-              <span class="review-author">${r.name}</span>
-              <div class="star-rating">${starsHtml}</div>
-            </div>
-            <p class="review-comment">"${r.comment}"</p>
-          </div>
-        `;
-      }).join('');
+      list.innerHTML = pastOrders.map(order => `
+        <div class="order-card">
+          <div class="order-status"><i class="fa-solid fa-circle-check"></i> Order Placed</div>
+          <div style="font-size:0.85rem; color:#666;">Order ID: ${order.id}</div>
+          <div style="font-weight:700; margin-top:8px;">Total Paid: ₹${order.total}</div>
+          <div style="font-size:0.85rem; margin-top:8px;">${order.items.length} Item(s)</div>
+        </div>
+      `).join('');
     }
 
-    // --- GPay / UPI Direct Checkout Logic ---
+    // --- Checkout Logic ---
     function checkoutGPay() {
       if (!userProfile.name) {
-        alert("Please complete your delivery profile details first.");
+        alert("Please save your delivery profile details first.");
         openModal('profile-modal');
         return;
       }
-
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-
-      const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+      
+      let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+      let totalAmount = subtotal - (subtotal * discountAmount);
       const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
       
-      // Updated Google Pay UPI ID
-      const upiId = "sadhatkd23@okicici"; 
+      // Save to Orders
+      pastOrders.unshift({ id: orderId, total: totalAmount.toFixed(2), items: [...cart] });
 
-      // Native UPI Intent link (Triggers GPay/UPI apps directly on mobile devices)
+      const upiId = "sadhatkd23@okicici"; 
       const gpayLink = `upi://pay?pa=${upiId}&pn=The%20Aura%20Atelier&tr=${orderId}&tn=Order%20${orderId}&am=${totalAmount}&cu=INR`;
 
-      // Order confirmation formatting for WhatsApp
-      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} - ₹${item.price}`).join('\n');
-      let message = `✨ *NEW GPAY ORDER INITIATED* ✨\n\n` +
-        `🆔 *Order ID:* ${orderId}\n\n` +
-        `👤 *Customer Details:*\n` +
-        `• *Name:* ${userProfile.name}\n` +
-        `• *Phone:* ${userProfile.phone}\n` +
-        `• *Email:* ${userProfile.email}\n` +
-        `• *Address:* ${userProfile.address}, ${userProfile.city}, ${userProfile.state} - ${userProfile.pincode}\n\n` +
-        `🛍️ *Order Details:*\n${productDetails}\n\n` +
-        `💰 *Total Expected:* ₹${totalAmount}\n\n` +
-        `✅ Customer redirected to GPay via UPI intent.`;
+      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} ${item.customNote ? `(Note: ${item.customNote})` : ''}`).join('\n');
+      let message = `✨ *NEW ORDER PLACED* ✨\n\n🆔 *Order ID:* ${orderId}\n\n👤 *Customer Details:*\nName: ${userProfile.name}\nPhone: ${userProfile.phone}\nAddress: ${userProfile.address}\n\n🛍️ *Items:*\n${productDetails}\n\n💰 *Total Paid:* ₹${totalAmount.toFixed(2)}`;
 
-      const whatsappUrl = `https://wa.me/917208718323?text=${encodeURIComponent(message)}`;
-
-      // Clear the cart
-      cart = [];
-      updateBadges();
-      closeAllOverlays();
-
-      // Send intent link to initiate GPay 
+      cart = []; updateBadges(); appliedPromo = null; discountAmount = 0; closeAllOverlays();
       window.location.href = gpayLink;
-
-      // Open WhatsApp confirmation immediately after sending intent 
-      setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-      }, 1500);
-    }
-
-    // --- Admin Product Operations ---
-    function openAddProductModal(defaultCat) {
-      if (!isAdmin) return;
-      if (defaultCat) {
-        document.getElementById('prod-category').value = defaultCat;
-      }
-      openModal('admin-product-modal');
-    }
-
-    function saveProduct(e) {
-      e.preventDefault();
-      const newProd = {
-        id: Date.now(),
-        name: document.getElementById('prod-name').value,
-        price: parseFloat(document.getElementById('prod-price').value),
-        img: document.getElementById('prod-img').value,
-        cat: document.getElementById('prod-category').value,
-        desc: document.getElementById('prod-desc').value
-      };
-      products.push(newProd);
-      renderProducts();
-      closeAllOverlays();
-      document.getElementById('admin-add-form').reset();
-    }
-
-    function removeProduct(prodId) {
-      if(!isAdmin) return;
-      if(confirm("Are you sure you want to remove this product/variety?")) {
-        products = products.filter(p => p.id !== prodId);
-        renderProducts();
-      }
+      setTimeout(() => { window.open(`https://wa.me/917208718323?text=${encodeURIComponent(message)}`, '_blank'); }, 1500);
     }
   </script>
 </body>
