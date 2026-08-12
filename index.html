@@ -346,9 +346,6 @@
         <a class="nav-link">Occasions <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
         <div class="dropdown" id="occasions-dropdown"></div>
       </li>
-      <!-- ADDED: About Us and Contact Nav Links -->
-      <li class="nav-item"><a class="nav-link" onclick="showPage('about')">About Us</a></li>
-      <li class="nav-item"><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
     </ul>
 
     <div class="nav-actions">
@@ -413,54 +410,6 @@
         </select>
       </div>
       <div class="products-grid" id="category-products-grid"></div>
-    </div>
-
-    <!-- ADDED: ABOUT US PAGE -->
-    <div id="page-about" class="page-section">
-      <div class="section-header">
-        <h3 class="section-title">About The Aura Atelier</h3>
-      </div>
-      <div style="background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); line-height: 1.8; color: #553E63;">
-        <h4 style="color: var(--purple-primary); font-size: 1.5rem; margin-bottom: 15px;">Crafting Memories, One Gift at a Time</h4>
-        <p style="margin-bottom: 20px;">Welcome to The Aura Atelier, where we believe that gifting is an art form. Founded with a passion for bringing joy to life's special moments, we specialize in curating premium handmade gifts, bespoke hampers, and stunning bouquets that speak volumes.</p>
-        <p style="margin-bottom: 20px;">Every item in our collection is carefully handcrafted with love and attention to detail. We source the finest materials, from velvet roses to rich, artisanal chocolates, ensuring that every surprise you send leaves a lasting impression.</p>
-        <p>Whether you are celebrating a milestone, expressing gratitude, or simply saying "I love you," we are here to help you translate your biggest feelings into beautiful little things.</p>
-      </div>
-    </div>
-
-    <!-- ADDED: CONTACT PAGE -->
-    <div id="page-contact" class="page-section">
-      <div class="section-header">
-        <h3 class="section-title">Contact Us</h3>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 30px;">
-        <!-- Contact Info -->
-        <div style="flex: 1 1 300px; background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-          <h4 style="color: var(--purple-primary); font-size: 1.3rem; margin-bottom: 20px;">Get in Touch</h4>
-          <p style="color: #553E63; margin-bottom: 30px;">We'd love to hear from you! Reach out for custom orders, bulk corporate gifting, or just to say hello.</p>
-          
-          <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px; color: var(--text-dark);">
-            <div style="background: var(--purple-light); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--purple-primary);"><i class="fa-solid fa-phone"></i></div>
-            <div><b>Phone / WhatsApp</b><br><a href="https://wa.me/917208718323" style="color: #553E63; text-decoration: none;">+91 72087 18323</a></div>
-          </div>
-
-          <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px; color: var(--text-dark);">
-            <div style="background: var(--purple-light); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--purple-primary);"><i class="fa-brands fa-instagram"></i></div>
-            <div><b>Instagram</b><br><a href="https://instagram.com/_the.aura.in" style="color: #553E63; text-decoration: none;">@_the.aura.in</a></div>
-          </div>
-        </div>
-
-        <!-- Contact Form -->
-        <div style="flex: 1 1 300px; background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-          <h4 style="color: var(--purple-primary); font-size: 1.3rem; margin-bottom: 20px;">Send a Message</h4>
-          <form onsubmit="event.preventDefault(); alert('Message sent! We will get back to you soon.'); this.reset();">
-            <div class="form-group"><label>Your Name</label><input type="text" required></div>
-            <div class="form-group"><label>Email Address</label><input type="email" required></div>
-            <div class="form-group"><label>Message</label><textarea rows="4" required></textarea></div>
-            <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
-          </form>
-        </div>
-      </div>
     </div>
   </main>
 
