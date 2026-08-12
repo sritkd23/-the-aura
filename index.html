@@ -16,9 +16,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Razorpay Checkout SDK Integration -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
   <style>
     :root {
       --bg-cream: #FFFDF9;
@@ -890,7 +887,7 @@
 
       cart = [prod];
       updateBadges();
-      checkout();
+      checkoutGPay(); // Replaced razorpay call with GPay
     }
 
     function toggleWishlist(prodId) {
@@ -960,9 +957,8 @@
               <span>Total:</span>
               <span>₹${total}</span>
             </div>
-            <button class="btn-primary" style="width:100%; margin-bottom: 10px;" onclick="checkout()">Proceed to Razorpay Checkout</button>
             <button class="btn-primary" style="width:100%; background-color:#1A73E8; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="checkoutGPay()">
-              <i class="fa-brands fa-google-pay" style="font-size: 1.2rem;"></i> Pay with GPay
+              <i class="fa-brands fa-google-pay" style="font-size: 1.2rem;"></i> Pay with GPay / UPI
             </button>
           `;
         }
@@ -1068,7 +1064,7 @@
       }).join('');
     }
 
-    // --- GPay Direct Checkout Logic ---
+    // --- GPay / UPI Direct Checkout Logic ---
     function checkoutGPay() {
       if (!userProfile.name) {
         alert("Please complete your delivery profile details first.");
@@ -1084,11 +1080,11 @@
       const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
       const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
       
-      // REPLACE THIS with your actual Google Pay UPI ID
-      const upiId = "sadhatkd23@oksbi"; 
+      // Updated Google Pay UPI ID
+      const upiId = "sadhatkd23@okicici"; 
 
-      // Native UPI Intent link (Triggers GPay/UPI apps on mobile devices)
-      const gpayLink = `upi://pay?pa=${upiId}&pn=The%20Aura%20Atelier&tr=${orderId}&am=${totalAmount}&cu=INR`;
+      // Native UPI Intent link (Triggers GPay/UPI apps directly on mobile devices)
+      const gpayLink = `upi://pay?pa=${upiId}&pn=The%20Aura%20Atelier&tr=${orderId}&tn=Order%20${orderId}&am=${totalAmount}&cu=INR`;
 
       // Order confirmation formatting for WhatsApp
       let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} - ₹${item.price}`).join('\n');
@@ -1117,74 +1113,6 @@
       setTimeout(() => {
         window.open(whatsappUrl, '_blank');
       }, 1500);
-    }
-
-    // --- Online Payment Checkout Logic (Razorpay + WhatsApp Order) ---
-    function checkout() {
-      if (!userProfile.name) {
-        alert("Please complete your delivery profile details first.");
-        openModal('profile-modal');
-        return;
-      }
-
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-
-      const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
-
-      const options = {
-        "key": "TNz7KjEk787iAh", // Your connected Razorpay Key ID
-        "amount": totalAmount * 100, // Converts rupees to paise
-        "currency": "INR",
-        "name": "The Aura Atelier",
-        "description": "Gift Order Payment",
-        "handler": function (response) {
-          const paymentId = response.razorpay_payment_id;
-          const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
-
-          let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} - ₹${item.price}`).join('\n');
-
-          let message = `✨ *NEW PAID ORDER PLACED* ✨\n\n` +
-            `🆔 *Order ID:* ${orderId}\n` +
-            `💳 *Payment ID:* ${paymentId}\n\n` +
-            `👤 *Customer Details:*\n` +
-            `• *Name:* ${userProfile.name}\n` +
-            `• *Phone:* ${userProfile.phone}\n` +
-            `• *Email:* ${userProfile.email}\n` +
-            `• *Address:* ${userProfile.address}, ${userProfile.city}, ${userProfile.state} - ${userProfile.pincode}\n\n` +
-            `🛍️ *Order Details:*\n${productDetails}\n\n` +
-            `💰 *Total Paid:* ₹${totalAmount}\n\n` +
-            `✅ Payment confirmed via Razorpay.`;
-
-          const whatsappUrl = `https://wa.me/917208718323?text=${encodeURIComponent(message)}`;
-
-          cart = [];
-          updateBadges();
-          closeAllOverlays();
-
-          window.open(whatsappUrl, '_blank');
-        },
-        "prefill": {
-          "name": userProfile.name,
-          "email": userProfile.email,
-          "contact": userProfile.phone
-        },
-        "theme": {
-          "color": "#3C1661"
-        }
-      };
-
-      try {
-        const rzp = new Razorpay(options);
-        rzp.on('payment.failed', function (response) {
-          alert("Payment Failed: " + response.error.description);
-        });
-        rzp.open();
-      } catch (err) {
-        alert("Razorpay failed to load. Please check your network connection or Key ID.");
-      }
     }
 
     // --- Admin Product Operations ---
