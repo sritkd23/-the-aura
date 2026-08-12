@@ -960,7 +960,10 @@
               <span>Total:</span>
               <span>₹${total}</span>
             </div>
-            <button class="btn-primary" style="width:100%" onclick="checkout()">Proceed to Online Payment</button>
+            <button class="btn-primary" style="width:100%; margin-bottom: 10px;" onclick="checkout()">Proceed to Razorpay Checkout</button>
+            <button class="btn-primary" style="width:100%; background-color:#1A73E8; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="checkoutGPay()">
+              <i class="fa-brands fa-google-pay" style="font-size: 1.2rem;"></i> Pay with GPay
+            </button>
           `;
         }
       } else {
@@ -1063,6 +1066,57 @@
           </div>
         `;
       }).join('');
+    }
+
+    // --- GPay Direct Checkout Logic ---
+    function checkoutGPay() {
+      if (!userProfile.name) {
+        alert("Please complete your delivery profile details first.");
+        openModal('profile-modal');
+        return;
+      }
+
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+      const orderId = 'AURA-' + Math.floor(100000 + Math.random() * 900000);
+      
+      // REPLACE THIS with your actual Google Pay UPI ID
+      const upiId = "sadhatkd23@oksbi"; 
+
+      // Native UPI Intent link (Triggers GPay/UPI apps on mobile devices)
+      const gpayLink = `upi://pay?pa=${upiId}&pn=The%20Aura%20Atelier&tr=${orderId}&am=${totalAmount}&cu=INR`;
+
+      // Order confirmation formatting for WhatsApp
+      let productDetails = cart.map((item, index) => `${index + 1}. ${item.name} - ₹${item.price}`).join('\n');
+      let message = `✨ *NEW GPAY ORDER INITIATED* ✨\n\n` +
+        `🆔 *Order ID:* ${orderId}\n\n` +
+        `👤 *Customer Details:*\n` +
+        `• *Name:* ${userProfile.name}\n` +
+        `• *Phone:* ${userProfile.phone}\n` +
+        `• *Email:* ${userProfile.email}\n` +
+        `• *Address:* ${userProfile.address}, ${userProfile.city}, ${userProfile.state} - ${userProfile.pincode}\n\n` +
+        `🛍️ *Order Details:*\n${productDetails}\n\n` +
+        `💰 *Total Expected:* ₹${totalAmount}\n\n` +
+        `✅ Customer redirected to GPay via UPI intent.`;
+
+      const whatsappUrl = `https://wa.me/917208718323?text=${encodeURIComponent(message)}`;
+
+      // Clear the cart
+      cart = [];
+      updateBadges();
+      closeAllOverlays();
+
+      // Send intent link to initiate GPay 
+      window.location.href = gpayLink;
+
+      // Open WhatsApp confirmation immediately after sending intent 
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 1500);
     }
 
     // --- Online Payment Checkout Logic (Razorpay + WhatsApp Order) ---
