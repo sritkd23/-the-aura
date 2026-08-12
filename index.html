@@ -570,6 +570,7 @@
         <small style="color:var(--purple-primary); font-size:0.75rem;">Max 3 photos. Or send them via WhatsApp later.</small>
       </div>
       <button class="btn-primary" style="width:100%; margin-top: 10px;" onclick="confirmAddToCart()">Confirm & Add to Cart</button>
+      <button class="btn-outline" style="width:100%; margin-top: 10px;" onclick="skipPersonalization()">Skip Personalization & Continue</button>
     </div>
   </div>
 
@@ -836,28 +837,41 @@
 
     function confirmAddToCart() {
       if(!pendingProductToAdd) return;
-      
-      const note = document.getElementById('custom-note').value;
+
+      const note = document.getElementById('custom-note').value.trim();
       const fileInput = document.getElementById('custom-photo');
-      const hasPhoto = fileInput.files.length > 0 ? true : false;
+      const hasPhoto = fileInput && fileInput.files.length > 0;
+
+      addPendingProductToCart(note, hasPhoto);
+    }
+
+    function skipPersonalization() {
+      if(!pendingProductToAdd) return;
+      addPendingProductToCart('', false);
+    }
+
+    function addPendingProductToCart(note, hasPhoto) {
+      if(!pendingProductToAdd) return;
 
       const cartItem = {
         ...pendingProductToAdd,
         cartId: Date.now() + Math.random(),
-        customNote: note,
-        hasPhoto: hasPhoto
+        customNote: note || '',
+        hasPhoto: !!hasPhoto
       };
 
       if(instantBuyMode) {
-        cart = [cartItem]; 
+        cart = [cartItem];
+        pendingProductToAdd = null;
         closeAllOverlays();
         openOrderSummary();
       } else {
         cart.push(cartItem);
+        pendingProductToAdd = null;
         updateBadges();
+        closeAllOverlays();
         openDrawer('cart');
       }
-      pendingProductToAdd = null;
     }
 
     function toggleWishlist(prodId) {
@@ -1058,7 +1072,7 @@
               <span>Final Total:</span><span>₹${totalAmount.toFixed(2)}</span>
             </div>
 
-            <button class="btn-primary" style="width:100%;" onclick="proceedToPayment()">Confirm Order & Proceed to WhatsApp</button>
+            <button class="btn-primary" style="width:100%;" onclick="proceedToPayment()">Confirm Order & Continue to WhatsApp</button>
           </div>
         </div>
       `;
