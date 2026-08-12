@@ -456,14 +456,10 @@
           <label>Add New Product</label>
           <input type="text" id="new-prod-name" placeholder="Product Name" style="margin-bottom:8px;">
           <input type="number" id="new-prod-price" placeholder="Price (₹)" style="margin-bottom:8px;">
-          <select id="new-prod-cat" style="margin-bottom:8px;">
-            <option value="hampers">Hampers</option>
-            <option value="bouquets">Bouquets</option>
-            <option value="chocolates">Chocolates</option>
-            <option value="greeting-cards">Cards</option>
-            <option value="for-him">For Him</option>
-            <option value="for-her">For Her</option>
-          </select>
+          
+          <!-- This select dropdown is now populated dynamically via JS -->
+          <select id="new-prod-cat" style="margin-bottom:8px;"></select>
+          
           <input type="text" id="new-prod-img" placeholder="Image URL (Leave blank for default)" style="margin-bottom:8px;">
           <textarea id="new-prod-desc" placeholder="Product Description" rows="2" style="margin-bottom:8px;"></textarea>
           <button class="btn-primary" style="width:100%;" onclick="adminAddProduct()">Add Product</button>
@@ -604,6 +600,7 @@
       renderProducts();
       updateBadges();
       adminRenderOccasions();
+      adminRenderCategoryDropdown(); // <-- Dynamically load categories/occasions on load
     };
 
     function registerLogoClick() {
@@ -1043,6 +1040,24 @@
       adminRenderProducts();
       renderProducts();
     }
+    
+    // --> ADDED FUNCTION: Dynamically updates the Add Product Category dropdown
+    function adminRenderCategoryDropdown() {
+      const select = document.getElementById('new-prod-cat');
+      if (!select) return;
+      
+      let html = `<optgroup label="Standard Categories">`;
+      categories.forEach(c => {
+         html += `<option value="${c.id}">${c.name}</option>`;
+      });
+      html += `</optgroup><optgroup label="Occasions">`;
+      occasions.forEach(occ => {
+         html += `<option value="occ-${occ}">${occ}</option>`;
+      });
+      html += `</optgroup>`;
+      
+      select.innerHTML = html;
+    }
 
     function adminRenderOccasions() {
       const list = document.getElementById('admin-occasions-list');
@@ -1053,6 +1068,7 @@
         </div>
       `).join('');
       renderNavigation(); // Update public navbar
+      adminRenderCategoryDropdown(); // Update product dropdown
     }
 
     function adminAddOccasion() {
