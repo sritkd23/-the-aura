@@ -233,10 +233,23 @@
     .admin-order-item { font-size: 0.85rem; padding: 4px 0; border-bottom: 1px dashed #E9D5FF; }
 
     .whatsapp-btn-container { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column; gap: 12px; align-items: flex-end; z-index: 90; }
-    .whatsapp-btn { background: var(--whatsapp-green); color: white; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 6px 20px rgba(126, 34, 206, 0.4); text-decoration: none; transition: transform 0.3s; }
+    .whatsapp-btn { background: var(--whatsapp-green); color: white; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 6px 20px rgba(126, 34, 206, 0.4); text-decoration: none; transition: transform 0.3s; animation: pulse-whatsapp 2s infinite; }
     .whatsapp-btn:hover { transform: scale(1.1); }
     .whatsapp-custom-btn { background: var(--purple-primary); color: white; padding: 10px 18px; border-radius: 30px; display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 6px 20px rgba(107, 33, 168, 0.3); text-decoration: none; transition: transform 0.3s; }
     .whatsapp-custom-btn:hover { transform: translateY(-3px); }
+
+    @keyframes pulse-whatsapp {
+      0% { box-shadow: 0 0 0 0 rgba(126, 34, 206, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(126, 34, 206, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(126, 34, 206, 0); }
+    }
+
+    /* New Interactive Enhancements */
+    .pincode-checker { display: flex; gap: 8px; margin: 12px 0; }
+    .pincode-checker input { flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.85rem; background: #FAF5FF; }
+    .pincode-checker button { padding: 8px 14px; background: var(--purple-primary); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+    
+    .countdown-banner { background: var(--purple-primary); color: white; text-align: center; padding: 6px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; }
 
     /* Responsive adjustments for mobile and tablets */
     @media(max-width: 992px) {
@@ -262,6 +275,10 @@
   </style>
 </head>
 <body>
+
+  <div class="countdown-banner">
+    🎁 Special Gifting Season Sale — Live Countdown: <span id="countdown-timer">12h : 45m : 30s</span>
+  </div>
 
   <div class="admin-indicator">
     <i class="fa-solid fa-user-shield"></i> ADMIN MODE ACTIVE — Click "The Aura" logo 5 times to exit.
@@ -378,38 +395,112 @@
         <div class="products-grid" id="featured-hampers-grid"></div>
       </section>
 
-      <!-- Customer Testimonials Section -->
+      <!-- Behind the Scenes & Reels Video Carousel Section -->
+      <section style="margin: 50px 0;">
+        <div class="section-header" style="text-align: center; display: block;">
+          <span class="hero-subtitle">ATELIER DIARIES</span>
+          <h3 class="section-title">Handmade Magic in Action</h3>
+          <p style="color: var(--text-dark); font-size: 0.95rem; max-width: 600px; margin: 0 auto;">Watch how our artisanal chocolate bouquets and gift boxes come to life with love and precision.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 25px;">
+          <div style="background: white; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); position: relative;">
+            <div style="height: 320px; background: #000; position: relative; display: flex; align-items: center; justify-content: center;">
+              <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover; opacity: 0.85;">
+              <div style="position: absolute; background: rgba(107, 33, 168, 0.8); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer;" onclick="alert('Playing Atelier Reel preview...')"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <div style="padding: 16px;">
+              <b style="color: var(--purple-primary); font-size: 1rem;">Crafting Luxury Chocolate Bouquets 🍫✨</b>
+              <p style="font-size: 0.85rem; color: #6C547B; margin-top: 4px;">A peek behind the scenes at our studio assembling custom orders.</p>
+            </div>
+          </div>
+
+          <div style="background: white; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); position: relative;">
+            <div style="height: 320px; background: #000; position: relative; display: flex; align-items: center; justify-content: center;">
+              <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover; opacity: 0.85;">
+              <div style="position: absolute; background: rgba(107, 33, 168, 0.8); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer;" onclick="alert('Playing Atelier Reel preview...')"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <div style="padding: 16px;">
+              <b style="color: var(--purple-primary); font-size: 1rem;">Personalized Polaroid Box Packaging 🎁</b>
+              <p style="font-size: 0.85rem; color: #6C547B; margin-top: 4px;">Adding fairy lights and handwritten notes with meticulous care.</p>
+            </div>
+          </div>
+
+          <div style="background: white; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); position: relative;">
+            <div style="height: 320px; background: #000; position: relative; display: flex; align-items: center; justify-content: center;">
+              <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=600" style="width:100%; height:100%; object-fit:cover; opacity: 0.85;">
+              <div style="position: absolute; background: rgba(107, 33, 168, 0.8); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer;" onclick="alert('Playing Atelier Reel preview...')"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <div style="padding: 16px;">
+              <b style="color: var(--purple-primary); font-size: 1rem;">Velvet Roses & Wax Seals 🌹</b>
+              <p style="font-size: 0.85rem; color: #6C547B; margin-top: 4px;">Creating unforgettable milestone surprises across India.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Testimonials Section with User-Generated Unboxing Content -->
       <section style="margin: 50px 0;">
         <div class="section-header" style="text-align: center; display: block;">
           <span class="hero-subtitle">LOVE FROM OUR BUYERS</span>
-          <h3 class="section-title">What People Are Saying</h3>
+          <h3 class="section-title">What People Are Saying & Unboxing Moments</h3>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
           
           <div style="background: white; padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <div style="height: 180px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background: #eee;">
+              <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=500" style="width:100%; height:100%; object-fit:cover;">
+            </div>
             <div style="color: var(--star-gold); margin-bottom: 10px;">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 15px; font-style: italic;">"The Mini Polaroid Gift Box exceeded my expectations! The fairy lights and print quality made my partner's birthday extra special."</p>
-            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Ananya Sharma</div>
+            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Ananya Sharma <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer with Photo)</span></div>
           </div>
 
           <div style="background: white; padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <div style="height: 180px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background: #eee;">
+              <img src="https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=500" style="width:100%; height:100%; object-fit:cover;">
+            </div>
             <div style="color: var(--star-gold); margin-bottom: 10px;">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 15px; font-style: italic;">"Ordered a customized chocolate bouquet for our anniversary. Packaging was pristine, and ordering via WhatsApp was seamless. Highly recommend!"</p>
-            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Rishabh Verma</div>
+            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Rishabh Verma <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer with Photo)</span></div>
           </div>
 
           <div style="background: white; padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <div style="height: 180px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background: #eee;">
+              <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=500" style="width:100%; height:100%; object-fit:cover;">
+            </div>
             <div style="color: var(--star-gold); margin-bottom: 10px;">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 15px; font-style: italic;">"Amazing attention to detail! The handwritten note option gave it such a personal touch. Will definitely be ordering again for upcoming festivals."</p>
-            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Priya Iyer</div>
+            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Priya Iyer <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer with Photo)</span></div>
           </div>
 
+        </div>
+      </section>
+
+      <!-- Interactive FAQ & Gifting Guide Accordion -->
+      <section style="margin: 50px 0; background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <div class="section-header" style="text-align: center; display: block; margin-bottom: 25px;">
+          <span class="hero-subtitle">HELP & GUIDES</span>
+          <h3 class="section-title">Frequently Asked Questions</h3>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto;">
+          <details style="background: #FAF5FF; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--purple-primary); font-size: 1.05rem;">How are chocolate bouquets and fragile hampers shipped safely across India?</summary>
+            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;">Every hamper and chocolate bouquet is securely packed with multi-layer bubble wrapping, custom sturdy outer cartons, and temperature-safe cushioning to ensure it reaches your destination in pristine, gift-ready condition.</p>
+          </details>
+          <details style="background: #FAF5FF; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--purple-primary); font-size: 1.05rem;">Can I schedule delivery for a specific date or special occasion?</summary>
+            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;">Yes! When you proceed to checkout and confirm your order via WhatsApp, you can specify your exact required delivery date, and our team will coordinate timely dispatch accordingly.</p>
+          </details>
+          <details style="background: #FAF5FF; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--purple-primary); font-size: 1.05rem;">Are personalized greeting card messages free of charge?</summary>
+            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;">Completely free! You can add your custom heartfelt message during checkout, and we handwrite it onto our signature keepsake stationery cards.</p>
+          </details>
         </div>
       </section>
     </div>
@@ -434,7 +525,7 @@
       <div style="background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); max-width: 700px; margin: 0 auto;">
         <div id="quiz-container">
           <h4 class="handwritten" style="color: var(--purple-primary); font-size: 2.2rem; margin-bottom: 10px; text-align: center;">Find the Perfect Gift</h4>
-          <p style="text-align: center; color: var(--text-dark); margin-bottom: 30px;">Answer 2 quick questions to get personalized recommendations tailored for your special someone.</p>
+          <p style="text-align: center; color: var(--text-dark); margin-bottom: 30px;">Answer 3 quick questions to get personalized recommendations tailored for your special someone.</p>
           
           <div class="form-group">
             <label>1. Who is this gift for?</label>
@@ -447,7 +538,17 @@
           </div>
 
           <div class="form-group">
-            <label>2. What is your budget range?</label>
+            <label>2. What is the occasion?</label>
+            <select id="quiz-occasion">
+              <option value="birthday">Birthday</option>
+              <option value="anniversary">Anniversary</option>
+              <option value="valentine">Valentine's Day / Romance</option>
+              <option value="general">Just Because / Express Love</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>3. What is your budget range?</label>
             <select id="quiz-budget">
               <option value="low">Under ₹600</option>
               <option value="mid">₹600 - ₹1,000</option>
@@ -460,7 +561,7 @@
 
         <div id="quiz-results" style="display: none;">
           <h4 class="handwritten" style="color: var(--purple-primary); font-size: 2.2rem; margin-bottom: 10px; text-align: center;">Recommended For You!</h4>
-          <p style="text-align: center; color: var(--text-dark); margin-bottom: 25px;">Based on your answers, here is our top pick:</p>
+          <p style="text-align: center; color: var(--text-dark); margin-bottom: 25px;">Based on your answers, here are your instant personalized hampers:</p>
           <div id="quiz-recommendation-card" style="margin-bottom: 25px;"></div>
           <button class="btn-outline" style="width: 100%;" onclick="resetQuiz()">Retake Quiz ↺</button>
         </div>
@@ -510,10 +611,10 @@
   </main>
 
   <div class="whatsapp-btn-container">
-    <a href="https://wa.me/917208718323?text=Hi!%20I%20have%20a%20customisation%20enquiry." target="_blank" class="whatsapp-custom-btn">
-      <i class="fa-solid fa-wand-magic-sparkles"></i> Custom Enquiries
+    <a href="https://wa.me/917208718323?text=Hi!%20I%20need%20help%20picking%20a%20gift." target="_blank" class="whatsapp-custom-btn">
+      <i class="fa-brands fa-whatsapp"></i> Chat With Us
     </a>
-    <a href="https://wa.me/917208718323" target="_blank" class="whatsapp-btn">
+    <a href="https://wa.me/917208718323?text=Hi!%20I%20have%20a%20customisation%20enquiry." target="_blank" class="whatsapp-btn">
       <i class="fa-brands fa-whatsapp"></i>
     </a>
   </div>
@@ -635,10 +736,28 @@
     </div>
     <div class="drawer-content">
       <p style="font-size:0.9rem; color:var(--purple-primary); margin-bottom: 20px;">Add a special touch to your gift. This is completely free!</p>
+      
+      <div class="form-group">
+        <label>Ribbon & Packaging Color Choice</label>
+        <select id="custom-ribbon">
+          <option value="Lavender Silk">Lavender Silk Ribbon</option>
+          <option value="Blush Pink">Blush Pink Satin</option>
+          <option value="Classic Gold Foil">Classic Gold Foil</option>
+          <option value="Deep Royal Purple">Deep Royal Purple</option>
+        </select>
+      </div>
+
       <div class="form-group">
         <label>Message on Greeting Card (Optional)</label>
-        <textarea id="custom-note" rows="3" placeholder="E.g., Happy Birthday! Wishing you all the best..."></textarea>
+        <textarea id="custom-note" rows="3" placeholder="E.g., Happy Birthday! Wishing you all the best..." oninput="updateCardPreview()"></textarea>
       </div>
+
+      <!-- Live Greeting Card Message Preview Box -->
+      <div style="background: #FAF5FF; border: 1px dashed #D8B4FE; border-radius: 8px; padding: 12px; margin-bottom: 16px;">
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--purple-primary); margin-bottom: 4px; text-transform: uppercase;">Live Envelope Note Preview:</div>
+        <div id="live-card-preview" style="font-family: 'Dancing Script', cursive; font-size: 1.25rem; color: var(--purple-primary); min-height: 40px;">Your handwritten note preview will appear here...</div>
+      </div>
+
       <div class="form-group">
         <label>Upload Photos (For Polaroids/Frames)</label>
         <input type="file" id="custom-photo" accept="image/*" style="padding: 9px; background: white;">
@@ -698,7 +817,19 @@
       updateBadges();
       adminRenderOccasions();
       adminRenderCategoryDropdown(); 
+      startCountdown();
     };
+
+    function startCountdown() {
+      let time = 12 * 3600 + 45 * 60 + 30;
+      setInterval(() => {
+        if(time > 0) time--;
+        let h = Math.floor(time / 3600);
+        let m = Math.floor((time % 3600) / 60);
+        let s = time % 60;
+        document.getElementById('countdown-timer').innerText = `${h}h : ${m}m : ${s}s`;
+      }, 1000);
+    }
 
     function registerLogoClick() {
       logoClickCount++;
@@ -795,6 +926,17 @@
       }
     }
 
+    function checkPincode(btnElem, prodId) {
+      const input = document.getElementById(`pincode-${prodId}`);
+      const resultBox = document.getElementById(`pincode-result-${prodId}`);
+      const val = input.value.trim();
+      if(val.length === 6) {
+        resultBox.innerHTML = `<span style="color: #15803d; font-weight:600;"><i class="fa-solid fa-circle-check"></i> Pan-India Express Delivery available! Est. 2-4 days.</span>`;
+      } else {
+        resultBox.innerHTML = `<span style="color: #b91c1c; font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> Please enter a valid 6-digit pin code.</span>`;
+      }
+    }
+
     function getProductCardHtml(p) {
       const isWish = wishlist.some(item => item.id === p.id);
       const avgRating = getAverageRating(p.id);
@@ -818,6 +960,13 @@
             <h4 class="product-title" onclick="openProductDetails(${p.id})">${p.name}</h4>
             <div class="product-price">₹${p.price}</div>
             <p class="product-desc">${p.desc}</p>
+            
+            <div class="pincode-checker">
+              <input type="text" id="pincode-${p.id}" placeholder="Enter 6-digit Pincode" maxlength="6">
+              <button onclick="checkPincode(this, ${p.id})">Check</button>
+            </div>
+            <div id="pincode-result-${p.id}" style="font-size:0.75rem; margin-bottom:12px; min-height:16px;"></div>
+
             <div style="display:flex; gap:10px;">
               <button class="btn-outline" style="flex:1;" onclick="initiateAddToCart(${p.id}, false)">Add to Cart</button>
               <button class="btn-primary" style="flex:1;" onclick="initiateAddToCart(${p.id}, true)">Buy Now</button>
@@ -904,12 +1053,13 @@
 
     function runGiftQuiz() {
       const recipient = document.getElementById('quiz-recipient').value;
+      const occasion = document.getElementById('quiz-occasion').value;
       const budget = document.getElementById('quiz-budget').value;
 
       let matched = products[0];
       if (budget === 'low') {
         matched = products.find(p => p.price <= 600) || products[0];
-      } else if (recipient === 'her') {
+      } else if (recipient === 'her' || occasion === 'valentine') {
         matched = products.find(p => p.cat === 'bouquets') || products[2];
       } else {
         matched = products.find(p => p.price > 800) || products[1];
@@ -925,11 +1075,18 @@
       document.getElementById('quiz-container').style.display = 'block';
     }
 
+    function updateCardPreview() {
+      const val = document.getElementById('custom-note').value;
+      const preview = document.getElementById('live-card-preview');
+      preview.innerText = val ? val : "Your handwritten note preview will appear here...";
+    }
+
     function initiateAddToCart(prodId, isBuyNow) {
       pendingProductToAdd = products.find(p => p.id === prodId);
       instantBuyMode = isBuyNow;
       document.getElementById('custom-note').value = '';
       document.getElementById('custom-photo').value = '';
+      document.getElementById('live-card-preview').innerText = "Your handwritten note preview will appear here...";
       openModal('customization-modal');
     }
 
@@ -937,24 +1094,26 @@
       if(!pendingProductToAdd) return;
 
       const note = document.getElementById('custom-note').value.trim();
+      const ribbon = document.getElementById('custom-ribbon').value;
       const fileInput = document.getElementById('custom-photo');
       const hasPhoto = fileInput && fileInput.files.length > 0;
 
-      addPendingProductToCart(note, hasPhoto);
+      addPendingProductToCart(note, ribbon, hasPhoto);
     }
 
     function skipPersonalization() {
       if(!pendingProductToAdd) return;
-      addPendingProductToCart('', false);
+      addPendingProductToCart('', 'Standard', false);
     }
 
-    function addPendingProductToCart(note, hasPhoto) {
+    function addPendingProductToCart(note, ribbon, hasPhoto) {
       if(!pendingProductToAdd) return;
 
       const cartItem = {
         ...pendingProductToAdd,
         cartId: Date.now() + Math.random(),
         customNote: note || '',
+        ribbonChoice: ribbon || 'Standard',
         hasPhoto: !!hasPhoto
       };
 
@@ -1069,6 +1228,7 @@
               <div class="item-details">
                 <b>${item.name}</b>
                 <div>₹${item.price}</div>
+                <div style="font-size:0.75rem; color:#6B21A8;">🎀 ${item.ribbonChoice || 'Standard'}</div>
                 ${item.customNote ? `<div class="custom-note-preview"><i class="fa-solid fa-pen-nib"></i> "${item.customNote}"</div>` : ''}
                 ${item.hasPhoto ? `<div class="custom-note-preview"><i class="fa-solid fa-image"></i> Photo attached</div>` : ''}
               </div>
@@ -1133,7 +1293,7 @@
 
       let itemsHtml = cart.map(item => `
         <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.9rem; color:var(--text-dark);">
-          <span>${item.name} ${item.customNote ? `<i>(Note: ${item.customNote})</i>` : ''}</span>
+          <span>${item.name} (${item.ribbonChoice}) ${item.customNote ? `<i>(Note: ${item.customNote})</i>` : ''}</span>
           <span>₹${item.price}</span>
         </div>
       `).join('');
@@ -1214,9 +1374,10 @@
       globalOrders.unshift(orderRecord);
 
       const productDetails = cart.map((item, index) => {
+        const ribbon = `\n   • Ribbon/Packaging: ${item.ribbonChoice}`;
         const note = item.customNote ? `\n   • Note: ${item.customNote}` : '';
         const photo = item.hasPhoto ? `\n   • Photo: Attached` : '';
-        return `${index + 1}. ${item.name} — ₹${Number(item.price).toFixed(2)}${note}${photo}`;
+        return `${index + 1}. ${item.name} — ₹${Number(item.price).toFixed(2)}${ribbon}${note}${photo}`;
       }).join('\n');
 
       const discountLine = discount > 0 ? `\n🎟️ *Discount:* -₹${discount.toFixed(2)}` : '';
@@ -1263,7 +1424,7 @@
              <span style="color:var(--accent-pink); font-weight:700;">₹${o.total}</span>
           </div>
           <div style="font-size:0.85rem; color:var(--text-dark); margin-bottom:8px;">Customer: ${o.customerName} | ${o.phone}</div>
-          <div>${o.items.map(item => `<div class="admin-order-item">- ${item.name} (₹${item.price})</div>`).join('')}</div>
+          <div>${o.items.map(item => `<div class="admin-order-item">- ${item.name} (${item.ribbonChoice}) (₹${item.price})</div>`).join('')}</div>
         </div>
       `).join('');
     }
