@@ -302,7 +302,7 @@
         <a class="nav-link">Occasions <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
         <div class="dropdown" id="occasions-dropdown"></div>
       </li>
-      <li class="nav-item"><a class="nav-link" onclick="showPage('reels')">Reels</a></li>
+      <li class="nav-item"><a class="nav-link" onclick="showPage('quiz')">Gift Quiz ✨</a></li>
       <li class="nav-item"><a class="nav-link" onclick="showPage('about')">About Us</a></li>
       <li class="nav-item"><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
     </ul>
@@ -333,7 +333,7 @@
           <p class="hero-desc">Beautiful gifts and thoughtful surprises, carefully handcrafted to make your loved ones feel truly special.</p>
           <div class="hero-buttons">
             <button class="btn-primary" onclick="showPage('collections')">Explore Collection ✨</button>
-            <a href="https://instagram.com/_the.aura.in" target="_blank" class="btn-outline">Follow Instagram</a>
+            <button class="btn-outline" onclick="showPage('quiz')">Take Gift Quiz 🎁</button>
           </div>
         </div>
         <div class="hero-image-wrapper">
@@ -367,27 +367,43 @@
       <div class="products-grid" id="category-products-grid"></div>
     </div>
 
-    <div id="page-reels" class="page-section">
+    <!-- Gift Quiz Section -->
+    <div id="page-quiz" class="page-section">
       <div class="section-header">
-        <h3 class="section-title">Social Media Reels</h3>
+        <h3 class="section-title">Gift Recommendation Quiz</h3>
       </div>
-      <div style="background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); text-align: center;">
-        <h4 class="handwritten" style="color: var(--purple-primary); font-size: 2.2rem; margin-bottom: 15px;">Handmade Chocolate Bouquets in Action</h4>
-        <p style="color: var(--text-dark); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Get an exclusive sneak peek into how we craft and package our customized chocolate bouquets for aura.in.</p>
-        
-        <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
-          <div style="flex: 1 1 250px; max-width: 320px; height: 550px; background: var(--bg-soft-purple); border-radius: 20px; border: 2px dashed var(--purple-primary); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--purple-primary); padding: 30px;">
-            <i class="fa-brands fa-instagram" style="font-size: 3rem; margin-bottom: 15px; color: var(--accent-pink);"></i>
-            <h5 style="font-size: 1.2rem; margin-bottom: 10px;">The Making Of</h5>
-            <p style="font-size: 0.9rem; text-align: center; color: var(--text-dark);">Watch us assemble our signature handmade chocolate bouquet from scratch.</p>
-            <button class="btn-primary" style="margin-top: 20px; padding: 8px 20px;">Watch Reel <i class="fa-solid fa-play"></i></button>
+      <div style="background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); max-width: 700px; margin: 0 auto;">
+        <div id="quiz-container">
+          <h4 class="handwritten" style="color: var(--purple-primary); font-size: 2.2rem; margin-bottom: 10px; text-align: center;">Find the Perfect Gift</h4>
+          <p style="text-align: center; color: var(--text-dark); margin-bottom: 30px;">Answer 2 quick questions to get personalized recommendations tailored for your special someone.</p>
+          
+          <div class="form-group">
+            <label>1. Who is this gift for?</label>
+            <select id="quiz-recipient">
+              <option value="him">For Him</option>
+              <option value="her">For Her</option>
+              <option value="partner">Partner / Anniversary</option>
+              <option value="friend">Friend / Birthday</option>
+            </select>
           </div>
-          <div style="flex: 1 1 250px; max-width: 320px; height: 550px; background: var(--bg-soft-purple); border-radius: 20px; border: 2px dashed var(--purple-primary); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--purple-primary); padding: 30px;">
-            <i class="fa-brands fa-instagram" style="font-size: 3rem; margin-bottom: 15px; color: var(--accent-pink);"></i>
-            <h5 style="font-size: 1.2rem; margin-bottom: 10px;">Packaging ASMR</h5>
-            <p style="font-size: 0.9rem; text-align: center; color: var(--text-dark);">Listen to the crisp sounds of premium wrapping, ribbon tying, and finishing touches.</p>
-            <button class="btn-primary" style="margin-top: 20px; padding: 8px 20px;">Watch Reel <i class="fa-solid fa-play"></i></button>
+
+          <div class="form-group">
+            <label>2. What is your budget range?</label>
+            <select id="quiz-budget">
+              <option value="low">Under ₹600</option>
+              <option value="mid">₹600 - ₹1,000</option>
+              <option value="high">Above ₹1,000</option>
+            </select>
           </div>
+
+          <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="runGiftQuiz()">Get Recommendations 🎁</button>
+        </div>
+
+        <div id="quiz-results" style="display: none;">
+          <h4 class="handwritten" style="color: var(--purple-primary); font-size: 2.2rem; margin-bottom: 10px; text-align: center;">Recommended For You!</h4>
+          <p style="text-align: center; color: var(--text-dark); margin-bottom: 25px;">Based on your answers, here is our top pick:</p>
+          <div id="quiz-recommendation-card" style="margin-bottom: 25px;"></div>
+          <button class="btn-outline" style="width: 100%;" onclick="resetQuiz()">Retake Quiz ↺</button>
         </div>
       </div>
     </div>
@@ -827,6 +843,29 @@
       renderProducts(); 
     }
 
+    function runGiftQuiz() {
+      const recipient = document.getElementById('quiz-recipient').value;
+      const budget = document.getElementById('quiz-budget').value;
+
+      let matched = products[0];
+      if (budget === 'low') {
+        matched = products.find(p => p.price <= 600) || products[0];
+      } else if (recipient === 'her') {
+        matched = products.find(p => p.cat === 'bouquets') || products[2];
+      } else {
+        matched = products.find(p => p.price > 800) || products[1];
+      }
+
+      document.getElementById('quiz-container').style.display = 'none';
+      document.getElementById('quiz-results').style.display = 'block';
+      document.getElementById('quiz-recommendation-card').innerHTML = getProductCardHtml(matched);
+    }
+
+    function resetQuiz() {
+      document.getElementById('quiz-results').style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'block';
+    }
+
     function initiateAddToCart(prodId, isBuyNow) {
       pendingProductToAdd = products.find(p => p.id === prodId);
       instantBuyMode = isBuyNow;
@@ -918,9 +957,6 @@
       const overlay = document.getElementById('overlay');
       const drawer = document.getElementById('side-drawer');
 
-      // Cart + Wishlist share the same physical drawer. The old code tried
-      // to open elements with ids "cart" / "wishlist", which do not exist,
-      // causing a JavaScript error and leaving only the blurred overlay visible.
       if (drawerId === 'cart' || drawerId === 'wishlist') {
         overlay.classList.add('active');
         drawer.classList.add('active');
@@ -1308,4 +1344,4 @@
     }
   </script>
 </body>       
-</html>           
+</html>
