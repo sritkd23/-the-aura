@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -136,10 +136,9 @@
     .btn-outline:hover { background: var(--purple-light); transform: translateY(-3px); }
     .btn-outline-small { padding: 8px 16px; font-size: 0.85rem; }
 
-    .hero-img-box {
-      width: 100%; max-width: 500px; height: 350px; background-size: cover; background-position: center; border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin-left: auto; transition: transform 0.5s;
+    .hero-carousel {
+      width: 100%; max-width: 500px; height: 350px; background-color: var(--bg-cream); border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin-left: auto; overflow: hidden; position: relative;
     }
-    .hero-img-box:hover { transform: scale(1.02) rotate(1deg); }
 
     .categories-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 50px; }
     .category-card {
@@ -244,11 +243,6 @@
       100% { box-shadow: 0 0 0 0 rgba(126, 34, 206, 0); }
     }
 
-    /* New Interactive Enhancements */
-    .pincode-checker { display: flex; gap: 8px; margin: 12px 0; }
-    .pincode-checker input { flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.85rem; background: #FAF5FF; }
-    .pincode-checker button { padding: 8px 14px; background: var(--purple-primary); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
-    
     .countdown-banner { background: var(--purple-primary); color: white; text-align: center; padding: 6px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; }
 
     /* Responsive adjustments for mobile and tablets */
@@ -264,7 +258,7 @@
       .hero-banner { grid-template-columns: 1fr; padding: 30px 20px; text-align: center; margin-top: 10px; border-radius: var(--radius-md); }
       .hero-title { font-size: 2.8rem; }
       .hero-buttons { justify-content: center; }
-      .hero-img-box { margin: 20px auto 0; height: 260px; max-width: 100%; }
+      .hero-carousel { margin: 20px auto 0; height: 260px; max-width: 100%; }
       .categories-bar { display: flex; overflow-x: auto; gap: 12px; padding: 5px 0 15px 0; scrollbar-width: none; }
       .category-card { flex: 0 0 110px; padding: 12px; }
       .products-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -354,7 +348,12 @@
           </div>
         </div>
         <div class="hero-image-wrapper">
-          <div class="hero-img-box" style="background-image: url('https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=800');"></div>
+          <div class="hero-carousel">
+            <img id="carousel-img-1" src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=800" style="width:100%; height:100%; object-fit:cover; position:absolute; transition: opacity 0.5s; opacity: 1;">
+            <img id="carousel-img-2" src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=800" style="width:100%; height:100%; object-fit:cover; position:absolute; transition: opacity 0.5s; opacity: 0;">
+            <img id="carousel-img-3" src="https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=800" style="width:100%; height:100%; object-fit:cover; position:absolute; transition: opacity 0.5s; opacity: 0;">
+            <img id="carousel-img-4" src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=800" style="width:100%; height:100%; object-fit:cover; position:absolute; transition: opacity 0.5s; opacity: 0;">
+          </div>
         </div>
       </section>
 
@@ -442,67 +441,54 @@
       <section style="margin: 50px 0;">
         <div class="section-header" style="text-align: center; display: block;">
           <span class="hero-subtitle">LOVE FROM OUR BUYERS</span>
-          <h3 class="section-title">What People Are Saying & Unboxing Moments</h3>
+          <h3 class="section-title">What People Are Saying</h3>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
           
           <div style="background: white; padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
-            <div style="height: 180px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background: #eee;">
-              <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=500" style="width:100%; height:100%; object-fit:cover;">
-            </div>
             <div style="color: var(--star-gold); margin-bottom: 10px;">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 15px; font-style: italic;">"The Mini Polaroid Gift Box exceeded my expectations! The fairy lights and print quality made my partner's birthday extra special."</p>
-            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Ananya Sharma <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer with Photo)</span></div>
+            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Ananya Sharma <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer)</span></div>
           </div>
 
           <div style="background: white; padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
-            <div style="height: 180px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background: #eee;">
-              <img src="https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=500" style="width:100%; height:100%; object-fit:cover;">
-            </div>
             <div style="color: var(--star-gold); margin-bottom: 10px;">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 15px; font-style: italic;">"Ordered a customized chocolate bouquet for our anniversary. Packaging was pristine, and ordering via WhatsApp was seamless. Highly recommend!"</p>
-            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Rishabh Verma <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer with Photo)</span></div>
+            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Rishabh Verma <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer)</span></div>
           </div>
 
           <div style="background: white; padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
-            <div style="height: 180px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background: #eee;">
-              <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=500" style="width:100%; height:100%; object-fit:cover;">
-            </div>
             <div style="color: var(--star-gold); margin-bottom: 10px;">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 15px; font-style: italic;">"Amazing attention to detail! The handwritten note option gave it such a personal touch. Will definitely be ordering again for upcoming festivals."</p>
-            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Priya Iyer <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer with Photo)</span></div>
+            <div style="font-weight: 700; color: var(--purple-primary); font-size: 0.9rem;">— Priya Iyer <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Verified Buyer)</span></div>
           </div>
+        </div>
 
+        <div style="margin-top: 40px; background: white; padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); max-width: 600px; margin-left: auto; margin-right: auto;">
+          <h4 style="color:var(--purple-primary); margin-bottom: 15px; font-family:'Dancing Script', cursive; font-size: 2rem; text-align: center;">Write a Review</h4>
+          <div class="review-stars-input" id="home-star-selector" style="justify-content: center; font-size: 2rem; margin-bottom: 20px;">
+            <i class="fa-solid fa-star" onclick="setHomeRating(1)"></i>
+            <i class="fa-solid fa-star" onclick="setHomeRating(2)"></i>
+            <i class="fa-solid fa-star" onclick="setHomeRating(3)"></i>
+            <i class="fa-solid fa-star" onclick="setHomeRating(4)"></i>
+            <i class="fa-solid fa-star" onclick="setHomeRating(5)"></i>
+          </div>
+          <input type="text" id="home-review-name" placeholder="Your Name" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid var(--border-color); border-radius:8px;">
+          <textarea id="home-review-text" rows="3" placeholder="Share your experience..." style="width:100%; padding:10px; margin-bottom:10px; border:1px solid var(--border-color); border-radius:8px;"></textarea>
+          <div style="margin-bottom: 15px;">
+            <label style="font-size:0.85rem; color:var(--purple-primary); font-weight:600;">Upload Photo (Optional)</label><br>
+            <input type="file" accept="image/*" style="padding:5px;">
+          </div>
+          <button class="btn-primary" style="width:100%;" onclick="submitHomeReview()">Submit Review</button>
         </div>
       </section>
 
-      <!-- Interactive FAQ & Gifting Guide Accordion -->
-      <section style="margin: 50px 0; background: white; padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
-        <div class="section-header" style="text-align: center; display: block; margin-bottom: 25px;">
-          <span class="hero-subtitle">HELP & GUIDES</span>
-          <h3 class="section-title">Frequently Asked Questions</h3>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto;">
-          <details style="background: #FAF5FF; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); cursor: pointer;">
-            <summary style="font-weight: 700; color: var(--purple-primary); font-size: 1.05rem;">How are chocolate bouquets and fragile hampers shipped safely across India?</summary>
-            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;">Every hamper and chocolate bouquet is securely packed with multi-layer bubble wrapping, custom sturdy outer cartons, and temperature-safe cushioning to ensure it reaches your destination in pristine, gift-ready condition.</p>
-          </details>
-          <details style="background: #FAF5FF; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); cursor: pointer;">
-            <summary style="font-weight: 700; color: var(--purple-primary); font-size: 1.05rem;">Can I schedule delivery for a specific date or special occasion?</summary>
-            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;">Yes! When you proceed to checkout and confirm your order via WhatsApp, you can specify your exact required delivery date, and our team will coordinate timely dispatch accordingly.</p>
-          </details>
-          <details style="background: #FAF5FF; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); cursor: pointer;">
-            <summary style="font-weight: 700; color: var(--purple-primary); font-size: 1.05rem;">Are personalized greeting card messages free of charge?</summary>
-            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--text-dark); line-height: 1.6;">Completely free! You can add your custom heartfelt message during checkout, and we handwrite it onto our signature keepsake stationery cards.</p>
-          </details>
-        </div>
-      </section>
     </div>
 
     <div id="page-collections" class="page-section">
@@ -525,7 +511,7 @@
       <div style="background: white; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); max-width: 700px; margin: 0 auto;">
         <div id="quiz-container">
           <h4 class="handwritten" style="color: var(--purple-primary); font-size: 2.2rem; margin-bottom: 10px; text-align: center;">Find the Perfect Gift</h4>
-          <p style="text-align: center; color: var(--text-dark); margin-bottom: 30px;">Answer 3 quick questions to get personalized recommendations tailored for your special someone.</p>
+          <p style="text-align: center; color: var(--text-dark); margin-bottom: 30px;">Answer 6 quick questions to get personalized recommendations tailored for your special someone.</p>
           
           <div class="form-group">
             <label>1. Who is this gift for?</label>
@@ -553,6 +539,32 @@
               <option value="low">Under ₹600</option>
               <option value="mid">₹600 - ₹1,000</option>
               <option value="high">Above ₹1,000</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>4. What is their preferred style?</label>
+            <select id="quiz-style">
+              <option value="minimalist">Minimalist & Elegant</option>
+              <option value="luxurious">Luxurious & Grand</option>
+              <option value="quirky">Quirky & Fun</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>5. Do they like chocolates/sweets?</label>
+            <select id="quiz-sweets">
+              <option value="yes">Yes, absolutely!</option>
+              <option value="no">Not really</option>
+              <option value="dark">Only dark chocolate</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>6. Include a personalized note/photo?</label>
+            <select id="quiz-personalize">
+              <option value="yes">Yes, definitely</option>
+              <option value="no">No, just the gift is fine</option>
             </select>
           </div>
 
@@ -646,6 +658,7 @@
     <div class="drawer-content">
       <div class="admin-tabs">
         <button class="admin-tab-btn active" onclick="switchAdminTab('analytics', this)">Analytics</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('hero', this)">Hero</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products', this)">Products</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('orders', this)">Orders</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('occasions', this)">Occasions</button>
@@ -662,6 +675,16 @@
             <h4 id="stat-reach" class="handwritten" style="font-size: 3rem;">8,950</h4>
             <span style="font-size:0.8rem; color:var(--purple-primary); font-weight:600;">Total Reach</span>
           </div>
+        </div>
+      </div>
+
+      <div id="admin-hero" class="admin-view" style="display:none;">
+        <div class="form-group">
+          <label>Carousel Image 1 URL</label><input type="text" id="admin-img-1" value="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=800">
+          <label>Carousel Image 2 URL</label><input type="text" id="admin-img-2" value="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=800">
+          <label>Carousel Image 3 URL</label><input type="text" id="admin-img-3" value="https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=800">
+          <label>Carousel Image 4 URL</label><input type="text" id="admin-img-4" value="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=800">
+          <button class="btn-primary" style="margin-top:10px; width:100%;" onclick="adminUpdateCarousel()">Update Carousel Images</button>
         </div>
       </div>
 
@@ -684,6 +707,7 @@
 
       <div id="admin-orders" class="admin-view" style="display:none;">
         <div id="admin-all-orders-list"></div>
+        <div id="admin-order-detail-view" style="display:none;"></div>
       </div>
 
       <div id="admin-occasions" class="admin-view" style="display:none;">
@@ -812,6 +836,9 @@
       { id: 'hampers', name: 'Hampers', icon: 'fa-gift' }
     ];
 
+    let currentSlide = 1;
+    let slideInterval;
+
     window.onload = function() {
       adminStats.visits++; adminStats.reach += Math.floor(Math.random() * 5);
       renderNavigation();
@@ -821,7 +848,17 @@
       adminRenderOccasions();
       adminRenderCategoryDropdown(); 
       startCountdown();
+      startCarousel();
     };
+
+    function startCarousel() {
+      if(slideInterval) clearInterval(slideInterval);
+      slideInterval = setInterval(() => {
+          document.getElementById(`carousel-img-${currentSlide}`).style.opacity = 0;
+          currentSlide = currentSlide < 4 ? currentSlide + 1 : 1;
+          document.getElementById(`carousel-img-${currentSlide}`).style.opacity = 1;
+      }, 3500);
+    }
 
     function startCountdown() {
       let time = 12 * 3600 + 45 * 60 + 30;
@@ -929,17 +966,6 @@
       }
     }
 
-    function checkPincode(btnElem, prodId) {
-      const input = document.getElementById(`pincode-${prodId}`);
-      const resultBox = document.getElementById(`pincode-result-${prodId}`);
-      const val = input.value.trim();
-      if(val.length === 6) {
-        resultBox.innerHTML = `<span style="color: #15803d; font-weight:600;"><i class="fa-solid fa-circle-check"></i> Pan-India Express Delivery available! Est. 2-4 days.</span>`;
-      } else {
-        resultBox.innerHTML = `<span style="color: #b91c1c; font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> Please enter a valid 6-digit pin code.</span>`;
-      }
-    }
-
     function getProductCardHtml(p) {
       const isWish = wishlist.some(item => item.id === p.id);
       const avgRating = getAverageRating(p.id);
@@ -964,13 +990,7 @@
             <div class="product-price">₹${p.price}</div>
             <p class="product-desc">${p.desc}</p>
             
-            <div class="pincode-checker">
-              <input type="text" id="pincode-${p.id}" placeholder="Enter 6-digit Pincode" maxlength="6">
-              <button onclick="checkPincode(this, ${p.id})">Check</button>
-            </div>
-            <div id="pincode-result-${p.id}" style="font-size:0.75rem; margin-bottom:12px; min-height:16px;"></div>
-
-            <div style="display:flex; gap:10px;">
+            <div style="display:flex; gap:10px; margin-top: auto;">
               <button class="btn-outline" style="flex:1;" onclick="initiateAddToCart(${p.id}, false)">Add to Cart</button>
               <button class="btn-primary" style="flex:1;" onclick="initiateAddToCart(${p.id}, true)">Buy Now</button>
             </div>
@@ -981,6 +1001,7 @@
 
     let currentDetailProdId = null;
     let selectedRating = 0;
+    let homeSelectedRating = 0;
 
     function openProductDetails(prodId) {
       currentDetailProdId = prodId;
@@ -1026,6 +1047,10 @@
             <i class="fa-solid fa-star" onclick="setRating(5)"></i>
           </div>
           <textarea id="review-text" rows="2" style="width:100%; border:1px solid var(--border-color); border-radius:8px; padding:10px; margin-bottom:10px; color:var(--text-dark);" placeholder="What did you think of this product?"></textarea>
+          <div style="margin-bottom: 10px;">
+            <label style="font-size:0.85rem; color:var(--purple-primary); font-weight:600;">Upload Photo (Optional)</label><br>
+            <input type="file" accept="image/*" style="padding:5px; background:white;">
+          </div>
           <button class="btn-primary" style="width:100%; padding:8px;" onclick="submitReview()">Submit Review</button>
         </div>
       `;
@@ -1054,15 +1079,34 @@
       renderProducts(); 
     }
 
+    function setHomeRating(rating) {
+        homeSelectedRating = rating;
+        const stars = document.getElementById('home-star-selector').children;
+        for(let i=0; i<5; i++) {
+            if(i < rating) stars[i].classList.add('active');
+            else stars[i].classList.remove('active');
+        }
+    }
+
+    function submitHomeReview() {
+        if(homeSelectedRating === 0) { alert("Please select a star rating."); return; }
+        alert("Thank you! Your review has been submitted for moderation.");
+        document.getElementById('home-review-name').value = '';
+        document.getElementById('home-review-text').value = '';
+        setHomeRating(0);
+    }
+
     function runGiftQuiz() {
       const recipient = document.getElementById('quiz-recipient').value;
       const occasion = document.getElementById('quiz-occasion').value;
       const budget = document.getElementById('quiz-budget').value;
+      const style = document.getElementById('quiz-style').value;
+      const sweets = document.getElementById('quiz-sweets').value;
 
       let matched = products[0];
       if (budget === 'low') {
         matched = products.find(p => p.price <= 600) || products[0];
-      } else if (recipient === 'her' || occasion === 'valentine') {
+      } else if (recipient === 'her' || occasion === 'valentine' || style === 'luxurious') {
         matched = products.find(p => p.cat === 'bouquets') || products[2];
       } else {
         matched = products.find(p => p.price > 800) || products[1];
@@ -1362,6 +1406,7 @@
 
       const orderRecord = {
         id: orderId,
+        date: new Date().toISOString(),
         subtotal: subtotal.toFixed(2),
         discount: discount.toFixed(2),
         total: totalAmount.toFixed(2),
@@ -1416,20 +1461,57 @@
 
     function adminRenderOrders() {
       const container = document.getElementById('admin-all-orders-list');
+      document.getElementById('admin-order-detail-view').style.display = 'none';
+      container.style.display = 'block';
+
       if(globalOrders.length === 0) {
         container.innerHTML = `<div style="color:var(--purple-primary); text-align:center; padding:20px;">No global orders yet.</div>`;
         return;
       }
       container.innerHTML = globalOrders.map(o => `
-        <div class="order-card">
+        <div class="order-card" style="cursor:pointer;" onclick="adminViewOrder('${o.id}')">
           <div style="display:flex; justify-content:space-between;">
              <b style="color:var(--purple-primary);">${o.id}</b>
              <span style="color:var(--accent-pink); font-weight:700;">₹${o.total}</span>
           </div>
-          <div style="font-size:0.85rem; color:var(--text-dark); margin-bottom:8px;">Customer: ${o.customerName} | ${o.phone}</div>
-          <div>${o.items.map(item => `<div class="admin-order-item">- ${item.name} (${item.ribbonChoice}) (₹${item.price})</div>`).join('')}</div>
+          <div style="font-size:0.85rem; color:var(--text-dark); margin-bottom:8px;">Customer: ${o.customerName} | Date: ${new Date(o.date).toLocaleDateString()}</div>
+          <div style="font-size:0.85rem; color:var(--purple-primary);">Click to view full details &rarr;</div>
         </div>
       `).join('');
+    }
+
+    function adminViewOrder(orderId) {
+        const order = globalOrders.find(o => o.id === orderId);
+        if(!order) return;
+        const container = document.getElementById('admin-all-orders-list');
+        const detailView = document.getElementById('admin-order-detail-view');
+
+        const orderDate = new Date(order.date);
+        const deliveryDate = new Date(orderDate.getTime() + (10 * 24 * 60 * 60 * 1000));
+
+        detailView.innerHTML = `
+            <button class="btn-outline btn-outline-small" style="margin-bottom: 15px;" onclick="adminRenderOrders()">&larr; Back to Orders</button>
+            <div class="order-card">
+                <h4 style="color:var(--purple-primary); margin-bottom:10px;">Order ID: ${order.id}</h4>
+                <p><strong>Order Date:</strong> ${orderDate.toLocaleDateString()}</p>
+                <p style="color:#15803d; font-weight:600;"><strong>Delivery By:</strong> ${deliveryDate.toLocaleDateString()} (Within 10 days)</p>
+                <hr style="border:0; border-top:1px solid var(--border-color); margin:10px 0;">
+                <h5 style="color:var(--purple-primary); margin-bottom:5px;">Customer Details</h5>
+                <p><strong>Name:</strong> ${order.customerName}</p>
+                <p><strong>Phone:</strong> ${order.phone}</p>
+                <p><strong>Email:</strong> ${order.email}</p>
+                <p><strong>Address:</strong> ${order.address}</p>
+                <hr style="border:0; border-top:1px solid var(--border-color); margin:10px 0;">
+                <h5 style="color:var(--purple-primary); margin-bottom:5px;">Items Ordered</h5>
+                ${order.items.map(item => `<div class="admin-order-item">- ${item.name} (${item.ribbonChoice}) (₹${item.price})</div>`).join('')}
+                <hr style="border:0; border-top:1px solid var(--border-color); margin:10px 0;">
+                <p><strong>Subtotal:</strong> ₹${order.subtotal}</p>
+                <p><strong>Discount:</strong> ₹${order.discount}</p>
+                <p style="font-size:1.1rem; font-weight:bold; color:var(--purple-primary);">Total Paid: ₹${order.total}</p>
+            </div>
+        `;
+        container.style.display = 'none';
+        detailView.style.display = 'block';
     }
 
     function adminRenderProducts() {
@@ -1497,6 +1579,20 @@
 
       adminRenderProducts();
       renderProducts();
+    }
+
+    function adminUpdateCarousel() {
+      const img1 = document.getElementById('admin-img-1').value;
+      const img2 = document.getElementById('admin-img-2').value;
+      const img3 = document.getElementById('admin-img-3').value;
+      const img4 = document.getElementById('admin-img-4').value;
+      
+      if(img1) document.getElementById('carousel-img-1').src = img1;
+      if(img2) document.getElementById('carousel-img-2').src = img2;
+      if(img3) document.getElementById('carousel-img-3').src = img3;
+      if(img4) document.getElementById('carousel-img-4').src = img4;
+
+      alert("Homepage carousel images updated successfully!");
     }
 
     function adminRemoveProduct(id) {
