@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -140,7 +140,7 @@
       width: 100%; max-width: 500px; height: 350px; background-color: var(--bg-cream); border-radius: var(--radius-md); box-shadow: var(--shadow-md); margin-left: auto; overflow: hidden; position: relative;
     }
 
-    .categories-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 50px; }
+    .categories-bar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; margin-bottom: 50px; }
     .category-card {
       background: white; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: 600; font-size: 0.9rem; color: var(--text-dark); cursor: pointer; transition: all 0.3s; box-shadow: var(--shadow-sm); text-align: center;
     }
@@ -385,13 +385,13 @@
 
       <section>
         <div class="section-header">
-          <h3 class="section-title">Trending Hampers</h3>
+          <h3 class="section-title">Trending Gifts</h3>
           <div style="display: flex; gap: 10px; align-items: center;">
             <button class="btn-primary admin-only" onclick="openDrawer('admin-dashboard')">+ Add Item</button>
-            <button class="btn-outline btn-outline-small" onclick="openCategory('hampers')">View All <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="btn-outline btn-outline-small" onclick="openCategory('all')">View All <i class="fa-solid fa-arrow-right"></i></button>
           </div>
         </div>
-        <div class="products-grid" id="featured-hampers-grid"></div>
+        <div class="products-grid" id="featured-gifts-grid"></div>
       </section>
 
       <!-- Behind the Scenes & Reels Video Carousel Section -->
@@ -698,6 +698,9 @@
             <label style="font-size:0.75rem; margin-bottom:4px; display:block;">Product Image (Upload from Storage)</label>
             <input type="file" id="new-prod-img-file" accept="image/*" style="padding: 6px; background: white;">
           </div>
+          <div style="margin-bottom:8px;">
+            <input type="checkbox" id="new-prod-trending"> <label for="new-prod-trending" style="font-size:0.85rem; color:var(--text-dark);">Mark as Trending Gift</label>
+          </div>
           <textarea id="new-prod-desc" placeholder="Product Description" rows="2" style="margin-bottom:8px;"></textarea>
           <button class="btn-primary" style="width:100%;" onclick="adminAddProduct()">Add Product</button>
         </div>
@@ -804,10 +807,10 @@
     let occasions = ['Diwali', 'Birthday', 'Anniversary', 'Valentine\'s Day'];
 
     let products = [
-      { id: 1, name: 'Mini Polaroid Gift Box', price: 499, img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'Beautiful polaroid memories boxed with love and fairy lights.' },
-      { id: 2, name: 'Birthday Surprise Box', price: 899, img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'The perfect surprise hamper for their special day.' },
-      { id: 3, name: 'Velvet Rose Bouquet', price: 1299, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=600', cat: 'bouquets', desc: 'Fresh velvet roses styled elegantly.' },
-      { id: 4, name: 'Premium Chocolate Tray', price: 650, img: 'https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=600', cat: 'chocolates', desc: 'Assorted handmade premium chocolates.' }
+      { id: 1, name: 'Mini Polaroid Gift Box', price: 499, img: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'Beautiful polaroid memories boxed with love and fairy lights.', trending: true },
+      { id: 2, name: 'Birthday Surprise Box', price: 899, img: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&q=80&w=600', cat: 'hampers', desc: 'The perfect surprise hamper for their special day.', trending: true },
+      { id: 3, name: 'Velvet Rose Bouquet', price: 1299, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=600', cat: 'bouquets', desc: 'Fresh velvet roses styled elegantly.', trending: false },
+      { id: 4, name: 'Premium Chocolate Tray', price: 650, img: 'https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&q=80&w=600', cat: 'chocolates', desc: 'Assorted handmade premium chocolates.', trending: false }
     ];
 
     let productReviews = {
@@ -833,7 +836,8 @@
       { id: 'for-her', name: 'For Her', icon: 'fa-person-dress' },
       { id: 'chocolates', name: 'Chocolates', icon: 'fa-cookie' },
       { id: 'greeting-cards', name: 'Cards', icon: 'fa-envelope' },
-      { id: 'hampers', name: 'Hampers', icon: 'fa-gift' }
+      { id: 'hampers', name: 'Hampers', icon: 'fa-gift' },
+      { id: 'photo-frames', name: 'Photo Frames', icon: 'fa-image' }
     ];
 
     let currentSlide = 1;
@@ -941,9 +945,9 @@
     }
 
     function renderProducts() {
-      const homeGrid = document.getElementById('featured-hampers-grid');
-      const hamperProds = products.filter(p => p.cat === 'hampers');
-      homeGrid.innerHTML = hamperProds.map(p => getProductCardHtml(p)).join('');
+      const homeGrid = document.getElementById('featured-gifts-grid');
+      const trendingProds = products.filter(p => p.trending);
+      homeGrid.innerHTML = trendingProds.map(p => getProductCardHtml(p)).join('');
 
       const catGrid = document.getElementById('category-products-grid');
       let filtered = products;
@@ -1374,6 +1378,10 @@
               <span>Final Total:</span><span>₹${totalAmount.toFixed(2)}</span>
             </div>
 
+            <div style="color: red; font-size: 0.85rem; font-weight: bold; padding: 10px; border: 1px solid red; border-radius: 8px; margin-bottom: 15px; text-align: center; background: #fff0f0;">
+              * Note: Shipment charges will be applied according to the weight of the product and the place to be delivered. The owner of Aura will inform you the shipping charges before payment. To confirm your payment you must pay and it'll take a minimum of 10 days to dispatch and deliver. Dispatch details will be sent to you.
+            </div>
+
             <button class="btn-primary" style="width:100%;" onclick="proceedToPayment()">Confirm Order & Continue to WhatsApp</button>
           </div>
         </div>
@@ -1514,6 +1522,15 @@
         detailView.style.display = 'block';
     }
 
+    function toggleAdminTrending(id) {
+      const p = products.find(x => x.id === id);
+      if(p) {
+        p.trending = !p.trending;
+        adminRenderProducts();
+        renderProducts();
+      }
+    }
+
     function adminRenderProducts() {
       const list = document.getElementById('admin-products-list');
       list.innerHTML = products.map(p => `
@@ -1522,10 +1539,13 @@
             <img src="${p.img}" style="width:40px; height:40px; border-radius:4px; object-fit:cover;">
             <div>
               <b style="font-size:0.9rem; color:var(--purple-primary);">${p.name}</b>
-              <div style="font-size:0.8rem; color:var(--text-dark);">₹${p.price} | ${p.cat}</div>
+              <div style="font-size:0.8rem; color:var(--text-dark);">₹${p.price} | ${p.cat} ${p.trending ? '| <span style="color:var(--star-gold)"><i class="fa-solid fa-fire"></i> Trending</span>' : ''}</div>
             </div>
           </div>
-          <button style="border:none; background:rgba(168, 85, 247, 0.1); color:#A855F7; width:32px; height:32px; border-radius:50%; cursor:pointer;" onclick="adminRemoveProduct(${p.id})"><i class="fa-solid fa-trash"></i></button>
+          <div style="display:flex; gap: 5px;">
+              <button style="border:none; background:${p.trending ? 'var(--star-gold)' : '#e5e7eb'}; color:white; width:32px; height:32px; border-radius:50%; cursor:pointer;" onclick="toggleAdminTrending(${p.id})" title="Toggle Trending"><i class="fa-solid fa-fire"></i></button>
+              <button style="border:none; background:rgba(168, 85, 247, 0.1); color:#A855F7; width:32px; height:32px; border-radius:50%; cursor:pointer;" onclick="adminRemoveProduct(${p.id})" title="Delete Product"><i class="fa-solid fa-trash"></i></button>
+          </div>
         </div>
       `).join('');
     }
@@ -1536,6 +1556,7 @@
       const cat = document.getElementById('new-prod-cat').value;
       const desc = document.getElementById('new-prod-desc').value;
       const fileInput = document.getElementById('new-prod-img-file');
+      const isTrending = document.getElementById('new-prod-trending').checked;
 
       if(!name || !price) {
         alert("Please enter product name and price.");
@@ -1553,7 +1574,8 @@
             price: parseInt(price), 
             img: e.target.result, 
             cat, 
-            desc 
+            desc,
+            trending: isTrending
           });
           resetAndRefreshAdminForm();
         };
@@ -1565,7 +1587,8 @@
           price: parseInt(price), 
           img: defaultImg, 
           cat, 
-          desc 
+          desc,
+          trending: isTrending
         });
         resetAndRefreshAdminForm();
       }
@@ -1576,6 +1599,7 @@
       document.getElementById('new-prod-price').value = '';
       document.getElementById('new-prod-img-file').value = '';
       document.getElementById('new-prod-desc').value = '';
+      document.getElementById('new-prod-trending').checked = false;
 
       adminRenderProducts();
       renderProducts();
